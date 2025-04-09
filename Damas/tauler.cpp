@@ -163,6 +163,18 @@ void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 				}
 
 			}
+			else {
+				if (m_tauler[fila][col].getTipusFitxa() == TIPUS_DAMA) {
+					Posicio pos = m_tauler[fila][col].getPosicio();
+
+
+					damaMoure(pos, mv, nMv);
+
+					if (damaMatar(pos, mv, nMv)) {
+						damaMatarMultiples(pos, mv, nMv);
+					}
+				}
+			}
 			for (int j = 0;j++;j < nMv) {
 				m_tauler[fila][col].setMovimentPos(j,mv[j]);//Li fot moviments a la fitxa visitada en el bucle for
 				m_tauler[fila][col].setNMovimentsValids(nMv);
@@ -171,12 +183,7 @@ void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 		}
 	}
 }
-/*
-void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
-{
 
-}
-*/
 
 void Tauler::transportar(const Posicio& origen, const Posicio& desti) {//El fet concret de moure d'un lloc a l'altre
 
