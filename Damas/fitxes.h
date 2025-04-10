@@ -38,11 +38,11 @@ public:
 		m_tipusFitxa = TIPUS_EMPTY;
 		m_viva = true;
 	}
-	Fitxa(TipusFitxa tipus, ColorFitxa color,Posicio pos) {
+	Fitxa(TipusFitxa tipus, ColorFitxa color, Posicio pos) {
 		m_posicio = pos;
 		m_viva = true;
 		m_tipusFitxa = tipus;
-		if (tipus != COLOR_UNDEFINED) {
+		if (tipus != TIPUS_EMPTY) {
 			m_colorFitxa = color;
 
 		}
@@ -52,6 +52,7 @@ public:
 
 		}
 	}
+
 	//getters
 	TipusFitxa getTipusFitxa()const { return m_tipusFitxa; }
 	ColorFitxa getColorFitxa() const{ return m_colorFitxa; }
