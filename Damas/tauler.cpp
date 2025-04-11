@@ -7,7 +7,41 @@ using namespace std;
 void Tauler::inicialitza(const string& nomFitxer)
 {
 	//Implementar: if nomFitxer == null -> empieza de 0 ///////////////////////////////////
-	llegeixTauler(nomFitxer, m_taulerEnChars);
+	if (nomFitxer != "null")
+	{
+		llegeixTauler(nomFitxer, m_taulerEnChars);
+	}
+	else
+	{
+		for (int fila = 0; fila < N_FILES; fila++)
+		{
+			for (int col = 0; col < N_COLUMNES; col++)
+			{
+				if (fila <= 3) // Si estan arriba
+				{
+					if ((col + fila) % 2 == 1) // Es negra
+					{
+						m_taulerEnChars[fila][col] = 'X';
+					}
+					else
+					{
+						m_taulerEnChars[fila][col] = '_';
+					}
+				}
+				else if (fila >= 4) // Si estan abajo
+				{
+					if ((col + fila) % 2 == 1) // Es blanca
+					{
+						m_taulerEnChars[fila][col] = 'O';
+					}
+					else
+					{
+						m_taulerEnChars[fila][col] = '_';
+					}
+				}
+			}
+		}
+	}
 
 	for (int fila = 0; fila < N_FILES; fila++)
 	{
