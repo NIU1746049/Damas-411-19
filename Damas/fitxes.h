@@ -22,17 +22,6 @@ typedef enum
 class Fitxa
 {
 public:
-	/*Fitxa()
-	{
-		m_viva = true;
-		for (int i = 0;i < 100;i++) {
-			Moviment m
-			m_moviments[i] = m;
-		}
-		
-	
-	
-	}*/
 	Fitxa() {
 		m_colorFitxa = COLOR_UNDEFINED;
 		m_tipusFitxa = TIPUS_EMPTY;
@@ -66,12 +55,6 @@ public:
 	void setPosicio(Posicio posicio) { m_posicio = posicio; }
 	void setMovimentPos(int pos, Moviment m) { m_moviments[pos] = m; }
 	void setNMovimentsValids(int nMv) { m_nMoviments = nMv; }
-	
-	
-	
-	
-	//AQUEST PROBLEMATIC DE DALT
-	
 	
 	
 private:
