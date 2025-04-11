@@ -16,8 +16,6 @@ int main()
 // (no cal que implementeu els mètodes, de moment)
 //
 //-Moviments lo ponemos en la clase Fitxa o en la clase Tauler? 
-// 
-//-Programar inicializacion tablero cuando el argumento es null
 //
 //-Pagina 28 pdf, punto 5:
 // Penseu com podeu descomposar el codi del mètode actualitzaMovimentsValids amb funcions més petites i simples.
