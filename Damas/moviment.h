@@ -21,9 +21,10 @@ public:
 		
 
 	};
-	Moviment(TipusMoviment tipus,Posicio posicions[N_FILES * N_COLUMNES],int m_nPosicions) {
+	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions) {
 		m_tipus = tipus;
-		for (int i = 0; i < (N_FILES * N_COLUMNES);i++) {
+		m_nPosicions = nPosicions;
+		for (int i = 0; i < nPosicions; i++) {
 			m_posicions[i] = posicions[i];
 		}
 	}
@@ -34,6 +35,6 @@ public:
 
 private:
 	TipusMoviment m_tipus;
-	Posicio m_posicions[N_FILES * N_COLUMNES];//que consti que sempre inclou la posicio d'origen. Pr tant sempre nhi han minim dos.
+	Posicio m_posicions[12];//que consti que sempre inclou la posicio d'origen. Pr tant sempre nhi han minim dos.
 	int m_nPosicions;
 };

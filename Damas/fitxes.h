@@ -59,7 +59,7 @@ public:
 	
 private:
 	Posicio m_posicio;
-	Moviment m_moviments[100];
+	Moviment m_moviments[20];
 	int m_nMoviments = 0;
 
 	TipusFitxa m_tipusFitxa;

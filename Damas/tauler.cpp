@@ -235,9 +235,11 @@ void Tauler::transportar(const Posicio& origen, const Posicio& desti) {//El fet 
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 {
-	if (origen == desti) {//Programacio defensiva. Potser després ho trec pero de moment està bé on està.
-		return false;
-	}
+	//if (origen == desti) {//Programacio defensiva. Potser després ho trec pero de moment està bé on està.
+	//	return false;
+	//}
+	// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Useless. Esto va en funcion de Fitxa.m_moviments[] y ese movimiento nunca va a estar en Fitxa.m_moviments[]
+	
 	//Mes coses
 	
 }

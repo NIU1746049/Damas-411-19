@@ -1,6 +1,3 @@
-﻿  dames.cpp
-  tauler.cpp
-C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\tauler.cpp(178,25): warning C4552: '<': result of expression not used
-  Generating Code...
-C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\tauler.cpp(209,1): warning C4715: 'Tauler::mouFitxa': not all control paths return a value
-  Damas.vcxproj -> C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\x64\Debug\Damas.exe
+﻿  tauler.cpp
+C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\tauler.cpp(212,25): warning C4552: '<': result of expression not used
+C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\tauler.cpp(245,1): error C4716: 'Tauler::mouFitxa': must return a value

@@ -36,13 +36,13 @@ public:
 
 	//Comprovar moviments
 	//Borrar?
-	bool normalMoure(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const;
-	bool normalMatar(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const;
-	bool normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const;
+	bool normalMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
+	bool normalMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
+	bool normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
 
-	bool damaMoure(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const;
-	bool damaMatar(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const;
-	bool damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const;
+	bool damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
+	bool damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
+	bool damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
 
 
 
