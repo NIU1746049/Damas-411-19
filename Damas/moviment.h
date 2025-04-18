@@ -18,7 +18,7 @@ public:
 	Moviment() {
 		m_tipus = EMPTY;
 		m_nPosicions = 0;
-		
+		m_nMorts = 0;
 
 	};
 	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions) {
@@ -37,4 +37,5 @@ private:
 	TipusMoviment m_tipus;
 	Posicio m_posicions[12];//Inclou la posicio d'origen
 	int m_nPosicions;
+	int m_nMorts;
 };

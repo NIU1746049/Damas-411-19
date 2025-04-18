@@ -6,13 +6,14 @@ using namespace std;
 
 void Tauler::inicialitza(const string& nomFitxer)
 {
-	//Implementar: if nomFitxer == null -> empieza de 0 ///////////////////////////////////
 	if (nomFitxer != "null")
 	{
 		llegeixTauler(nomFitxer, m_taulerEnChars);
 	}
 	else
 	{
+		m_nBlanques = 12;
+		m_nNegres = 12;
 		for (int fila = 0; fila < N_FILES; fila++)
 		{
 			for (int col = 0; col < N_COLUMNES; col++)
@@ -43,33 +44,12 @@ void Tauler::inicialitza(const string& nomFitxer)
 		}
 	}
 
-	for (int fila = 0; fila < N_FILES; fila++) // Posar aquest codi en Fitxa
+	for (int fila = 0; fila < N_FILES; fila++)
 	{
 		for (int col = 0; col < N_COLUMNES; col++)
 		{
 			m_tauler[fila][col].setColorITipusFitxa(m_taulerEnChars[fila][col]);
-			//switch (m_taulerEnChars[fila][col]) // Posar aquest codi en Fitxa
-			//{
-			//case '_':
-			//	m_tauler[fila][col].setTipusFitxa(TIPUS_EMPTY);
-			//	break;
-			//case 'O':
-			//	m_tauler[fila][col].setTipusFitxa(TIPUS_NORMAL);
-			//	m_tauler[fila][col].setColorFitxa(COLOR_BLANC);
-			//	break;
-			//case 'X':
-			//	m_tauler[fila][col].setTipusFitxa(TIPUS_NORMAL);
-			//	m_tauler[fila][col].setColorFitxa(COLOR_NEGRE);
-			//	break;
-			//case 'D':
-			//	m_tauler[fila][col].setTipusFitxa(TIPUS_DAMA);
-			//	m_tauler[fila][col].setColorFitxa(COLOR_BLANC);
-			//	break;
-			//case 'R':
-			//	m_tauler[fila][col].setTipusFitxa(TIPUS_DAMA);
-			//	m_tauler[fila][col].setColorFitxa(COLOR_NEGRE);
-			//	break;
-			//}
+			////////////////////////// IMPLEMENTAR setNumFichasNegras y blancas //////////////////////////////////////////
 		}
 	}
 }
@@ -241,12 +221,6 @@ void Tauler::transportar(const Posicio& origen, const Posicio& desti) {//El fet 
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 {
-	//if (origen == desti) {//Programacio defensiva. Potser després ho trec pero de moment està bé on està.
-	//	return false;
-	//}
-	// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Useless. Esto va en funcion de Fitxa.m_moviments[] y ese movimiento nunca va a estar en Fitxa.m_moviments[]
-	
-	//Mes coses
 	return false;
 }
 

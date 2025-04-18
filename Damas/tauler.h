@@ -28,11 +28,14 @@ public:
 	bool mouFitxa(const Posicio& origen, const Posicio& desti);
 	string toString() const;
 
-	
-	void seleccionaFitxa(const string& posFitxa);
-	void mouFitxa(int filaFitxa, int colFitxa);
+	void seleccionaFitxa(const string& posFitxa); // Cambia col y filaSeleccionada (cout de "Introduce la ficha" y cin)
 
 	void transportar(const Posicio& origen, const Posicio& desti);//fitxa1<->fitxa2 pos1<->pos2 (notis que al swapejar les fitxes ja hi ha hagut un canvi en les posicions per tant un segons canvi les deixa com estaven originalment.)
+
+	void convertirADama();
+	bool bufar();
+	void eliminarFitxesMortes(); // Asignarlas como vivas despues de eliminarlas
+	bool gameOver();
 
 	//Comprovar moviments
 	bool normalMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
@@ -53,6 +56,10 @@ private:
 	Fitxa m_tauler[N_FILES][N_COLUMNES];
 	char m_taulerEnChars[N_FILES][N_COLUMNES];
 	bool m_tornBlanques;
+
+	int m_nBlanques;
+	int m_nNegres;
+
 
 	//inicialitza
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;

@@ -1,7 +1,5 @@
 ﻿  dames.cpp
   fitxes.cpp
-  posicio.cpp
   tauler.cpp
   Generating Code...
-C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\posicio.cpp(44,1): warning C4717: 'operator<<': recursive on all control paths, function will cause runtime stack overflow
   Damas.vcxproj -> C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\x64\Debug\Damas.exe
