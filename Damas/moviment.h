@@ -35,6 +35,6 @@ public:
 
 private:
 	TipusMoviment m_tipus;
-	Posicio m_posicions[12];//que consti que sempre inclou la posicio d'origen. Pr tant sempre nhi han minim dos.
+	Posicio m_posicions[12];//Inclou la posicio d'origen
 	int m_nPosicions;
 };

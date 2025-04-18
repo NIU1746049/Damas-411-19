@@ -52,6 +52,7 @@ public:
 	//setters
 	void setTipusFitxa(TipusFitxa tipusFitxa) { m_tipusFitxa = tipusFitxa; }
 	void setColorFitxa(ColorFitxa colorFitxa) { m_colorFitxa = colorFitxa; }
+	void setColorITipusFitxa(char fitxa);
 	void setPosicio(Posicio posicio) { m_posicio = posicio; }
 	void setMovimentPos(int pos, Moviment m) { m_moviments[pos] = m; }
 	void setNMovimentsValids(int nMv) { m_nMoviments = nMv; }

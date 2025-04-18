@@ -35,7 +35,6 @@ public:
 	void transportar(const Posicio& origen, const Posicio& desti);//fitxa1<->fitxa2 pos1<->pos2 (notis que al swapejar les fitxes ja hi ha hagut un canvi en les posicions per tant un segons canvi les deixa com estaven originalment.)
 
 	//Comprovar moviments
-	//Borrar?
 	bool normalMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
 	bool normalMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
 	bool normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;

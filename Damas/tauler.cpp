@@ -47,34 +47,35 @@ void Tauler::inicialitza(const string& nomFitxer)
 	{
 		for (int col = 0; col < N_COLUMNES; col++)
 		{
-			switch (m_taulerEnChars[fila][col])
-			{
-			case '_':
-				m_tauler[fila][col].setTipusFitxa(TIPUS_EMPTY);
-				break;
-			case 'O':
-				m_tauler[fila][col].setTipusFitxa(TIPUS_NORMAL);
-				m_tauler[fila][col].setColorFitxa(COLOR_BLANC);
-				break;
-			case 'X':
-				m_tauler[fila][col].setTipusFitxa(TIPUS_NORMAL);
-				m_tauler[fila][col].setColorFitxa(COLOR_NEGRE);
-				break;
-			case 'D':
-				m_tauler[fila][col].setTipusFitxa(TIPUS_DAMA);
-				m_tauler[fila][col].setColorFitxa(COLOR_BLANC);
-				break;
-			case 'R':
-				m_tauler[fila][col].setTipusFitxa(TIPUS_DAMA);
-				m_tauler[fila][col].setColorFitxa(COLOR_NEGRE);
-				break;
-			}
+			m_tauler[fila][col].setColorITipusFitxa(m_taulerEnChars[fila][col]);
+			//switch (m_taulerEnChars[fila][col]) // Posar aquest codi en Fitxa
+			//{
+			//case '_':
+			//	m_tauler[fila][col].setTipusFitxa(TIPUS_EMPTY);
+			//	break;
+			//case 'O':
+			//	m_tauler[fila][col].setTipusFitxa(TIPUS_NORMAL);
+			//	m_tauler[fila][col].setColorFitxa(COLOR_BLANC);
+			//	break;
+			//case 'X':
+			//	m_tauler[fila][col].setTipusFitxa(TIPUS_NORMAL);
+			//	m_tauler[fila][col].setColorFitxa(COLOR_NEGRE);
+			//	break;
+			//case 'D':
+			//	m_tauler[fila][col].setTipusFitxa(TIPUS_DAMA);
+			//	m_tauler[fila][col].setColorFitxa(COLOR_BLANC);
+			//	break;
+			//case 'R':
+			//	m_tauler[fila][col].setTipusFitxa(TIPUS_DAMA);
+			//	m_tauler[fila][col].setColorFitxa(COLOR_NEGRE);
+			//	break;
+			//}
 		}
 	}
 }
 
 //Normal
-bool Tauler::normalMoure(Posicio posicioActual,Moviment movimentsValids[100], int& nMovimentsValids)const
+bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const
 {
 	bool valid = false;
 	int incrementVertical;
@@ -104,7 +105,7 @@ bool Tauler::normalMoure(Posicio posicioActual,Moviment movimentsValids[100], in
 }
 
 
-bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const {
+bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
 
 	bool valid = false;
 	int incrementVertical;
@@ -142,7 +143,7 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[100], i
 	return valid;
 }
 
-bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const {
+bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
 	//For de mentres sigui true el normalMatar
 	return true;
 }
@@ -150,16 +151,16 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValid
 
 
 //dama
-bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const
+bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const
 {
 	return true;
 }
 
-bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const {
+bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
 	return true;
 }
 
-bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[100], int& nMovimentsValids)const {
+bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
 	return true;
 }
 
@@ -176,8 +177,10 @@ void esborraMoviments(Fitxa fitxa) {
 
 void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 {
-	for (int fila = 0; fila < N_FILES;fila++) {
-		for (int col = 0; col < N_COLUMNES;col++) {
+	for (int fila = 0; fila < N_FILES; fila++) 
+	{
+		for (int col = 0; col < N_COLUMNES; col++) 
+		{
 			esborraMoviments(m_tauler[fila][col]);
 
 
@@ -186,7 +189,8 @@ void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 
 
 
-			if (m_tauler[fila][col].getTipusFitxa() == TIPUS_NORMAL) {
+			if (m_tauler[fila][col].getTipusFitxa() == TIPUS_NORMAL) 
+			{
 				Posicio pos = m_tauler[fila][col].getPosicio();
 				
 
@@ -198,7 +202,8 @@ void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 
 			}
 			else {
-				if (m_tauler[fila][col].getTipusFitxa() == TIPUS_DAMA) {
+				if (m_tauler[fila][col].getTipusFitxa() == TIPUS_DAMA) 
+				{
 					Posicio pos = m_tauler[fila][col].getPosicio();
 
 
@@ -209,7 +214,8 @@ void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 					}
 				}
 			}
-			for (int j = 0;j++;j < nMv) {
+			for (int j = 0; j < nMv; j++) 
+			{
 				m_tauler[fila][col].setMovimentPos(j,mv[j]);//Li fot moviments a la fitxa visitada en el bucle for
 				m_tauler[fila][col].setNMovimentsValids(nMv);
 			}
@@ -241,7 +247,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 	// ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ Useless. Esto va en funcion de Fitxa.m_moviments[] y ese movimiento nunca va a estar en Fitxa.m_moviments[]
 	
 	//Mes coses
-	
+	return false;
 }
 
 string Tauler::toString() const 
