@@ -15,6 +15,10 @@ public:
 	{ 
 		fromString(posicio);
 	};
+	Posicio(int fila, int columna) {//Tres constructors en total es mala praxis?
+		m_fila = fila;
+		m_columna = columna;
+	};
 
 	//getters
 	int getFila() const { return m_fila; }

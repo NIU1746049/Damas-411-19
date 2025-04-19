@@ -72,9 +72,8 @@ bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[20], in
 			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getTipusFitxa() == TIPUS_EMPTY)) {
 				//movimentsValids[nMovimentsValids] = m_tauler[posicioActual.getFila() + 1][posicioActual.getFila() + i]
 
-				TipusMoviment tM = NORMAL_NO_MATAR;
 				Posicio posicions[2] = { posicioActual,m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getPosicio() };
-				Moviment nouMoviment(tM, posicions, 2);
+				Moviment nouMoviment(NORMAL_NO_MATAR, posicions, 2,0);
 				valid = true;
 				nMovimentsValids++;
 			}
@@ -108,12 +107,11 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 				(m_tauler[posicioActual.getFila() + 2 * incrementVertical][posicioActual.getFila() + 2 * i].getTipusFitxa() == TIPUS_EMPTY) &&
 				(m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getColorFitxa() != m_tauler[posicioActual.getFila()][posicioActual.getFila()].getColorFitxa())) {
 				//Fotre el moviment aqui
-				TipusMoviment tM = NORMAL_MATAR;
 				Posicio posicions[3] = { posicioActual,
 					m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getPosicio(),
 					m_tauler[posicioActual.getFila() + 2*incrementVertical][posicioActual.getFila() + 2*i].getPosicio()
 				};
-				Moviment nouMoviment(tM, posicions, 3);
+				Moviment nouMoviment(NORMAL_MATAR, posicions, 3,1);
 				valid = true;
 				nMovimentsValids++;
 
@@ -124,7 +122,8 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 }
 
 bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
-	//For de mentres sigui true el normalMatar
+	
+
 	return true;
 }
 
@@ -133,11 +132,110 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValid
 //dama
 bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const
 {
-	return true;
+	int nMovimentsValidsInicial = nMovimentsValids;
+	for (int incColumna = -1;incColumna < 2;incColumna++) {
+		for (int incFila = -1;incFila < 2;incFila++) 
+		{	
+			if ((incColumna != 0) && (incFila != 0)) 
+			{
+				bool limitTrobat = false;//Ja sigui taulell o casella contraria
+				int escalar = 1;
+				Posicio posicions[32];
+				posicions[0] = posicioActual;
+				int nPosicions = 1;
+				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
+					if (((posicioActual.getFila() + incFila*escalar) < N_FILES) && ((posicioActual.getColumna() + incColumna*escalar) < N_COLUMNES)){//Evitant Stack Overflow, que no se surti del taulell
+						if ((m_tauler[posicioActual.getFila() + incFila * escalar][posicioActual.getFila() + incColumna * escalar].getTipusFitxa() == TIPUS_EMPTY)) {//que no hi hagi una fitxa.............
+
+							Posicio p((posicioActual.getFila() + incFila * escalar), (posicioActual.getColumna() + incColumna * escalar));
+							posicions[nPosicions] = p;
+							nPosicions++;
+						}
+						else {
+							limitTrobat = true;
+						}
+					}
+					else {
+						limitTrobat = true;
+					}
+				}
+				if (nPosicions > 1) {
+					Moviment m(DAMA_NO_MATAR, posicions, nPosicions, 0);
+					movimentsValids[nMovimentsValids] = m;
+					nMovimentsValids++;
+				}
+			}
+		}
+	}
+	int incrementMovimentsValids = nMovimentsValids - nMovimentsValidsInicial;
+	if (incrementMovimentsValids > 0) {
+		return true;
+	}
+	else {
+		return false;
+	}
+	
 }
 
-bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
-	return true;
+bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const 
+{
+	for (int incColumna = -1;incColumna < 2;incColumna++) {
+		for (int incFila = -1;incFila < 2;incFila++)
+		{
+			if ((incColumna != 0) && (incFila != 0))
+			{
+				bool matada = false;
+				bool limitTrobat = false;//Ja sigui taulell o casella contraria
+				int escalar = 1;
+				Posicio posicions[32];
+				posicions[0] = posicioActual;
+				int nPosicions = 1;
+				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
+					if (((posicioActual.getFila() + incFila * escalar) < N_FILES) && ((posicioActual.getColumna() + incColumna * escalar) < N_COLUMNES)) {//Evitant Stack Overflow, que no se surti del taulell
+						if ((m_tauler[posicioActual.getFila() + incFila * escalar][posicioActual.getFila() + incColumna * escalar].getTipusFitxa() == TIPUS_EMPTY)) {
+							
+							Posicio p((posicioActual.getFila() + incFila * escalar), (posicioActual.getColumna() + incColumna * escalar));
+							posicions[nPosicions] = p;
+							nPosicions++;
+
+							
+
+						}
+						else {
+							if ((m_tauler[posicioActual.getFila() + incFila * escalar][posicioActual.getFila() + incColumna * escalar].getColorFitxa() !=
+								m_tauler[posicioActual.getFila()][posicioActual.getFila()].getColorFitxa()) &&
+								(m_tauler[posicioActual.getFila() + incFila * escalar + incFila][posicioActual.getFila() + incColumna * escalar + incColumna].getTipusFitxa() == TIPUS_EMPTY)) {
+
+								Posicio p((posicioActual.getFila() + incFila * escalar), (posicioActual.getColumna() + incColumna * escalar));
+								posicions[nPosicions] = p;
+								nPosicions++;
+								Posicio p2((posicioActual.getFila() + incFila * escalar+incFila), (posicioActual.getColumna() + incColumna * escalar+incColumna));
+								posicions[nPosicions] = p2;
+								nPosicions++;
+								matada = true;
+
+							}
+							limitTrobat = true;
+						}
+						
+						
+						
+					}
+					else {
+						limitTrobat = true;
+					}
+					escalar++;
+				}
+				if (matada) {
+					Moviment m(DAMA_MATAR, posicions, nPosicions, 1);
+					movimentsValids[nMovimentsValids] = m;
+					nMovimentsValids++;
+				}
+			}
+		}
+	}
+
+	return ;
 }
 
 bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
