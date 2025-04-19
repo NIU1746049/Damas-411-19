@@ -28,7 +28,7 @@ public:
 	bool mouFitxa(const Posicio& origen, const Posicio& desti);
 	string toString() const;
 
-	void seleccionaFitxa(const string& posFitxa); // Cambia col y filaSeleccionada (cout de "Introduce la ficha" y cin)
+	void seleccionaFitxa(const string& posFitxa,const bool jugantElBlanc); // Cambia col y filaSeleccionada (cout de "Introduce la ficha" y cin)
 
 	void transportar(const Posicio& origen, const Posicio& desti);//fitxa1<->fitxa2 pos1<->pos2 (notis que al swapejar les fitxes ja hi ha hagut un canvi en les posicions per tant un segons canvi les deixa com estaven originalment.)
 

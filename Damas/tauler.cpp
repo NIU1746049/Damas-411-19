@@ -302,7 +302,9 @@ void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 	}
 }
 
-
+bool Tauler::bufar(int fila, int columna) {
+	////////
+}
 void Tauler::transportar(const Posicio& origen, const Posicio& desti) {//El fet concret de moure d'un lloc a l'altre
 
 	
