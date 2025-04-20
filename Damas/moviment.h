@@ -21,12 +21,13 @@ public:
 		m_nMorts = 0;
 
 	};
-	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions) {
+	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions,int nMorts) {
 		m_tipus = tipus;
 		m_nPosicions = nPosicions;
 		for (int i = 0; i < nPosicions; i++) {
 			m_posicions[i] = posicions[i];
 		}
+		m_nMorts = nMorts;
 	}
 	
 
