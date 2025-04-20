@@ -1,7 +1,5 @@
 #include "dames.h"
 
-
-
 /*
 int main()
 {
@@ -9,27 +7,39 @@ int main()
 
 	tauler.inicialitza("dames_input.txt");
 	cout << tauler.toString();
-
 }*/
-int main() {
+
+
+int main()
+{
 	Tauler tauler;
-	bool partidaAcabada = false;
-	bool jugantElBlanc = true;
-	tauler.inicialitza("dames_input.txt");
+	bool gameOver = true;
+	tauler.setTornBlanques(true);
+	while (!gameOver) {
+		gameOver = tauler.gameOver();
 
-	while (!partidaAcabada) {
-		partidaAcabada = tauler.gameOver();
-		tauler.seleccionaFitxa(jugantElBlanc)
 
-		
+		bool seleccioValida = tauler.seleccionaFitxa();
+
+		while (!seleccioValida) {
+			seleccioValida = tauler.seleccionaFitxa();
+		}
+
+
+
+		tauler.actualitzaMovimentsValids();//actualitzara els moviments valids de la fitxa seleccionada
+
+
 		tauler.bufar();
 		tauler.eliminarFitxesMortes();
 		tauler.convertirADama();
-		jugantElBlanc = false;
+		tauler.setTornBlanques(!tauler.getTornBlanques());
 
 	}
-	
 }
+
+
+
 
 //TAREAS
 //Hug:
