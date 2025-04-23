@@ -12,7 +12,8 @@ public:
 		m_tornBlanques = true;
 		m_filaFitxaSeleccionada = 0;
 		m_colFitxaSeleccionada = 0;
-
+		m_nBlanques = 0;
+		m_nNegres = 0;
 		/*
 		for (int i = 0; i < N_FILES;i++) {
 			for (int j = 0; j < N_COLUMNES;j++) {
@@ -46,7 +47,9 @@ public:
 	bool damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
 	bool damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
 
-
+	//getters
+	int getNBlanques() const { return m_nBlanques; }
+	int getNNegres() const { return m_nNegres; }
 
 
 

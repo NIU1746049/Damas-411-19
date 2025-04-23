@@ -15,7 +15,7 @@ public:
 	{ 
 		fromString(posicio);
 	};
-	Posicio(int fila, int columna) {//Tres constructors en total es mala praxis?
+	Posicio(int fila, int columna) {
 		m_fila = fila;
 		m_columna = columna;
 	};

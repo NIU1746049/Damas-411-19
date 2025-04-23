@@ -10,6 +10,7 @@ void Fitxa::setColorITipusFitxa(char fitxa)
 	{
 	case '_':
 		m_tipusFitxa = TIPUS_EMPTY;
+		m_colorFitxa = COLOR_UNDEFINED;
 		break;
 	case 'O':
 		m_tipusFitxa = TIPUS_NORMAL;

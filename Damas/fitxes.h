@@ -44,10 +44,10 @@ public:
 
 	//getters
 	TipusFitxa getTipusFitxa()const { return m_tipusFitxa; }
-	ColorFitxa getColorFitxa() const{ return m_colorFitxa; }
+	ColorFitxa getColorFitxa()const { return m_colorFitxa; }
 	Posicio getPosicio()const { return m_posicio;}
 	int getNMoviments()const { return m_nMoviments;}
-
+	bool getViva()const { return m_viva; }
 
 	//setters
 	void setTipusFitxa(TipusFitxa tipusFitxa) { m_tipusFitxa = tipusFitxa; }
@@ -56,6 +56,7 @@ public:
 	void setPosicio(Posicio posicio) { m_posicio = posicio; }
 	void setMovimentPos(int pos, Moviment m) { m_moviments[pos] = m; }
 	void setNMovimentsValids(int nMv) { m_nMoviments = nMv; }
+	void setViva(bool viva) { m_viva = viva; }
 	
 	
 private:

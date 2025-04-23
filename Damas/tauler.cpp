@@ -12,8 +12,6 @@ void Tauler::inicialitza(const string& nomFitxer)
 	}
 	else
 	{
-		m_nBlanques = 12;
-		m_nNegres = 12;
 		for (int fila = 0; fila < N_FILES; fila++)
 		{
 			for (int col = 0; col < N_COLUMNES; col++)
@@ -44,12 +42,22 @@ void Tauler::inicialitza(const string& nomFitxer)
 		}
 	}
 
+	m_nBlanques = 0;
+	m_nNegres = 0;
 	for (int fila = 0; fila < N_FILES; fila++)
 	{
 		for (int col = 0; col < N_COLUMNES; col++)
 		{
 			m_tauler[fila][col].setColorITipusFitxa(m_taulerEnChars[fila][col]);
-			////////////////////////// IMPLEMENTAR setNumFichasNegras y blancas //////////////////////////////////////////
+			//Cuenta cuantas fichas de cada color hay
+			if (m_tauler[fila][col].getColorFitxa() == COLOR_BLANC)
+			{
+				m_nBlanques++;
+			}
+			else if (m_tauler[fila][col].getColorFitxa() == COLOR_NEGRE)
+			{
+				m_nNegres++;
+			}
 		}
 	}
 }
@@ -235,7 +243,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 		}
 	}
 
-	return;
+	return false; //Return false para que no de error
 }
 
 bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
@@ -302,6 +310,10 @@ void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 	}
 }
 
+void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
+{
+
+}
 
 bool Tauler::seleccionaFitxa() {
 	int fila;
@@ -418,4 +430,64 @@ void Tauler::llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUM
 		}
 	}
 	fitxer.close();
+}
+
+
+
+void Tauler::convertirADama()
+{
+	//Damas Blancas
+	for (int col = 0; col < N_COLUMNES; col++)
+	{
+		if (m_tauler[0][col].getColorFitxa() == COLOR_BLANC)
+		{
+			m_tauler[0][col].setTipusFitxa(TIPUS_DAMA);
+		}
+	}
+
+	//Damas Negras
+	for (int col = 0; col < N_COLUMNES; col++)
+	{
+		if (m_tauler[7][col].getColorFitxa() == COLOR_NEGRE)
+		{
+			m_tauler[7][col].setTipusFitxa(TIPUS_DAMA);
+		}
+	}
+}
+
+bool Tauler::bufar()
+{
+	return false;
+}
+
+void Tauler::eliminarFitxesMortes() // Asignarlas como vivas despues de eliminarlas
+{
+	for (int fila = 0; fila < N_FILES; fila++)
+	{
+		for (int col = 0; col < N_COLUMNES; col++)
+		{
+			if (m_tauler[fila][col].getViva() == false)
+			{
+				m_tauler[fila][col].setColorFitxa(COLOR_UNDEFINED);
+				m_tauler[fila][col].setTipusFitxa(TIPUS_EMPTY);
+				m_tauler[fila][col].setViva(true);
+			}
+		}
+	}
+}
+
+bool Tauler::gameOver()
+{
+	if (m_nBlanques == 0 || (m_tornBlanques == true /* && las blancas no se pueden mover */))
+	{
+		cout << "Guanyen les negres" << endl;
+		return true;
+	}
+	else if (m_nNegres == 0 || (m_tornBlanques == false /* && las negras no se pueden mover */))
+	{
+		cout << "Guanyen les blanques" << endl;
+		return true;
+	}
+
+	return false;
 }
