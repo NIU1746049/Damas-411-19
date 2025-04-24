@@ -312,7 +312,7 @@ void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
 {
-
+	//Recuerda igualar m_nMoviments a el numero de movimientos
 }
 
 bool Tauler::seleccionaFitxa() {
@@ -470,20 +470,38 @@ void Tauler::eliminarFitxesMortes() // Asignarlas como vivas despues de eliminar
 			{
 				m_tauler[fila][col].setColorFitxa(COLOR_UNDEFINED);
 				m_tauler[fila][col].setTipusFitxa(TIPUS_EMPTY);
+				//
 				m_tauler[fila][col].setViva(true);
 			}
 		}
 	}
 }
 
+int Tauler::comptaNumeroMovimentsPossibles(const ColorFitxa color) const
+{
+	int nMoviments = 0;
+	for (int fila = 0; fila < N_FILES; fila++)
+	{
+		for (int col = 0; col < N_COLUMNES; col++)
+		{
+			if (m_tauler[fila][col].getColorFitxa() == color)
+			{
+				nMoviments = nMoviments + m_tauler[fila][col].getNMoviments();
+			}
+		}
+	}
+
+	return nMoviments;
+}
+
 bool Tauler::gameOver()
 {
-	if (m_nBlanques == 0 || (m_tornBlanques == true /* && las blancas no se pueden mover */))
+	if (m_nBlanques == 0 || (m_tornBlanques == true && comptaNumeroMovimentsPossibles(COLOR_BLANC)))
 	{
 		cout << "Guanyen les negres" << endl;
 		return true;
 	}
-	else if (m_nNegres == 0 || (m_tornBlanques == false /* && las negras no se pueden mover */))
+	else if (m_nNegres == 0 || (m_tornBlanques == false && comptaNumeroMovimentsPossibles(COLOR_NEGRE)))
 	{
 		cout << "Guanyen les blanques" << endl;
 		return true;

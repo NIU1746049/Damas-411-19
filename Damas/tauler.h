@@ -30,8 +30,8 @@ public:
 	string toString() const;
 
 	bool seleccionaFitxa(); // Cambia col y filaSeleccionada (cout de "Introduce la ficha" y cin)
-
 	void transportar(const Posicio& origen, const Posicio& desti);//fitxa1<->fitxa2 pos1<->pos2 (notis que al swapejar les fitxes ja hi ha hagut un canvi en les posicions per tant un segons canvi les deixa com estaven originalment.)
+	int comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
 
 	void convertirADama();
 	bool bufar();
