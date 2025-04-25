@@ -339,8 +339,8 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 }
 
 bool Tauler::bufar() {
-	int maxIndex;
-	int maxMorts;
+	int maxIndex=-1;
+	int maxMorts=-1;
 	for (int i = 0;i < m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getNMoviments();i++) {
 		Moviment moviment = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getMovimentPos(i);
 		if (moviment.getTipus() != NORMAL_NO_MATAR) {
@@ -360,6 +360,10 @@ bool Tauler::bufar() {
 	
 }
 bool Tauler::seleccionaFitxa() {
+	cout << "---------------------------------------------" << endl;
+	cout << "Selecció fitxa a moure:" << endl;
+	cout << "---------------------------------------------" << endl;
+
 	int fila;
 	int columna;
 	bool valid = true;
@@ -400,7 +404,42 @@ bool Tauler::seleccionaFitxa() {
 }
 
 
+bool Tauler::seleccionaDesti(Posicio &desti) {
+	int fila;
+	int columna;
+	bool valid = false;
+	cout << "---------------------------------------------" << endl;
+	cout << "Selecció posició destí" << endl;
+	cout << "---------------------------------------------" << endl;
+	cout << "Introdueix fila: ";
+	cin >> fila;
+	cout << endl << "Introdueix columna: ";
+	cin >> columna;
 
+
+	if ((fila > N_FILES) || (columna > N_COLUMNES)) {
+		return false;
+	}
+	else {
+		Posicio posDesti(fila, columna);
+		Posicio posicionsPossibles[10];
+		int nPos = 0;
+		getPosicionsPossibles(Posicio(m_filaFitxaSeleccionada, m_colFitxaSeleccionada), nPos, posicionsPossibles);
+		for (int i = 0;i < nPos;i++) {
+			if (posDesti == posicionsPossibles[i]) {
+				desti = posDesti;
+				valid = true;//Perque llavors esta dins de les posicions possibles
+			}
+		}
+		//string posFormat = posDesti.toString();
+	}
+
+	return valid;
+	
+
+}
+
+/*
 void Tauler::transportar(const Posicio& origen, const Posicio& desti) {//El fet concret de moure d'un lloc a l'altre
 
 
@@ -414,11 +453,22 @@ void Tauler::transportar(const Posicio& origen, const Posicio& desti) {//El fet 
 
 
 }
+*/
 
 
 
-bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
+bool Tauler::mouFitxa(const Posicio& desti)//Capçalera canviada
 {
+
+	m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada];//ho copio tot
+	//pero no vull que es vagin canviant les posicions aixi que:
+	m_tauler[desti.getFila()][desti.getColumna()].setPosicio(desti);
+
+
+	m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].setColorITipusFitxa('_');//Fitxa buida
+
+	m_filaFitxaSeleccionada = desti.getFila();//Mes facil. Aixi despres puc bufar i tota la pesca.
+	m_colFitxaSeleccionada = desti.getColumna();
 	return false;
 }
 
@@ -503,10 +553,7 @@ void Tauler::convertirADama()
 	}
 }
 
-bool Tauler::bufar()
-{
-	return false;
-}
+
 
 void Tauler::eliminarFitxesMortes() // Asignarlas como vivas despues de eliminarlas
 {

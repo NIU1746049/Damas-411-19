@@ -26,11 +26,16 @@ public:
 	void inicialitza(const string& nomFitxer);
 	void actualitzaMovimentsValids();// Recorre todas las Fitxes y actualiza su variable Moviment con todos los movimientos validos
 	void getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[]);
-	bool mouFitxa(const Posicio& origen, const Posicio& desti);
+	//bool mouFitxa(const Posicio& origen, const Posicio& desti);
+
+	bool mouFitxa(const Posicio& desti);
+
 	string toString() const;
 
 	bool seleccionaFitxa(); // Cambia col y filaSeleccionada (cout de "Introduce la ficha" y cin)
-	void transportar(const Posicio& origen, const Posicio& desti);//fitxa1<->fitxa2 pos1<->pos2 (notis que al swapejar les fitxes ja hi ha hagut un canvi en les posicions per tant un segons canvi les deixa com estaven originalment.)
+	bool seleccionaDesti(Posicio &desti); //Fa les comprovacions adients tambe
+
+
 	int comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
 
 	void convertirADama();
@@ -56,6 +61,7 @@ public:
 	void setTornBlanques(bool tornBlanques) { m_tornBlanques = tornBlanques; }
 
 
+	
 
 private:
 
@@ -71,6 +77,8 @@ private:
 
 	//inicialitza
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
+
+	
 	//actualitzaMovimentsValids
 
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
