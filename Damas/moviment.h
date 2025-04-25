@@ -33,7 +33,8 @@ public:
 	//getter
 	int getNPosicions() { return m_nPosicions; }
 	Posicio getPosicioPos(int index) { return m_posicions[index]; }
-
+	TipusMoviment getTipus() { return m_tipus; }
+	int getNMorts() { return m_nMorts; }
 
 private:
 	TipusMoviment m_tipus;

@@ -58,6 +58,7 @@ public:
 
 
 private:
+
 	int m_filaFitxaSeleccionada;
 	int m_colFitxaSeleccionada;
 	Fitxa m_tauler[N_FILES][N_COLUMNES];
@@ -71,5 +72,7 @@ private:
 	//inicialitza
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
 	//actualitzaMovimentsValids
+
+	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
 
 };

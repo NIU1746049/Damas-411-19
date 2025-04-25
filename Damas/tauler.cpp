@@ -130,7 +130,7 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 }
 
 bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
-
+	
 
 	return true;
 }
@@ -338,6 +338,27 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 	}
 }
 
+bool Tauler::bufar() {
+	int maxIndex;
+	int maxMorts;
+	for (int i = 0;i < m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getNMoviments();i++) {
+		Moviment moviment = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getMovimentPos(i);
+		if (moviment.getTipus() != NORMAL_NO_MATAR) {
+			if (moviment.getNMorts() > maxMorts) {
+				maxIndex = i;
+				maxMorts = moviment.getNMorts();
+			}
+		}
+	}
+	if ((movimentFet.getNMorts() < m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getMovimentPos(maxIndex).getNMorts())) {
+		m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].setViva(false);
+		return true;
+	}
+	else {
+		return false;
+	}
+	
+}
 bool Tauler::seleccionaFitxa() {
 	int fila;
 	int columna;
