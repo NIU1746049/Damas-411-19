@@ -30,8 +30,9 @@ public:
 		m_nMorts = nMorts;
 	}
 	
-
+	//getter
 	int getNPosicions() { return m_nPosicions; }
+	Posicio getPosicioPos(int index) { return m_posicions[index]; }
 
 
 private:

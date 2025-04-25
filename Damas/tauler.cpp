@@ -261,7 +261,7 @@ void esborraMoviments(Fitxa fitxa) {
 }
 
 
-void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
+void Tauler::actualitzaMovimentsValids()
 {
 	for (int fila = 0; fila < N_FILES; fila++)
 	{
@@ -313,6 +313,29 @@ void Tauler::actualitzaMovimentsValids()//Es important que sigui const?
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
 {
 	//Recuerda igualar m_nMoviments a el numero de movimientos
+	nPosicions = 0;
+	
+	for (int i = 0;i < m_tauler[origen.getFila()][origen.getColumna()].getNMoviments();i++) {
+		Moviment moviment=m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i);
+
+		for (int j = 0; j < moviment.getNPosicions(); j++) {
+			if ((moviment.getPosicioPos(j) == origen) == false) {//Que no es foti a on ja està
+				bool valid = true;
+				for (int k = 0; k < nPosicions;k++) {
+					
+					if (posicionsPossibles[k] == moviment.getPosicioPos(j)) {//No vull que hi hagin posicions repetides
+						valid = false;
+					}
+				}
+				if (valid) {
+					posicionsPossibles[nPosicions] = moviment.getPosicioPos(j);
+					nPosicions++;
+				}
+				
+
+			}
+		}
+	}
 }
 
 bool Tauler::seleccionaFitxa() {
@@ -371,10 +394,14 @@ void Tauler::transportar(const Posicio& origen, const Posicio& desti) {//El fet 
 
 }
 
+
+
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti)
 {
 	return false;
 }
+
+
 
 string Tauler::toString() const
 {

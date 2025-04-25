@@ -48,6 +48,7 @@ public:
 	Posicio getPosicio()const { return m_posicio;}
 	int getNMoviments()const { return m_nMoviments;}
 	bool getViva()const { return m_viva; }
+	Moviment getMovimentPos(const int index)const { return m_moviments[index]; }
 
 	//setters
 	void setTipusFitxa(TipusFitxa tipusFitxa) { m_tipusFitxa = tipusFitxa; }

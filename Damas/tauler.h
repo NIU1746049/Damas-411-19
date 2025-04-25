@@ -50,6 +50,10 @@ public:
 	//getters
 	int getNBlanques() const { return m_nBlanques; }
 	int getNNegres() const { return m_nNegres; }
+	bool getTornBlanques() const { return m_tornBlanques; }
+
+	//setters
+	void setTornBlanques(bool tornBlanques) { m_tornBlanques = tornBlanques; }
 
 
 

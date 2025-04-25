@@ -13,33 +13,33 @@ int main()
 }
 
 
-//int main()
-//{
-//	Tauler tauler;
-//	bool gameOver = true;
-//	tauler.setTornBlanques(true);
-//	while (!gameOver) {
-//		gameOver = tauler.gameOver();
-//
-//
-//		bool seleccioValida = tauler.seleccionaFitxa();
-//
-//		while (!seleccioValida) {
-//			seleccioValida = tauler.seleccionaFitxa();
-//		}
-//
-//
-//
-//		tauler.actualitzaMovimentsValids();//actualitzara els moviments valids de la fitxa seleccionada
-//
-//
-//		tauler.bufar();
-//		tauler.eliminarFitxesMortes();
-//		tauler.convertirADama();
-//		tauler.setTornBlanques(!tauler.getTornBlanques());
-//
-//	}
-//}
+int main()
+{
+	Tauler tauler;
+	bool gameOver = true;
+	tauler.setTornBlanques(true);
+	while (!gameOver) {
+	gameOver = tauler.gameOver();
+
+
+		bool seleccioValida = tauler.seleccionaFitxa();
+
+		while (!seleccioValida) {
+			seleccioValida = tauler.seleccionaFitxa();
+		}
+
+
+
+		tauler.actualitzaMovimentsValids();//actualitzara els moviments valids de la fitxa seleccionada
+
+
+		tauler.bufar();
+		tauler.eliminarFitxesMortes();
+		tauler.convertirADama();
+		tauler.setTornBlanques(!tauler.getTornBlanques());
+
+	}
+}
 
 
 
