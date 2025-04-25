@@ -16,19 +16,20 @@ int main()
 int main()
 {
 	Tauler tauler;
-	bool gameOver = true;
+	tauler.inicialitza("dames_input.txt");
+	bool gameOver = false;
 	tauler.setTornBlanques(true);
 
 
 	while (!gameOver) {
-		tauler.toString();
+		cout << tauler.toString()<<endl;
 		gameOver = tauler.gameOver();
 
 
 		bool seleccioValida = tauler.seleccionaFitxa();
 
 		while (!seleccioValida) {
-			cout << endl << "seleccio invàlida... Torna a escollir." << endl;
+			cout << endl << "seleccio invalida... Torna a escollir." << endl;
 			seleccioValida = tauler.seleccionaFitxa();
 		}
 
@@ -37,7 +38,7 @@ int main()
 		Posicio posDesti;
 		seleccioValida = tauler.seleccionaDesti(posDesti);
 		while (!seleccioValida) {
-			cout << endl << "seleccio invàlida... Torna a escollir." << endl;
+			cout << endl << "seleccio invalida... Torna a escollir." << endl;
 			seleccioValida = tauler.seleccionaDesti(posDesti);
 		}
 		

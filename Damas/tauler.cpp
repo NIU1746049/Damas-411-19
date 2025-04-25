@@ -373,11 +373,13 @@ bool Tauler::seleccionaFitxa() {
 	cin >> columna;
 
 	if ((fila > N_FILES) || (columna > N_COLUMNES)) {
+		cout << "Overflow";
 		valid = false;
 	}
 	else {
+		cout << ":::::"<<m_tauler[fila - 1][columna - 1].getColorFitxa() << "::::::.";
 		if (m_tornBlanques) {
-			if (m_tauler[fila][columna].getColorFitxa() == COLOR_BLANC) {
+			if (m_tauler[fila-1][columna-1].getColorFitxa() == COLOR_BLANC) {
 				valid = true;
 			}
 			else {
@@ -385,7 +387,7 @@ bool Tauler::seleccionaFitxa() {
 			}
 		}
 		else {
-			if (m_tauler[fila][columna].getColorFitxa() == COLOR_NEGRE) {
+			if (m_tauler[fila-1][columna-1].getColorFitxa() == COLOR_NEGRE) {
 				valid = true;
 			}
 			else {
@@ -395,8 +397,8 @@ bool Tauler::seleccionaFitxa() {
 	}
 
 	if (valid) {
-		m_colFitxaSeleccionada = columna;
-		m_filaFitxaSeleccionada = fila;
+		m_colFitxaSeleccionada = columna-1;
+		m_filaFitxaSeleccionada = fila-1;
 	}
 	return valid;
 
