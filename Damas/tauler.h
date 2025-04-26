@@ -60,7 +60,7 @@ public:
 	//setters
 	void setTornBlanques(bool tornBlanques) { m_tornBlanques = tornBlanques; }
 
-
+	void actualitzaTaulerEnChars();
 	
 
 private:

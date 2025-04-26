@@ -22,7 +22,15 @@ int main()
 
 
 	while (!gameOver) {
+		tauler.actualitzaTaulerEnChars();
 		cout << tauler.toString()<<endl;
+		if (tauler.getTornBlanques()) {
+			cout <<endl<< "Torn de les blanques..."<<endl;
+		}
+		else {
+			cout << endl<<"Torn de les negres..." << endl;
+		}
+
 		gameOver = tauler.gameOver();
 
 
@@ -32,9 +40,9 @@ int main()
 			cout << endl << "seleccio invalida... Torna a escollir." << endl;
 			seleccioValida = tauler.seleccionaFitxa();
 		}
-
 		tauler.actualitzaMovimentsValids();//actualitzara els moviments valids de la fitxa seleccionada
-
+		
+		
 		Posicio posDesti;
 		seleccioValida = tauler.seleccionaDesti(posDesti);
 		while (!seleccioValida) {
@@ -67,3 +75,7 @@ int main()
 // -eliminarFitxesMortes
 // -gameOver
 //
+
+
+//fixes (hug):
+//seleccio de peces

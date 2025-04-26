@@ -4,6 +4,52 @@ using namespace std;
 
 #include "tauler.h"
 
+
+void Tauler::actualitzaTaulerEnChars() {
+	for (int i = 0;i < N_FILES;i++){
+		for (int j = 0;j < N_COLUMNES;j++) {
+			if ((m_tauler[i][j].getColorFitxa() == COLOR_UNDEFINED) && (m_tauler[i][j].getTipusFitxa() == TIPUS_EMPTY)) {
+				m_taulerEnChars[i][j] = '_';
+			}
+			else {
+				if ((m_tauler[i][j].getColorFitxa() == COLOR_BLANC) && (m_tauler[i][j].getTipusFitxa() == TIPUS_NORMAL)) {
+					m_taulerEnChars[i][j] = 'O';
+				}
+				else {
+					if ((m_tauler[i][j].getColorFitxa() == COLOR_NEGRE) && (m_tauler[i][j].getTipusFitxa() == TIPUS_NORMAL)) {
+						m_taulerEnChars[i][j] = 'X';
+					}
+					else {
+						if ((m_tauler[i][j].getColorFitxa() == COLOR_BLANC) && (m_tauler[i][j].getTipusFitxa() == TIPUS_DAMA)) {
+							m_taulerEnChars[i][j] = 'D';
+						}
+						else {
+							if ((m_tauler[i][j].getColorFitxa() == COLOR_BLANC) && (m_tauler[i][j].getTipusFitxa() == TIPUS_DAMA)) {
+								m_taulerEnChars[i][j] = 'R';
+							}
+						}
+					}
+				}
+			}
+			
+			/*
+			switch (m_tauler[i][j].getColorFitxa(), m_tauler[i][j].getTipusFitxa()) {
+			case COLOR_BLANC:TIPUS_NORMAL:
+			m_taulerEnChars[i][j];
+
+			}
+			switch () {
+				case
+
+			}
+			*/
+			
+
+			
+		}
+	}
+}
+
 void Tauler::inicialitza(const string& nomFitxer)
 {
 	if (nomFitxer != "null")
@@ -115,11 +161,11 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 				(m_tauler[posicioActual.getFila() + 2 * incrementVertical][posicioActual.getFila() + 2 * i].getTipusFitxa() == TIPUS_EMPTY) &&
 				(m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getColorFitxa() != m_tauler[posicioActual.getFila()][posicioActual.getFila()].getColorFitxa())) {
 				//Fotre el moviment aqui
-				Posicio posicions[3] = { posicioActual,
-					m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getPosicio(),
+				Posicio posicions[2] = { posicioActual,
+					//m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getPosicio(),
 					m_tauler[posicioActual.getFila() + 2 * incrementVertical][posicioActual.getFila() + 2 * i].getPosicio()
 				};
-				Moviment nouMoviment(NORMAL_MATAR, posicions, 3, 1);
+				Moviment nouMoviment(NORMAL_MATAR, posicions, 2, 1);
 				valid = true;
 				nMovimentsValids++;
 
@@ -130,7 +176,7 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 }
 
 bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
-	
+	cout << "jeje";
 
 	return true;
 }
@@ -147,15 +193,15 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int&
 			if ((incColumna != 0) && (incFila != 0))
 			{
 				bool limitTrobat = false;//Ja sigui taulell o casella contraria
-				int escalar = 1;
+				int iter = 1;
 				Posicio posicions[32];
 				posicions[0] = posicioActual;
 				int nPosicions = 1;
 				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
-					if (((posicioActual.getFila() + incFila * escalar) < N_FILES) && ((posicioActual.getColumna() + incColumna * escalar) < N_COLUMNES)) {//Evitant Stack Overflow, que no se surti del taulell
-						if ((m_tauler[posicioActual.getFila() + incFila * escalar][posicioActual.getFila() + incColumna * escalar].getTipusFitxa() == TIPUS_EMPTY)) {//que no hi hagi una fitxa.............
+					if (((posicioActual.getFila() + incFila * iter) < N_FILES) && ((posicioActual.getColumna() + incColumna * iter) < N_COLUMNES)) {//Evitant Stack Overflow, que no se surti del taulell
+						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getFila() + incColumna * iter].getTipusFitxa() == TIPUS_EMPTY)) {//que no hi hagi una fitxa.............
 
-							Posicio p((posicioActual.getFila() + incFila * escalar), (posicioActual.getColumna() + incColumna * escalar));
+							Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
 							posicions[nPosicions] = p;
 							nPosicions++;
 						}
@@ -166,6 +212,7 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int&
 					else {
 						limitTrobat = true;
 					}
+					iter++;
 				}
 				if (nPosicions > 1) {
 					Moviment m(DAMA_NO_MATAR, posicions, nPosicions, 0);
@@ -194,15 +241,15 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 			{
 				bool matada = false;
 				bool limitTrobat = false;//Ja sigui taulell o casella contraria
-				int escalar = 1;
+				int iter = 1;
 				Posicio posicions[32];
 				posicions[0] = posicioActual;
 				int nPosicions = 1;
 				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
-					if (((posicioActual.getFila() + incFila * escalar) < N_FILES) && ((posicioActual.getColumna() + incColumna * escalar) < N_COLUMNES)) {//Evitant Stack Overflow, que no se surti del taulell
-						if ((m_tauler[posicioActual.getFila() + incFila * escalar][posicioActual.getFila() + incColumna * escalar].getTipusFitxa() == TIPUS_EMPTY)) {
+					if (((posicioActual.getFila() + incFila * iter) < N_FILES) && ((posicioActual.getColumna() + incColumna * iter) < N_COLUMNES)) {//Evitant Stack Overflow, que no se surti del taulell
+						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getFila() + incColumna * iter].getTipusFitxa() == TIPUS_EMPTY)) {
 
-							Posicio p((posicioActual.getFila() + incFila * escalar), (posicioActual.getColumna() + incColumna * escalar));
+							Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
 							posicions[nPosicions] = p;
 							nPosicions++;
 
@@ -210,14 +257,14 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 
 						}
 						else {
-							if ((m_tauler[posicioActual.getFila() + incFila * escalar][posicioActual.getFila() + incColumna * escalar].getColorFitxa() !=
+							if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getFila() + incColumna * iter].getColorFitxa() !=
 								m_tauler[posicioActual.getFila()][posicioActual.getFila()].getColorFitxa()) &&
-								(m_tauler[posicioActual.getFila() + incFila * escalar + incFila][posicioActual.getFila() + incColumna * escalar + incColumna].getTipusFitxa() == TIPUS_EMPTY)) {
+								(m_tauler[posicioActual.getFila() + incFila * iter + incFila][posicioActual.getFila() + incColumna * iter + incColumna].getTipusFitxa() == TIPUS_EMPTY)) {
 
-								Posicio p((posicioActual.getFila() + incFila * escalar), (posicioActual.getColumna() + incColumna * escalar));
+								Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
 								posicions[nPosicions] = p;
 								nPosicions++;
-								Posicio p2((posicioActual.getFila() + incFila * escalar + incFila), (posicioActual.getColumna() + incColumna * escalar + incColumna));
+								Posicio p2((posicioActual.getFila() + incFila * iter + incFila), (posicioActual.getColumna() + incColumna * iter + incColumna));
 								posicions[nPosicions] = p2;
 								nPosicions++;
 								matada = true;
@@ -232,7 +279,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 					else {
 						limitTrobat = true;
 					}
-					escalar++;
+					iter++;
 				}
 				if (matada) {
 					Moviment m(DAMA_MATAR, posicions, nPosicions, 1);
@@ -247,6 +294,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 }
 
 bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
+	cout << "jeje";
 	return true;
 }
 
@@ -364,22 +412,23 @@ bool Tauler::seleccionaFitxa() {
 	cout << "Selecció fitxa a moure:" << endl;
 	cout << "---------------------------------------------" << endl;
 
-	int fila;
-	int columna;
+	string fitxaRaw;
 	bool valid = true;
-	cout << "Introdueix fila: ";
-	cin >> fila;
-	cout << endl << "Introdueix columna: ";
-	cin >> columna;
-
-	if ((fila > N_FILES) || (columna > N_COLUMNES)) {
+	cout << endl<<"Introdueix posicio: ";
+	cin >> fitxaRaw;
+	cout << endl;
+	Posicio p;
+	p.fromString(fitxaRaw);
+	int filaActual = p.getFila();
+	int colActual = p.getColumna();
+	
+	if ((filaActual > N_FILES) || (colActual > N_COLUMNES)) {
 		cout << "Overflow";
 		valid = false;
 	}
 	else {
-		cout << ":::::"<<m_tauler[fila - 1][columna - 1].getColorFitxa() << "::::::.";
 		if (m_tornBlanques) {
-			if (m_tauler[fila-1][columna-1].getColorFitxa() == COLOR_BLANC) {
+			if (m_tauler[filaActual][colActual].getColorFitxa() == COLOR_BLANC) {
 				valid = true;
 			}
 			else {
@@ -387,7 +436,7 @@ bool Tauler::seleccionaFitxa() {
 			}
 		}
 		else {
-			if (m_tauler[fila-1][columna-1].getColorFitxa() == COLOR_NEGRE) {
+			if (m_tauler[filaActual][colActual].getColorFitxa() == COLOR_NEGRE) {
 				valid = true;
 			}
 			else {
@@ -397,8 +446,8 @@ bool Tauler::seleccionaFitxa() {
 	}
 
 	if (valid) {
-		m_colFitxaSeleccionada = columna-1;
-		m_filaFitxaSeleccionada = fila-1;
+		m_colFitxaSeleccionada = colActual;
+		m_filaFitxaSeleccionada = filaActual;
 	}
 	return valid;
 
@@ -407,29 +456,34 @@ bool Tauler::seleccionaFitxa() {
 
 
 bool Tauler::seleccionaDesti(Posicio &desti) {
-	int fila;
-	int columna;
-	bool valid = false;
 	cout << "---------------------------------------------" << endl;
 	cout << "Selecció posició destí" << endl;
 	cout << "---------------------------------------------" << endl;
-	cout << "Introdueix fila: ";
-	cin >> fila;
-	cout << endl << "Introdueix columna: ";
-	cin >> columna;
+	string fitxaRaw;
+	bool valid = true;
+	cout << endl << "Introdueix posicio: ";
+	cin >> fitxaRaw;
+	cout << endl;
+	Posicio p;
+	p.fromString(fitxaRaw);
+	int filaActual = p.getFila();
+	int colActual = p.getColumna();
+	
+	
 
 
-	if ((fila > N_FILES) || (columna > N_COLUMNES)) {
+	if ((filaActual > N_FILES) || (colActual > N_COLUMNES)) {
 		return false;
 	}
 	else {
-		Posicio posDesti(fila, columna);
+		Posicio posDesti(filaActual, colActual);
 		Posicio posicionsPossibles[10];
 		int nPos = 0;
 		getPosicionsPossibles(Posicio(m_filaFitxaSeleccionada, m_colFitxaSeleccionada), nPos, posicionsPossibles);
 		for (int i = 0;i < nPos;i++) {
 			if (posDesti == posicionsPossibles[i]) {
 				desti = posDesti;
+				cout << "VALIDADA----------------------------------------------------------";
 				valid = true;//Perque llavors esta dins de les posicions possibles
 			}
 		}
@@ -441,21 +495,6 @@ bool Tauler::seleccionaDesti(Posicio &desti) {
 
 }
 
-/*
-void Tauler::transportar(const Posicio& origen, const Posicio& desti) {//El fet concret de moure d'un lloc a l'altre
-
-
-	Fitxa fitxaAuxiliar = m_tauler[desti.getFila()][desti.getColumna()];//podriem fer std::swap i ens estalviavem aixo. Pero ns si esta permes per tema deteccio de  IA com als seminaris de MD.
-
-	m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];
-	m_tauler[origen.getFila()][origen.getColumna()] = fitxaAuxiliar;
-
-	m_tauler[desti.getFila()][desti.getColumna()].setPosicio(desti);
-	m_tauler[origen.getFila()][origen.getColumna()].setPosicio(origen);
-
-
-}
-*/
 
 
 
@@ -463,9 +502,10 @@ bool Tauler::mouFitxa(const Posicio& desti)//Capçalera canviada
 {
 
 	m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada];//ho copio tot
+	m_tauler[desti.getFila()][desti.getColumna()].setViva(true);
 	//pero no vull que es vagin canviant les posicions aixi que:
 	m_tauler[desti.getFila()][desti.getColumna()].setPosicio(desti);
-
+	
 
 	m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].setColorITipusFitxa('_');//Fitxa buida
 
