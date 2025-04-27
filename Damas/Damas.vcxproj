@@ -140,6 +140,10 @@
     <ClInclude Include="posicio.h" />
     <ClInclude Include="tauler.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="dames_input%28og%29.txt" />
+    <Text Include="dames_input.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
