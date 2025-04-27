@@ -135,7 +135,6 @@ bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[20], in
 			cout << "Esta disponible el lloc en la posicio (" << i << "," << incrementVertical << ") ?: " << (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_EMPTY) << endl;
 			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_EMPTY) || (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getColorFitxa() == COLOR_UNDEFINED)) {
 				//movimentsValids[nMovimentsValids] = m_tauler[posicioActual.getFila() + 1][posicioActual.getFila() + i]
-				cout << "vuittt";
 				cout << endl<<"(" << posicioActual.getFila() + incrementVertical << "," << posicioActual.getColumna() + i << ")<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
 				Posicio p(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
 				cout <<endl<< "AAA: " << p.toString() << "...."<<endl;
@@ -185,8 +184,8 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 				(m_tauler[posicioActual.getFila() + 2 * incrementVertical][posicioActual.getFila() + 2 * i].getTipusFitxa() == TIPUS_EMPTY) &&
 				(m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getColorFitxa() != m_tauler[posicioActual.getFila()][posicioActual.getFila()].getColorFitxa())) {
 				//Fotre el moviment aqui
-				Posicio posicions[2] = { posicioActual,
-					//m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getPosicio(),
+				Posicio posicions[3] = { posicioActual,
+					m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getPosicio(),//Vull la intermitga per pulcritud, encara que quan hagi de mirar les posicionsPossibles, nomes pillare la ultima de l'array.
 					m_tauler[posicioActual.getFila() + 2 * incrementVertical][posicioActual.getFila() + 2 * i].getPosicio()
 				};
 
@@ -194,7 +193,7 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 				cout << endl << "NormalMatar:" << posicions[0].toString() << ", " << posicions[1].toString() << endl;
 				//
 
-				Moviment nouMoviment(NORMAL_MATAR, posicions, 2, 1);
+				Moviment nouMoviment(NORMAL_MATAR, posicions, 3, 1);
 				valid = true;
 				nMovimentsValids++;
 
@@ -371,13 +370,14 @@ void Tauler::actualitzaMovimentsValids()
 	}
 	for (int j = 0; j < nMv; j++)
 	{
+		/*
 		for (int k = 0;k < mv[j].getNPosicions();k++) {
 			cout << endl << "Pos valida:" << mv[j].getNPosicions() << endl;
 		}
+		*/
 		m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].setMovimentPos(j, mv[j]);
 		m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].setNMovimentsValids(nMv);
 	}
-	cout << endl<<"NMOVVASLIDS: " << nMv<<endl;
 
 
 
@@ -438,7 +438,21 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 	
 	for (int i = 0;i < m_tauler[origen.getFila()][origen.getColumna()].getNMoviments();i++) {
 		Moviment moviment=m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i);
+		
+		bool valid = true;
+		for (int k = 0; k < nPosicions;k++) {
 
+			if (posicionsPossibles[k] == moviment.getPosicioPos(moviment.getNPosicions() - 1)) {//No vull que hi hagin posicions repetides
+				valid = false;
+			}
+		}
+		if (valid) {
+			posicionsPossibles[nPosicions] = moviment.getPosicioPos(moviment.getNPosicions() - 1);
+			nPosicions++;
+		}
+		
+
+		/*
 		for (int j = 0; j < moviment.getNPosicions(); j++) {
 			if ((moviment.getPosicioPos(j) == origen) == false) {//Que no es foti a on ja està
 				bool valid = true;
@@ -456,6 +470,7 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 
 			}
 		}
+		*/
 	}
 }
 
@@ -495,7 +510,7 @@ bool Tauler::seleccionaFitxa() {
 	int filaActual = p.getFila();
 	int colActual = p.getColumna();
 	
-	if ((filaActual > N_FILES) || (colActual > N_COLUMNES)) {
+	if ((filaActual > N_FILES) || (colActual > N_COLUMNES) || (filaActual < 0) || (colActual < 0 )) {
 		cout << "Overflow";
 		valid = false;
 	}
@@ -545,8 +560,10 @@ bool Tauler::seleccionaDesti(Posicio &desti) {
 	
 
 
-	if ((filaActual > N_FILES) || (colActual > N_COLUMNES)) {
-		return false;
+	if ((filaActual > N_FILES) || (colActual > N_COLUMNES) || (filaActual < 0) || (colActual < 0)) {
+		cout << "Overflow";
+		valid=false;
+		
 	}
 	else {
 		Posicio posDesti(filaActual, colActual);

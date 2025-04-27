@@ -31,7 +31,7 @@ int main()
 			cout << endl<<"Torn de les negres..." << endl;
 		}
 
-		gameOver = tauler.gameOver();
+		//gameOver = tauler.gameOver();
 
 
 		bool seleccioValida = tauler.seleccionaFitxa();
