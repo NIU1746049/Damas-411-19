@@ -132,12 +132,14 @@ bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[20], in
 			((posicioActual.getColumna() + i) >= 0) &&
 			(i != 0)
 			) {
-			cout << "Esta disponible el lloc en la posicio (" << i << "," << incrementVertical << ") ?: " << (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getTipusFitxa() == TIPUS_EMPTY) << endl;
-			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getTipusFitxa() == TIPUS_EMPTY) || (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getColorFitxa() == COLOR_UNDEFINED)) {
+			cout << "Esta disponible el lloc en la posicio (" << i << "," << incrementVertical << ") ?: " << (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_EMPTY) << endl;
+			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_EMPTY) || (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getColorFitxa() == COLOR_UNDEFINED)) {
 				//movimentsValids[nMovimentsValids] = m_tauler[posicioActual.getFila() + 1][posicioActual.getFila() + i]
 				cout << "vuittt";
-				Posicio posicions[2] = { posicioActual,m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getFila() + i].getPosicio() };
-
+				cout << endl<<"(" << posicioActual.getFila() + incrementVertical << "," << posicioActual.getColumna() + i << ")<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
+				Posicio p(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
+				cout <<endl<< "AAA: " << p.toString() << "...."<<endl;
+				Posicio posicions[2] = { posicioActual,p };
 				//DEBUG(1)
 				cout << endl << "NormalMoure:" << posicions[0].toString() << ", " << posicions[1].toString() << endl;
 				//
