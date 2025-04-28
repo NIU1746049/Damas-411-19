@@ -36,7 +36,8 @@ public:
 	bool seleccionaDesti(Posicio &desti); //Fa les comprovacions adients tambe
 
 
-	int comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
+	//int comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
+	bool comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
 
 	void convertirADama();
 	bool bufar();

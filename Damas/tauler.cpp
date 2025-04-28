@@ -139,11 +139,10 @@ bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[20], in
 				Posicio p(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
 				cout <<endl<< "AAA: " << p.toString() << "...."<<endl;
 				Posicio posicions[2] = { posicioActual,p };
+				
 				//DEBUG(1)
 				cout << endl << "NormalMoure:" << posicions[0].toString() << ", " << posicions[1].toString() << endl;
 				//
-
-
 
 				Moviment nouMoviment(NORMAL_NO_MATAR, posicions, 2, 0);
 				movimentsValids[nMovimentsValids] = nouMoviment;
@@ -179,12 +178,10 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 		if (((posicioActual.getFila() + incrementVertical) < N_FILES) && ((posicioActual.getColumna() + i) < N_COLUMNES) &&
 			((posicioActual.getFila() + 2 * incrementVertical) < N_FILES) && ((posicioActual.getColumna() + 2 * i) < N_COLUMNES) &&
 			(i != 0)) {//Parentesis ben posats???????????
-			cout << "SI,NO?";
 			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_NORMAL) &&
 				(m_tauler[posicioActual.getFila() + 2 * incrementVertical][posicioActual.getColumna() + 2 * i].getTipusFitxa() == TIPUS_EMPTY) &&
 				(m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getColorFitxa() != m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getColorFitxa())) {
 				//Fotre el moviment aqui
-				cout << "SI QUE ARRIBA AQUI BABYGURL";
 
 				Posicio tmpP1((posicioActual.getFila() + incrementVertical), (posicioActual.getColumna() + i));
 				Posicio tmpP2((posicioActual.getFila() + 2 * incrementVertical), (posicioActual.getColumna() + 2 * i));
@@ -194,7 +191,6 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 				};
 
 				//DEBUG(2)
-				cout << endl << "NormalMatar:" << posicions[0].toString() << ", " << posicions[1].toString() << ", " << posicions[2].toString() << endl;
 				//
 
 				Moviment nouMoviment(NORMAL_MATAR, posicions, 3, 1);
@@ -666,7 +662,7 @@ void Tauler::eliminarFitxesMortes() // Asignarlas como vivas despues de eliminar
 		}
 	}
 }
-
+/*
 int Tauler::comptaNumeroMovimentsPossibles(const ColorFitxa color) const
 {
 	int nMoviments = 0;
@@ -692,6 +688,44 @@ bool Tauler::gameOver()
 		return true;
 	}
 	else if (m_nNegres == 0 || (m_tornBlanques == false && comptaNumeroMovimentsPossibles(COLOR_NEGRE)))
+	{
+		cout << "Guanyen les blanques" << endl;
+		return true;
+	}
+
+	return false;
+}
+*/
+
+//Crec que he fet que funcioni perque com estava abans et parava el joc a la meitat perquesi.
+bool Tauler::comptaNumeroMovimentsPossibles(const ColorFitxa color) const
+{
+	int nMoviments = 0;
+	for (int fila = 0; fila < N_FILES; fila++)
+	{
+		for (int col = 0; col < N_COLUMNES; col++)
+		{
+			if (m_tauler[fila][col].getColorFitxa() == color)
+			{
+				nMoviments = nMoviments + m_tauler[fila][col].getNMoviments();
+			}
+		}
+	}
+	
+	if (nMoviments > 0){
+		return true;
+	}
+	return false;
+}
+
+bool Tauler::gameOver()
+{
+	if (m_nBlanques == 0 || (m_tornBlanques == true && !comptaNumeroMovimentsPossibles(COLOR_BLANC)))
+	{
+		cout << "Guanyen les negres" << endl;
+		return true;
+	}
+	else if (m_nNegres == 0 || (m_tornBlanques == false && !comptaNumeroMovimentsPossibles(COLOR_NEGRE)))
 	{
 		cout << "Guanyen les blanques" << endl;
 		return true;
