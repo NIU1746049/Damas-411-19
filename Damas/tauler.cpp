@@ -350,65 +350,16 @@ void esborraMoviments(Fitxa fitxa) {
 
 void Tauler::actualitzaMovimentsValids()
 {
-	esborraMoviments(m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada]);
-	Moviment mv[100] = {};
-	int nMv = 0;
-
-	if (m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getTipusFitxa() == TIPUS_NORMAL)
-	{
-		//Posicio pos = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getPosicio();
-		Posicio pos(m_filaFitxaSeleccionada, m_colFitxaSeleccionada);
-
-		cout <<"NORMALMOURE:"<<normalMoure(pos, mv, nMv);
-
-		if (normalMatar(pos, mv, nMv)) {
-			normalMatarMultiples(pos, mv, nMv);
-		}
-
-	}
-	else {
-		if (m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getTipusFitxa() == TIPUS_DAMA)
-		{
-			Posicio pos = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getPosicio();
-
-
-			damaMoure(pos, mv, nMv);
-
-			if (damaMatar(pos, mv, nMv)) {
-				damaMatarMultiples(pos, mv, nMv);
-			}
-		}
-	}
-	for (int j = 0; j < nMv; j++)
-	{
-		/*
-		for (int k = 0;k < mv[j].getNPosicions();k++) {
-			cout << endl << "Pos valida:" << mv[j].getNPosicions() << endl;
-		}
-		*/
-		m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].setMovimentPos(j, mv[j]);
-		m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].setNMovimentsValids(nMv);
-	}
-
-
-
-	/*
-	for (int fila = 0; fila < N_FILES; fila++)
-	{
-		for (int col = 0; col < N_COLUMNES; col++)
-		{
+	for (int fila = 0; fila < N_FILES;fila++) {
+		for (int col = 0;col < N_COLUMNES;col++) {
 			esborraMoviments(m_tauler[fila][col]);
-
-
 			Moviment mv[100] = {};
 			int nMv = 0;
 
-
-
 			if (m_tauler[fila][col].getTipusFitxa() == TIPUS_NORMAL)
 			{
-				Posicio pos = m_tauler[fila][col].getPosicio();
-
+				//Posicio pos = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getPosicio();
+				Posicio pos(fila, col);
 
 				normalMoure(pos, mv, nMv);
 
@@ -420,7 +371,7 @@ void Tauler::actualitzaMovimentsValids()
 			else {
 				if (m_tauler[fila][col].getTipusFitxa() == TIPUS_DAMA)
 				{
-					Posicio pos = m_tauler[fila][col].getPosicio();
+					Posicio pos(fila,col);
 
 
 					damaMoure(pos, mv, nMv);
@@ -430,16 +381,14 @@ void Tauler::actualitzaMovimentsValids()
 					}
 				}
 			}
-			for (int j = 0; j < nMv; j++)
+			for (int k = 0; k < nMv; k++)
 			{
-				m_tauler[fila][col].setMovimentPos(j, mv[j]);//Li fot moviments a la fitxa visitada en el bucle for
+
+				m_tauler[fila][col].setMovimentPos(k, mv[k]);
 				m_tauler[fila][col].setNMovimentsValids(nMv);
 			}
-
 		}
-
 	}
-*/	
 }
 
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
