@@ -49,8 +49,8 @@ int main()
 			cout << endl << "seleccio invalida... Torna a escollir." << endl;
 			seleccioValida = tauler.seleccionaDesti(posDesti);
 		}
-
 		
+
 		
 		tauler.mouFitxa(posDesti);//Capçalera canviada
 		

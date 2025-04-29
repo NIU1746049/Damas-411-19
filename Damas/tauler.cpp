@@ -121,7 +121,7 @@ bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[20], in
 			((posicioActual.getColumna() + i) >= 0) &&
 			(i != 0)
 			) {
-			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_EMPTY) || (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getColorFitxa() == COLOR_UNDEFINED)) {
+			if (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_EMPTY) {
 				//movimentsValids[nMovimentsValids] = m_tauler[posicioActual.getFila() + 1][posicioActual.getFila() + i]
 				Posicio p(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
 				Posicio posicions[2] = { posicioActual,p };
@@ -217,6 +217,7 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int&
 						((posicioActual.getFila() + incFila * iter)>0)&&
 						((posicioActual.getColumna() + incColumna * iter)>0)
 						) {//Evitant Stack Overflow, que no se surti del taulell
+
 						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getColumna() + incColumna * iter].getTipusFitxa() == TIPUS_EMPTY)) {//que no hi hagi una fitxa.............
 							
 							Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
@@ -267,7 +268,17 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 				Posicio mortes[12];
 				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
 					
-					if (((posicioActual.getFila() + incFila * iter) < N_FILES) && ((posicioActual.getColumna() + incColumna * iter) < N_COLUMNES)) {//Evitant Stack Overflow, que no se surti del taulell
+					if (
+						((posicioActual.getFila() + incFila * iter) < N_FILES) &&
+						((posicioActual.getColumna() + incColumna * iter) < N_COLUMNES) &&
+						((posicioActual.getFila() + incFila * iter) > 0) &&
+						((posicioActual.getColumna() + incColumna * iter) > 0)
+
+
+						) {//Evitant Stack Overflow, que no se surti del taulell
+						
+						
+						
 						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getFila() + incColumna * iter].getTipusFitxa() == TIPUS_EMPTY)) {
 
 							Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
@@ -278,9 +289,9 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 
 						}
 						else {
-							if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getFila() + incColumna * iter].getColorFitxa() !=
-								m_tauler[posicioActual.getFila()][posicioActual.getFila()].getColorFitxa()) &&
-								(m_tauler[posicioActual.getFila() + incFila * iter + incFila][posicioActual.getFila() + incColumna * iter + incColumna].getTipusFitxa() == TIPUS_EMPTY)) {
+							if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getColumna() + incColumna * iter].getColorFitxa() !=
+								m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getColorFitxa()) &&
+								(m_tauler[posicioActual.getFila() + incFila * iter + incFila][posicioActual.getColumna() + incColumna * iter + incColumna].getTipusFitxa() == TIPUS_EMPTY)) {
 
 								Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
 								posicions[nPosicions] = p;
@@ -400,6 +411,16 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 		}
 		
 	}
+	//Debug:
+	Posicio oPos(origen.getFila(), origen.getColumna());
+	if (origen == oPos) {
+		cout << "posicions possibles: " << endl;
+		for (int i = 0;i < nPosicions;i++) {
+			cout << " " << posicionsPossibles[i].toString() << " ;";
+		}
+		cout << endl << endl;
+	}
+
 }
 
 bool Tauler::bufar() {
