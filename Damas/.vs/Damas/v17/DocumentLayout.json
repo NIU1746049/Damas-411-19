@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\dames.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:dames.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\tauler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:tauler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\moviment.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:moviment.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\dames.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:dames.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\fitxes.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -38,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 245,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,39 +50,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "tauler.cpp",
               "DocumentMoniker": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\tauler.cpp",
               "RelativeDocumentMoniker": "tauler.cpp",
               "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\tauler.cpp",
               "RelativeToolTip": "tauler.cpp",
-              "ViewState": "AgIAAJEBAAAAAAAAAADwv54BAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAJ4AAAAAAAAAAAAewMEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-14T17:27:21.414Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "moviment.h",
               "DocumentMoniker": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\moviment.h",
               "RelativeDocumentMoniker": "moviment.h",
               "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\moviment.h",
               "RelativeToolTip": "moviment.h",
-              "ViewState": "AgIAABEAAAAAAAAAAAAYwB8AAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAYwB8AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-04-20T14:57:38.58Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "dames.cpp",
               "DocumentMoniker": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\dames.cpp",
               "RelativeDocumentMoniker": "dames.cpp",
               "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\dames.cpp",
               "RelativeToolTip": "dames.cpp",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAACAAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACEAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-11T08:22:08.391Z",
               "EditorCaption": ""
@@ -133,8 +133,7 @@
               "RelativeToolTip": "fitxes.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-18T07:59:17.128Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-18T07:59:17.128Z"
             }
           ]
         }

@@ -32,17 +32,6 @@ void Tauler::actualitzaTaulerEnChars() {
 				}
 			}
 			
-			/*
-			switch (m_tauler[i][j].getColorFitxa(), m_tauler[i][j].getTipusFitxa()) {
-			case COLOR_BLANC:TIPUS_NORMAL:
-			m_taulerEnChars[i][j];
-
-			}
-			switch () {
-				case
-
-			}
-			*/
 			
 
 			
@@ -132,17 +121,11 @@ bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[20], in
 			((posicioActual.getColumna() + i) >= 0) &&
 			(i != 0)
 			) {
-			cout << "Esta disponible el lloc en la posicio (" << i << "," << incrementVertical << ") ?: " << (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_EMPTY) << endl;
 			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_EMPTY) || (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getColorFitxa() == COLOR_UNDEFINED)) {
 				//movimentsValids[nMovimentsValids] = m_tauler[posicioActual.getFila() + 1][posicioActual.getFila() + i]
-				cout << endl<<"(" << posicioActual.getFila() + incrementVertical << "," << posicioActual.getColumna() + i << ")<<<<<<<<<<<<<<<<<<<<<<<<<<<<" << endl;
 				Posicio p(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
-				cout <<endl<< "AAA: " << p.toString() << "...."<<endl;
 				Posicio posicions[2] = { posicioActual,p };
 				
-				//DEBUG(1)
-				cout << endl << "NormalMoure:" << posicions[0].toString() << ", " << posicions[1].toString() << endl;
-				//
 			
 				Moviment nouMoviment(NORMAL_NO_MATAR, posicions, 2, 0, {});
 				movimentsValids[nMovimentsValids] = nouMoviment;
@@ -193,7 +176,7 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 				//DEBUG(2)
 				//
 
-				Posicio tmpP3[1] = {tmpP1};
+				Posicio tmpP3[12] = {tmpP1};
 				Moviment nouMoviment(NORMAL_MATAR, posicions, 3, 1, tmpP3);
 
 				movimentsValids[nMovimentsValids] = nouMoviment;
@@ -207,7 +190,6 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 }
 
 bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
-	cout << "jeje";
 
 	return true;
 }
@@ -282,7 +264,9 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 				Posicio posicions[32];
 				posicions[0] = posicioActual;
 				int nPosicions = 1;
+				Posicio mortes[12];
 				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
+					
 					if (((posicioActual.getFila() + incFila * iter) < N_FILES) && ((posicioActual.getColumna() + incColumna * iter) < N_COLUMNES)) {//Evitant Stack Overflow, que no se surti del taulell
 						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getFila() + incColumna * iter].getTipusFitxa() == TIPUS_EMPTY)) {
 
@@ -301,7 +285,8 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 								Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
 								posicions[nPosicions] = p;
 								nPosicions++;
-
+								
+								mortes[1] = {p};
 								
 
 
@@ -324,7 +309,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 				}
 				if (matada) {
 					
-					Moviment m(DAMA_MATAR, posicions, nPosicions, 0, {});//1,omplir
+					Moviment m(DAMA_MATAR, posicions, nPosicions, 1, mortes);//1,omplir
 					movimentsValids[nMovimentsValids] = m;
 					nMovimentsValids++;
 				}
@@ -336,7 +321,6 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 }
 
 bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
-	cout << "jeje";
 	return true;
 }
 
@@ -410,33 +394,11 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 			}
 		}
 		if (valid) {
-			//cout << endl<<"FILA:   "<<moviment.getPosicioPos(moviment.getNPosicions() - 1).getFila();
-			//cout << "COLUMNA    " << moviment.getPosicioPos(moviment.getNPosicions() - 1).getColumna() << endl;
-			//cout << endl<< "POSICIO ULTIMA:" << moviment.getPosicioPos(moviment.getNPosicions() - 1).toString()<<endl;
+			
 			posicionsPossibles[nPosicions] = moviment.getPosicioPos(moviment.getNPosicions() - 1);
 			nPosicions++;
 		}
 		
-
-		/*
-		for (int j = 0; j < moviment.getNPosicions(); j++) {
-			if ((moviment.getPosicioPos(j) == origen) == false) {//Que no es foti a on ja està
-				bool valid = true;
-				for (int k = 0; k < nPosicions;k++) {
-					
-					if (posicionsPossibles[k] == moviment.getPosicioPos(j)) {//No vull que hi hagin posicions repetides
-						valid = false;
-					}
-				}
-				if (valid) {
-					posicionsPossibles[nPosicions] = moviment.getPosicioPos(j);
-					nPosicions++;
-				}
-				
-
-			}
-		}
-		*/
 	}
 }
 
@@ -536,19 +498,15 @@ bool Tauler::seleccionaDesti(Posicio &desti) {
 		Posicio posicionsPossibles[10];
 		int nPos = 0;
 		getPosicionsPossibles(Posicio(m_filaFitxaSeleccionada, m_colFitxaSeleccionada), nPos, posicionsPossibles);
-		cout << endl<<"Posicions possibles:" << endl;
 		for (int i = 0;i < nPos;i++) {
 			if (posDesti == posicionsPossibles[i]) {
 				desti = posDesti;
 				valid = true;//Perque llavors esta dins de les posicions possibles
 			}
 		}
-		//string posFormat = posDesti.toString();
 	}
 
 	return valid;
-	
-
 }
 
 
@@ -574,30 +532,25 @@ bool Tauler::mouFitxa(const Posicio& desti)//Capçalera canviada
 	Moviment movimentFet;
 	
 
-	while ((i < m_tauler[desti.getFila()][desti.getColumna()].getNMoviments()) && (!trobat)) {
-		//if(m_tauler[desti.getFila()][desti.getColumna()].getMovimentPos(m_tauler[desti.getFila()][desti.getColumna()].getNMoviments()- 1) == desti)
-		
+	while ((i < m_tauler[desti.getFila()][desti.getColumna()].getNMoviments()) && (!trobat)) {		
 		if (m_tauler[desti.getFila()][desti.getColumna()].getMovimentPos(i).getPosicioPos(m_tauler[desti.getFila()][desti.getColumna()].getMovimentPos(i).getNPosicions()-1) == desti) {
-			//cout << "SASDSDADS:::: " << m_tauler[desti.getFila()][desti.getColumna()].getPosicio().toString();
 			movimentFet = m_tauler[desti.getFila()][desti.getColumna()].getMovimentPos(i);
-			cout << "YYYYYYYYYYYYYYYYYYY: "<<movimentFet.getMortsPos(0).toString()<<endl;
 			trobat = true;
 			
 		}
 		i++;
 	}
-	cout << "TROBAT: " << trobat;
 	if (trobat) {
 		for (int i = 0; i < movimentFet.getNMorts();i++) {
-			cout << "FILA: " << movimentFet.getMortsPos(i).getFila();
-			cout << "COLUMNA: "<< movimentFet.getMortsPos(i).getColumna();
 			m_tauler[movimentFet.getMortsPos(i).getFila()][movimentFet.getMortsPos(i).getColumna()].setViva(false);//Matar totes les fitxes que el moviment mata.
-			cout << "|||||||||||||||||||||||||||" << movimentFet.getMortsPos(i).toString()<< " ||||||||||||||||||||||||||||";
+		}
+		if (m_tornBlanques) {
+			m_nNegres -= movimentFet.getNMorts();
+		}
+		else {
+			m_nBlanques -= movimentFet.getNMorts();
 		}
 	}
-
-
-
 	return false;
 }
 
