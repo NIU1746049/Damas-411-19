@@ -169,14 +169,14 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 				Posicio tmpP1((posicioActual.getFila() + incrementVertical), (posicioActual.getColumna() + i));
 				Posicio tmpP2((posicioActual.getFila() + 2 * incrementVertical), (posicioActual.getColumna() + 2 * i));
 				Posicio posicions[3] = { posicioActual,
-					tmpP1,//Vull la intermitga per pulcritud, encara que quan hagi de mirar les posicionsPossibles, nomes pillare la ultima de l'array.
+					tmpP1,
 					tmpP2
 				};
 
-				//DEBUG(2)
-				//
 
 				Posicio tmpP3[12] = {tmpP1};
+				
+				
 				Moviment nouMoviment(NORMAL_MATAR, posicions, 3, 1, tmpP3);
 
 				movimentsValids[nMovimentsValids] = nouMoviment;
@@ -252,84 +252,99 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int&
 
 }
 
-bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const
-{
+
+
+bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
+	bool matada = true;
 	for (int incColumna = -1;incColumna < 2;incColumna++) {
 		for (int incFila = -1;incFila < 2;incFila++)
 		{
-			if ((incColumna != 0) && (incFila != 0))
-			{
-				bool matada = false;
-				bool limitTrobat = false;//Ja sigui taulell o casella contraria
-				int iter = 1;
+			if ((incColumna != 0) && (incFila != 0)) {
+				matada = false;
+				bool limitTrobat = false;
+				int i = 1;
+				//nou moviment:
 				Posicio posicions[32];
-				posicions[0] = posicioActual;
-				int nPosicions = 1;
-				Posicio mortes[12];
-				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
-					
+				int nPosicions = 0;
+				int nMorts = 0;
+				Posicio morts[12];
+
+
+				while (!limitTrobat) {
 					if (
-						((posicioActual.getFila() + incFila * iter) < N_FILES) &&
-						((posicioActual.getColumna() + incColumna * iter) < N_COLUMNES) &&
-						((posicioActual.getFila() + incFila * iter) > 0) &&
-						((posicioActual.getColumna() + incColumna * iter) > 0)
-
-
-						) {//Evitant Stack Overflow, que no se surti del taulell
+						((posicioActual.getFila() + incFila * i) < N_FILES) &&
+						((posicioActual.getColumna() + incColumna * i) < N_COLUMNES) &&
+						((posicioActual.getFila() + incFila * i) > 0) &&
+						((posicioActual.getColumna() + incColumna * i) > 0)
 						
-						
-						
-						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getFila() + incColumna * iter].getTipusFitxa() == TIPUS_EMPTY)) {
+						) 
+					{
 
-							Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
-							posicions[nPosicions] = p;
+						if (m_tauler[posicioActual.getFila() + incFila * i][posicioActual.getColumna() + incColumna * i].getTipusFitxa() == TIPUS_EMPTY) {
+							Posicio tmpPos1(posicioActual.getFila() + incFila * i, posicioActual.getColumna() + incColumna * i);
+							posicions[nPosicions] = tmpPos1;
 							nPosicions++;
-
-
-
 						}
 						else {
-							if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getColumna() + incColumna * iter].getColorFitxa() !=
-								m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getColorFitxa()) &&
-								(m_tauler[posicioActual.getFila() + incFila * iter + incFila][posicioActual.getColumna() + incColumna * iter + incColumna].getTipusFitxa() == TIPUS_EMPTY)) {
+							Posicio tmpP(posicioActual.getFila() + (incFila * i), posicioActual.getColumna() + (incColumna * i));
+							//cout << tmpP.toString()<<" ";
+							Posicio tmpP3(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
+							//cout << tmpP3.toString() << "; ";
+							//cout << endl;
+							if (
+								((posicioActual.getFila() + (incFila * i) + incFila)<N_FILES)&&
+								((posicioActual.getColumna() + (incColumna * i) + incColumna)<N_COLUMNES)&&
+								((posicioActual.getFila() + (incFila * i) + incFila)>0)&&
+								((posicioActual.getColumna() + (incColumna * i) + incColumna)>0)
+								) {
+								if (
+									
+									m_tauler[posicioActual.getFila() + (incFila * i)][posicioActual.getColumna() + (incColumna * i)].getColorFitxa() != m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getColorFitxa() &&//diferent color
+									m_tauler[posicioActual.getFila() + (incFila * i) + incFila][posicioActual.getColumna() + (incColumna * i) + incColumna].getTipusFitxa() == TIPUS_EMPTY
+									) {
+									
+									
+									Posicio tmpPos1(posicioActual.getFila() + incFila * i, posicioActual.getColumna() + incColumna * i);
+									posicions[nPosicions] = tmpPos1;
+									nPosicions++;
 
-								Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
-								posicions[nPosicions] = p;
-								nPosicions++;
-								
-								mortes[1] = {p};
-								
+									Posicio tmpPos2(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
+									posicions[nPosicions] = tmpPos2;
+									nPosicions++;
+									matada = true;
 
+									morts[nMorts] = tmpPos1;
+									nMorts++;
 
-								Posicio p2((posicioActual.getFila() + incFila * iter + incFila), (posicioActual.getColumna() + incColumna * iter + incColumna));
-								posicions[nPosicions] = p2;
-								nPosicions++;
-								matada = true;
+								}
 
 							}
+							
 							limitTrobat = true;
 						}
-
-
-
 					}
 					else {
 						limitTrobat = true;
 					}
-					iter++;
+					
+					
+
+					i++;
+				
+				
 				}
 				if (matada) {
-					
-					Moviment m(DAMA_MATAR, posicions, nPosicions, 1, mortes);//1,omplir
-					movimentsValids[nMovimentsValids] = m;
+					Moviment mov(DAMA_MATAR, posicions, nPosicions, 1, morts);
+					movimentsValids[nMovimentsValids] = mov;
 					nMovimentsValids++;
 				}
 			}
 		}
 	}
-
-	return false; //Return false para que no de error
+	return matada;
 }
+
+
 
 bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
 	return true;
@@ -371,7 +386,7 @@ void Tauler::actualitzaMovimentsValids()
 				{
 					Posicio pos(fila,col);
 
-
+					cout << "a";
 					damaMoure(pos, mv, nMv);
 
 					if (damaMatar(pos, mv, nMv)) {
@@ -674,42 +689,6 @@ void Tauler::eliminarFitxesMortes() // Asignarlas como vivas despues de eliminar
 		}
 	}
 }
-
-
-/*
-int Tauler::comptaNumeroMovimentsPossibles(const ColorFitxa color) const
-{
-	int nMoviments = 0;
-	for (int fila = 0; fila < N_FILES; fila++)
-	{
-		for (int col = 0; col < N_COLUMNES; col++)
-		{
-			if (m_tauler[fila][col].getColorFitxa() == color)
-			{
-				nMoviments = nMoviments + m_tauler[fila][col].getNMoviments();
-			}
-		}
-	}
-
-	return nMoviments;
-}
-
-bool Tauler::gameOver()
-{
-	if (m_nBlanques == 0 || (m_tornBlanques == true && comptaNumeroMovimentsPossibles(COLOR_BLANC)))
-	{
-		cout << "Guanyen les negres" << endl;
-		return true;
-	}
-	else if (m_nNegres == 0 || (m_tornBlanques == false && comptaNumeroMovimentsPossibles(COLOR_NEGRE)))
-	{
-		cout << "Guanyen les blanques" << endl;
-		return true;
-	}
-
-	return false;
-}
-*/
 
 //Crec que he fet que funcioni perque com estava abans et parava el joc a la meitat perquesi.
 bool Tauler::comptaNumeroMovimentsPossibles(const ColorFitxa color) const

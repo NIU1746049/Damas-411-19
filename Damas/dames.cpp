@@ -54,7 +54,7 @@ int main()
 		
 		tauler.mouFitxa(posDesti);//Capçalera canviada
 		
-		tauler.bufar();
+		//tauler.bufar();
 		tauler.eliminarFitxesMortes();
 		tauler.convertirADama();
 		tauler.setTornBlanques(!tauler.getTornBlanques());
