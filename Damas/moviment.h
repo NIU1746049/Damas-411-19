@@ -21,13 +21,16 @@ public:
 		m_nMorts = 0;
 
 	};
-	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions,int nMorts) {
+	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions,int nMorts,Posicio morts[12]) {
 		m_tipus = tipus;
 		m_nPosicions = nPosicions;
 		for (int i = 0; i < nPosicions; i++) {
 			m_posicions[i] = posicions[i];
 		}
 		m_nMorts = nMorts;
+		for (int i = 0;i < nMorts;i++) {
+			m_morts[i] = morts[i];
+		}
 	}
 	
 	//getter
@@ -35,10 +38,14 @@ public:
 	Posicio getPosicioPos(int index) { return m_posicions[index]; }
 	TipusMoviment getTipus() { return m_tipus; }
 	int getNMorts() { return m_nMorts; }
+	Posicio getMortsPos(int index) { return m_morts[index]; }
 
 private:
 	TipusMoviment m_tipus;
 	Posicio m_posicions[12];//Inclou la posicio d'origen
 	int m_nPosicions;
+	Posicio m_morts[12];
 	int m_nMorts;
+	
+
 };

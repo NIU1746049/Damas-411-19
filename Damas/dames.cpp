@@ -30,8 +30,8 @@ int main()
 		else {
 			cout << endl<<"Torn de les negres..." << endl;
 		}
-
-		//gameOver = tauler.gameOver();
+		//crec que amb lo k vaig fer jasta arreglat
+		gameOver = tauler.gameOver();
 
 
 		bool seleccioValida = tauler.seleccionaFitxa();
@@ -49,10 +49,12 @@ int main()
 			cout << endl << "seleccio invalida... Torna a escollir." << endl;
 			seleccioValida = tauler.seleccionaDesti(posDesti);
 		}
+
 		
 		
 		tauler.mouFitxa(posDesti);//Capçalera canviada
-		//tauler.bufar();
+		
+		tauler.bufar();
 		tauler.eliminarFitxesMortes();
 		tauler.convertirADama();
 		tauler.setTornBlanques(!tauler.getTornBlanques());
