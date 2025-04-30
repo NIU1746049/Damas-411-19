@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 using namespace std;
-
+#include <iostream>
 #include "fitxes.h"
 
 
