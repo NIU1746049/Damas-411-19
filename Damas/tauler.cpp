@@ -642,11 +642,11 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 
 }
 
-bool Tauler::bufar() {
+bool Tauler::bufar(const Posicio &posicioOrigen) {
 	int maxIndex=-1;
 	int maxMorts=-1;
-	for (int i = 0;i < m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getNMoviments();i++) {
-		Moviment moviment = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getMovimentPos(i);
+	for (int i = 0;i < m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getNMoviments();i++) {
+		Moviment moviment = m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(i);
 		if (moviment.getTipus() != NORMAL_NO_MATAR) {
 			if (moviment.getNMorts() > maxMorts) {
 				maxIndex = i;
@@ -654,8 +654,8 @@ bool Tauler::bufar() {
 			}
 		}
 	}
-	if ((movimentFet.getNMorts() < m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getMovimentPos(maxIndex).getNMorts())) {
-		m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].setViva(false);
+	if ((movimentFet.getNMorts() < m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts())) {
+		m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].setViva(false);
 		return true;
 	}
 	else {
@@ -755,20 +755,7 @@ bool Tauler::seleccionaDesti(Posicio &desti) {
 bool Tauler::mouFitxa(const Posicio& origen,const Posicio& desti)//Lit que origen no fot res.
 {
 
-	m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];//ho copio tot
-	m_tauler[desti.getFila()][desti.getColumna()].setViva(true);
-	//pero no vull que es vagin canviant les posicions aixi que:
-	m_tauler[desti.getFila()][desti.getColumna()].setPosicio(desti);
 	
-
-	m_tauler[origen.getFila()][origen.getColumna()].setColorITipusFitxa('_');//Fitxa buida
-
-
-
-	//
-	m_filaFitxaSeleccionada = desti.getFila();//Mes facil. Aixi despres puc bufar i tota la pesca.
-	m_colFitxaSeleccionada = desti.getColumna();
-	//
 
 	//Ara trobar el moviment que s'ha fet dins de la llista de moviments valids de la fitxa. 
 	bool trobat = false;
@@ -776,10 +763,28 @@ bool Tauler::mouFitxa(const Posicio& origen,const Posicio& desti)//Lit que orige
 	Moviment movimentFet;
 	
 
-	while ((i < m_tauler[desti.getFila()][desti.getColumna()].getNMoviments()) && (!trobat)) {		
-		if (m_tauler[desti.getFila()][desti.getColumna()].getMovimentPos(i).getPosicioPos(m_tauler[desti.getFila()][desti.getColumna()].getMovimentPos(i).getNPosicions()-1) == desti) {
-			movimentFet = m_tauler[desti.getFila()][desti.getColumna()].getMovimentPos(i);
+	while ((i < m_tauler[origen.getFila()][origen.getColumna()].getNMoviments()) && (!trobat)) {		
+		if (m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i).getPosicioPos(m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i).getNPosicions()-1) == desti) {
+			movimentFet = m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i);
 			trobat = true;
+
+			m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];//ho copio tot
+
+
+
+			m_tauler[desti.getFila()][desti.getColumna()].setViva(true);
+			m_tauler[desti.getFila()][desti.getColumna()].setPosicio(desti);
+
+
+
+			m_tauler[origen.getFila()][origen.getColumna()].setColorITipusFitxa('_');//Fitxa buida
+
+
+
+			//
+			m_filaFitxaSeleccionada = desti.getFila();//Mes facil. Aixi despres puc bufar i tota la pesca.
+			m_colFitxaSeleccionada = desti.getColumna();
+			//
 			
 		}
 		i++;
@@ -794,21 +799,60 @@ bool Tauler::mouFitxa(const Posicio& origen,const Posicio& desti)//Lit que orige
 		else {
 			m_nBlanques -= movimentFet.getNMorts();
 		}
+		convertirADama();
+		//bufar(desti);
+		eliminarFitxesMortes();
+		
+		
+
 	}
-	return false;
+	return trobat;
 }
 
 
 
 string Tauler::toString() const
 {
+	char taulerEnChars[N_FILES][N_COLUMNES];
+	for (int i = 0;i < N_FILES;i++) {
+		for (int j = 0;j < N_COLUMNES;j++) {
+			if ((m_tauler[i][j].getColorFitxa() == COLOR_UNDEFINED) && (m_tauler[i][j].getTipusFitxa() == TIPUS_EMPTY)) {
+				taulerEnChars[i][j] = '_';
+			}
+			else {
+				if ((m_tauler[i][j].getColorFitxa() == COLOR_BLANC) && (m_tauler[i][j].getTipusFitxa() == TIPUS_NORMAL)) {
+					taulerEnChars[i][j] = 'O';
+				}
+				else {
+					if ((m_tauler[i][j].getColorFitxa() == COLOR_NEGRE) && (m_tauler[i][j].getTipusFitxa() == TIPUS_NORMAL)) {
+						taulerEnChars[i][j] = 'X';
+					}
+					else {
+						if ((m_tauler[i][j].getColorFitxa() == COLOR_BLANC) && (m_tauler[i][j].getTipusFitxa() == TIPUS_DAMA)) {
+							taulerEnChars[i][j] = 'D';
+						}
+						else {
+							if ((m_tauler[i][j].getColorFitxa() == COLOR_NEGRE) && (m_tauler[i][j].getTipusFitxa() == TIPUS_DAMA)) {
+								taulerEnChars[i][j] = 'R';
+							}
+						}
+					}
+				}
+			}
+
+
+
+
+		}
+	}
+
 	string taula = "";
 	for (int fila = 0; fila < N_FILES; fila++)
 	{
 		taula = taula + to_string(8 - fila) + ":";
 		for (int col = 0; col < N_COLUMNES; col++)
 		{
-			taula = taula + m_taulerEnChars[fila][col] + " ";
+			taula = taula + taulerEnChars[fila][col] + " ";
 		}
 		taula = taula + "\n";
 	}

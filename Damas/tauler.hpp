@@ -41,7 +41,7 @@ public:
 	bool comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
 
 	void convertirADama();
-	bool bufar();
+	bool bufar(const Posicio &posicioOrigen);
 	void eliminarFitxesMortes(); // Asignarlas como vivas despues de eliminarlas
 	bool gameOver();
 
