@@ -27,7 +27,7 @@
     <ClCompile Include="moviment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="test.cpp">
+    <ClCompile Include="dames.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

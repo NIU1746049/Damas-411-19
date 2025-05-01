@@ -36,12 +36,20 @@ public:
 		}
 	}
 	
-	//getter
+	//getters
 	int getNPosicions() { return m_nPosicions; }
 	Posicio getPosicioPos(int index) { return m_posicions[index]; }
 	TipusMoviment getTipus() { return m_tipus; }
 	int getNMorts() { return m_nMorts; }
 	Posicio getMortsPos(int index) { return m_morts[index]; }
+	//setters
+
+	void setPosicioPos(int index, Posicio p) {
+		m_posicions[index] = p;
+	}
+	void setNPosicions(int n) {
+		m_nPosicions = n;
+	}
 
 private:
 	TipusMoviment m_tipus;

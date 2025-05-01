@@ -184,16 +184,16 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 
 				Posicio tmpP1((posicioActual.getFila() + incrementVertical), (posicioActual.getColumna() + i));
 				Posicio tmpP2((posicioActual.getFila() + 2 * incrementVertical), (posicioActual.getColumna() + 2 * i));
-				Posicio posicions[3] = { posicioActual,
-					tmpP1,
-					tmpP2
+				
+				Posicio posicions[MAX_POSICIONS] = { posicioActual,
+					tmpP2,
 				};
 
 
 				Posicio tmpP3[MAX_POSICIONS] = {tmpP1};
 				
 				
-				Moviment nouMoviment(NORMAL_MATAR, posicions, 3, 1, tmpP3);
+				Moviment nouMoviment(NORMAL_MATAR, posicions, 2, 1, tmpP3);
 
 				movimentsValids[nMovimentsValids] = nouMoviment;
 				valid = true;
@@ -210,17 +210,137 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 
 
 bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const {
+	Moviment visitats[MAX_MOVIMENTS];
+	Moviment perVisitar[MAX_MOVIMENTS];
+	Moviment actual[MAX_MOVIMENTS];
+
+	int nVisitats = 0;
+	int nPerVisitar = 0;
+	int nActual = 0;
+	
+	actual[0].setPosicioPos(0,posicioActual);
+	actual[0].setNPosicions(1);
+	nVisitats++;
+
+	Moviment tmpMoviments[MAX_MOVIMENTS];
+	int nTmpMoviments = 0;
+	normalMatar(actual[nActual].getPosicioPos(actual[nActual].getNPosicions() - 1), tmpMoviments, nTmpMoviments);
+	for (int i = 0;i < nTmpMoviments; i++) {
+		perVisitar[nPerVisitar] = tmpMoviments[i];
+
+		for (int j = 0;j < actual[nActual].getNPosicions();j++) {
+			perVisitar[nPerVisitar].setPosicioPos(j,actual[nActual].getPosicioPos(j));
+			perVisitar[nPerVisitar].setNPosicions(perVisitar[nPerVisitar].getNPosicions()+1);
+		}
+
+
+		perVisitar[nPerVisitar].setPosicioPos((perVisitar[nPerVisitar].getNPosicions() + 1), tmpMoviments[i].getPosicioPos(1));//Nomes vull lultima, i sempre en tenen 2.
+		perVisitar[nPerVisitar].setNPosicions(tmpMoviments[i].getNPosicions());
+		nPerVisitar++;
+	}
+	nActual++;
+	/*
+	for (int j = 0;j < perVisitar[nPerVisitar].getNPosicions();j++) {
+		actual[nActual].setPosicioPos(j) = perVisitar[nPerVisitar].getPosicioPos(j);
+		actual[nActual].setNPosicions(actual[nActual].getNPosicions() + 1);
+
+	}
+	*/
+	//aixi jastaria no?
+	actual[nActual] = perVisitar[nPerVisitar];
+	visitats[nVisitats] = perVisitar[nPerVisitar];
+	nVisitats++;
+	nPerVisitar--;//realment no cal posar res a l array estil per a "borrar" lo altre, oi?
+
+	while (nPerVisitar > 0) {
+		Moviment tmpMoviments[MAX_MOVIMENTS];
+		int nTmpMoviments = 0;
+		normalMatar(actual[nActual].getPosicioPos(actual[nActual].getNPosicions() - 1), tmpMoviments, nTmpMoviments);
+		for (int i = 0;i < nTmpMoviments; i++) {
+			perVisitar[nPerVisitar] = tmpMoviments[i];
+
+			for (int j = 0;j < actual[nActual].getNPosicions();j++) {
+				perVisitar[nPerVisitar].setPosicioPos(j,actual[nActual].getPosicioPos(j));
+				perVisitar[nPerVisitar].setNPosicions(perVisitar[nPerVisitar].getNPosicions() + 1);
+			}
+
+
+			perVisitar[nPerVisitar].setPosicioPos((perVisitar[nPerVisitar].getNPosicions() + 1), tmpMoviments[i].getPosicioPos(1));//Nomes vull lultima, i sempre en tenen 2.
+			perVisitar[nPerVisitar].setNPosicions(tmpMoviments[i].getNPosicions());
+			nPerVisitar++;
+		}
+		nActual++;
+		/*
+		for (int j = 0;j < perVisitar[nPerVisitar].getNPosicions();j++) {
+			actual[nActual].setPosicioPos(j) = perVisitar[nPerVisitar].getPosicioPos(j);
+			actual[nActual].setNPosicions(actual[nActual].getNPosicions() + 1);
+
+		}
+		*/
+		//aixi jastaria no?
+		actual[nActual] = perVisitar[nPerVisitar];
+		visitats[nVisitats] = perVisitar[nPerVisitar];
+		nVisitats++;
+		nPerVisitar--;//realment no cal posar res a l array estil per a "borrar" lo altre, oi?
+
+	}
+	
+	
+	/*
+	
+	posicioActual;
+	visitats;
+	per visitar;
+
+	posicioActual --> visitats[]
+	visitats +1
+
+	fer normalMatar(posicio actual, arrayDeMoviments, nMoviments)
+		per tants valors com nMoviments :
+	agafar ultimes dues posicions de l array de moviments, afegir també a l inici les posicions de posicioActual i establirho
+		com a array[] i fotreli dins de perVisitar[].
+		incrementem contador de perVisitar
+
+	ara posicio actual es l ultima posicio(on apunta el contador de perVisitar) dins de perVisitar.
+	Fem que posicioActual = perVisitar[ultima], perVisitar[ultima] = EMPTY o lo q sigui i decrementem en 1 el contador de perVisitar
+
+
+	bucle while (segueixin haventhi vehins per visitar) {
+		
+		int nMoviments=0
+
+		1)
+		fer normalMatar(posicio actual, arrayDeMoviments,nMoviments)
+
+		i per tants valors com nMoviments:
+
+
+		arrayDeMoviments[i].getPosicioPos(1)
+			arrayDeMoviments[i].getPosicioPos(2)
+
+
+			agafar ultimes dues posicions al Moviment (array de poscions), afegir també a l inici les posicions de posicioActual i establirho
+					com a array[] i fotreli dins de perVisitar[].
+			incrementem contador de perVisitar
+
+
+		2)
+		ara posicio actual es l ultima posicio (on apunta el contador de perVisitar) dins de perVisitar.
+		Fem que posicioActual=perVisitar[ultima], visitats=perVisitar[ultima], perVisitar[ultima] = EMPTY o lo q sigui i decrementem en 1 el contador de perVisitar
+
+
+
+		
+	}
 	
 
 	
 
-	//
-
 	
 
 
 
-	
+	*/
 	return true;
 	
 }
@@ -260,11 +380,11 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 		{
 			if ((incColumna != 0) && (incFila != 0))
 			{
+				bool possible = false;
 				bool limitTrobat = false;//Ja sigui taulell o casella contraria
 				int iter = 1;
 				Posicio posicions[MAX_POSICIONS];
 				posicions[0] = posicioActual;
-				int nPosicions = 1;
 				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
 					if (
 						((posicioActual.getFila() + incFila * iter) < N_FILES) && 
@@ -275,13 +395,17 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 
 						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getColumna() + incColumna * iter].getTipusFitxa() == TIPUS_EMPTY)) {//que no hi hagi una fitxa.............
 							
-							Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
+							
 							//cout << endl<<endl<<"POS::: " << p.toString() << ".."<<endl<<endl;
-							posicions[nPosicions] = p;
-							nPosicions++;
+							//posicions[nPosicions] = p;
+							//nPosicions++;
 						}
 						else {
+
+							Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
+							posicions[1] = p;
 							limitTrobat = true;
+							possible = true;
 						}
 					}
 					else {
@@ -289,9 +413,9 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 					}
 					iter++;
 				}
-				if (nPosicions > 1) {
-					Posicio morts[MAX_MORTS];
-					Moviment m(DAMA_NO_MATAR, posicions, nPosicions, 0, morts);
+				if (possible) {
+					Posicio morts[MAX_MORTS] = {};
+					Moviment m(DAMA_NO_MATAR, posicions, 2, 0, morts);
 					movimentsValids[nMovimentsValids] = m;
 					nMovimentsValids++;
 				}
@@ -320,8 +444,9 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 				bool limitTrobat = false;
 				int i = 1;
 				//nou moviment:
+				//Posicio posicions[MAX_POSICIONS];
+				//int nPosicions = 0;
 				Posicio posicions[MAX_POSICIONS];
-				int nPosicions = 0;
 				int nMorts = 0;
 				Posicio morts[MAX_MORTS];
 
@@ -336,17 +461,14 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 						) 
 					{
 
-						if (m_tauler[posicioActual.getFila() + incFila * i][posicioActual.getColumna() + incColumna * i].getTipusFitxa() == TIPUS_EMPTY) {
-							Posicio tmpPos1(posicioActual.getFila() + incFila * i, posicioActual.getColumna() + incColumna * i);
-							posicions[nPosicions] = tmpPos1;
-							nPosicions++;
-						}
-						else {
-							Posicio tmpP(posicioActual.getFila() + (incFila * i), posicioActual.getColumna() + (incColumna * i));
-							//cout << tmpP.toString()<<" ";
-							Posicio tmpP3(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
-							//cout << tmpP3.toString() << "; ";
-							//cout << endl;
+						//if (m_tauler[posicioActual.getFila() + incFila * i][posicioActual.getColumna() + incColumna * i].getTipusFitxa() == TIPUS_EMPTY) {
+						//	Posicio tmpPos1(posicioActual.getFila() + incFila * i, posicioActual.getColumna() + incColumna * i);
+							//posicions[nPosicions] = tmpPos1;
+							//nPosicions++;
+						//}
+						//else {
+						if(m_tauler[posicioActual.getFila() + incFila * i][posicioActual.getColumna() + incColumna * i].getTipusFitxa() != TIPUS_EMPTY){
+							
 							if (
 								((posicioActual.getFila() + (incFila * i) + incFila)<N_FILES)&&
 								((posicioActual.getColumna() + (incColumna * i) + incColumna)<N_COLUMNES)&&
@@ -358,15 +480,16 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 									m_tauler[posicioActual.getFila() + (incFila * i)][posicioActual.getColumna() + (incColumna * i)].getColorFitxa() != m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getColorFitxa() &&//diferent color
 									m_tauler[posicioActual.getFila() + (incFila * i) + incFila][posicioActual.getColumna() + (incColumna * i) + incColumna].getTipusFitxa() == TIPUS_EMPTY
 									) {
-									
+									//Posicio tmpP(posicioActual.getFila() + (incFila * i), posicioActual.getColumna() + (incColumna * i));
+									//Posicio tmpP3(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
 									
 									Posicio tmpPos1(posicioActual.getFila() + incFila * i, posicioActual.getColumna() + incColumna * i);
-									posicions[nPosicions] = tmpPos1;
-									nPosicions++;
-
+									//posicions[nPosicions] = tmpPos1;
+									//nPosicions++;
+									
 									Posicio tmpPos2(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
-									posicions[nPosicions] = tmpPos2;
-									nPosicions++;
+									posicions[0] = posicioActual;
+									posicions[1] = tmpPos2;
 									matada = true;
 
 									morts[nMorts] = tmpPos1;
@@ -390,7 +513,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 				
 				}
 				if (matada) {
-					Moviment mov(DAMA_MATAR, posicions, nPosicions, 1, morts);
+					Moviment mov(DAMA_MATAR, posicions, 2, 1, morts);
 					movimentsValids[nMovimentsValids] = mov;
 					nMovimentsValids++;
 				}
@@ -449,17 +572,13 @@ void Tauler::actualitzaMovimentsValids()
 						cout <<endl<< "Dama Matar Multiples"<<endl;
 						//damaMatarMultiples(pos, mv, nMv);
 					}
-					cout << "NO?";
 				}
 			}
-			cout <<"nMv: " << nMv<<endl;
 			for (int k = 0; k < nMv; k++)
 			{
-				cout <<endl<<"K: " << k << endl;
 				m_tauler[fila][col].setMovimentPos(k, mv[k]);
 				m_tauler[fila][col].setNMovimentsValids(nMv);
 			}
-			cout << endl << "Es aqui on peta?";
 		}
 	}
 }
