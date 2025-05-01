@@ -4,6 +4,7 @@ using namespace std;
 #include <iostream>
 #include "fitxes.h"
 
+#include "posicio.h"
 
 class Tauler
 {

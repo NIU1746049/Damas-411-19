@@ -132,7 +132,6 @@
     <ClCompile Include="moviment.cpp" />
     <ClCompile Include="posicio.cpp" />
     <ClCompile Include="tauler.cpp" />
-    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dames.h" />

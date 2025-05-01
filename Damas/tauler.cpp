@@ -191,6 +191,8 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 
 
 
+
+
 bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
 	bool valid = true;
 	int incrementVertical;
@@ -209,53 +211,6 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValid
 		incrementVertical = 1;
 
 	}
-
-
-	int j = 0;
-	while (valid) {
-		
-		/*
-		for (int i = 0; i < 2;i++) {
-			if (((filaActual + incrementVertical) < N_FILES) && ((columnaActual + i) < N_COLUMNES) &&
-				((filaActual + 2 * incrementVertical) < N_FILES) && ((columnaActual + 2 * i) < N_COLUMNES) &&
-				(i != 0)) {
-
-
-				if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_NORMAL) &&
-					(m_tauler[posicioActual.getFila() + 2 * incrementVertical][posicioActual.getColumna() + 2 * i].getTipusFitxa() == TIPUS_EMPTY) &&
-					(m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getColorFitxa() != m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getColorFitxa())) {
-
-					
-
-
-
-				}
-				else 
-				{
-					valid = false;
-				}
-
-
-				
-
-			}
-			else 
-			{
-				valid = false;
-			}
-			
-				
-
-
-				//papapapapapa
-
-
-
-
-			
-		}*/
-	}
-
 
 	return true;
 }

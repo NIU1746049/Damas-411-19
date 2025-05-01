@@ -5,6 +5,9 @@
 #include <fstream>
 #include <sstream>
 
+#include "posicio.h"
+
+
 using namespace std;
 using json = nlohmann::json;
 
