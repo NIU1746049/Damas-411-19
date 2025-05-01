@@ -51,8 +51,8 @@ int main()
 		}
 		
 
-		
-		tauler.mouFitxa(posDesti);//Capçalera canviada
+		Posicio p;
+		tauler.mouFitxa(p,posDesti);//Capçalera canviada
 		
 		//tauler.bufar();
 		tauler.eliminarFitxesMortes();

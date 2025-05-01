@@ -3,7 +3,7 @@ using namespace std;
 
 #include "posicio.h"
 #include "moviment.h"
-
+const int MAX_MOVIMENTS = 16;
 typedef enum
 {
 	TIPUS_NORMAL,
@@ -62,7 +62,8 @@ public:
 	
 private:
 	Posicio m_posicio;
-	Moviment m_moviments[20];
+	Moviment m_moviments[20];//canviarAixo
+	//hauria de ser constat
 	int m_nMoviments = 0;
 
 	TipusFitxa m_tipusFitxa;

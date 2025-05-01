@@ -40,3 +40,7 @@ private:
 
 ifstream& operator>>(ifstream& fitxer, Posicio& posicio);
 ofstream& operator<<(ofstream& fitxer, const Posicio& posicio);
+
+//que sino em dona error el test.cpp:
+
+stringstream& operator<<(stringstream& stream, Posicio& posicio);

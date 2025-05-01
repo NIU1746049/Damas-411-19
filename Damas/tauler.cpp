@@ -98,7 +98,13 @@ void Tauler::inicialitza(const string& nomFitxer)
 }
 
 //Normal
-bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const
+
+//TO-DO
+//passar per referencia
+//treure +1
+
+
+bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const
 {
 	
 	bool valid = false;
@@ -143,7 +149,7 @@ bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[20], in
 }
 
 
-bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
+bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const {
 
 	bool valid = false;
 	int incrementVertical;
@@ -155,12 +161,22 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 		incrementVertical = 1;
 
 	}
-	for (int i = 0; i < 2;i++) {
+	for (int i = -1; i < 2;i++) {
 
 
-		if (((posicioActual.getFila() + incrementVertical) < N_FILES) && ((posicioActual.getColumna() + i) < N_COLUMNES) &&
-			((posicioActual.getFila() + 2 * incrementVertical) < N_FILES) && ((posicioActual.getColumna() + 2 * i) < N_COLUMNES) &&
-			(i != 0)) {//Parentesis ben posats???????????
+		if (
+			((posicioActual.getFila() + incrementVertical) < N_FILES) && 
+			((posicioActual.getColumna() + i) < N_COLUMNES) &&
+			((posicioActual.getFila() + 2 * incrementVertical) < N_FILES) && 
+			((posicioActual.getColumna() + 2 * i) < N_COLUMNES) &&
+			((posicioActual.getFila() + incrementVertical)>=0)&&
+			((posicioActual.getColumna() + i)>=0)&&
+			((posicioActual.getFila() + 2 * incrementVertical)>=0)&&
+			((posicioActual.getColumna() + 2 * i)>=0)&&
+			(i != 0)
+			
+			
+			) {//Parentesis ben posats???????????
 			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_NORMAL) &&
 				(m_tauler[posicioActual.getFila() + 2 * incrementVertical][posicioActual.getColumna() + 2 * i].getTipusFitxa() == TIPUS_EMPTY) &&
 				(m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getColorFitxa() != m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getColorFitxa())) {
@@ -174,7 +190,7 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 				};
 
 
-				Posicio tmpP3[12] = {tmpP1};
+				Posicio tmpP3[MAX_POSICIONS] = {tmpP1};
 				
 				
 				Moviment nouMoviment(NORMAL_MATAR, posicions, 3, 1, tmpP3);
@@ -193,16 +209,32 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[20], in
 
 
 
-bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
-	bool valid = true;
+bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const {
+	
+
+	
+
+	//
+
+	
+
+
+
+	
+	return true;
+	
+}
+
+
+/*
 	int incrementVertical;
-	
-	
+
+
 	int filaActual = posicioActual.getFila();
 	int columnaActual = posicioActual.getColumna();
-	
-	
-	
+
+
+
 	if (m_tauler[filaActual][columnaActual].getColorFitxa() == COLOR_BLANC) {
 		incrementVertical = -1;
 
@@ -212,13 +244,15 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValid
 
 	}
 
+
+
 	return true;
-}
+	*/
 
 
 
 //dama
-bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const
+bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const
 {
 	int nMovimentsValidsInicial = nMovimentsValids;
 	for (int incColumna = -1;incColumna < 2;incColumna++) {
@@ -228,7 +262,7 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int&
 			{
 				bool limitTrobat = false;//Ja sigui taulell o casella contraria
 				int iter = 1;
-				Posicio posicions[32];
+				Posicio posicions[MAX_POSICIONS];
 				posicions[0] = posicioActual;
 				int nPosicions = 1;
 				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
@@ -256,7 +290,8 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int&
 					iter++;
 				}
 				if (nPosicions > 1) {
-					Moviment m(DAMA_NO_MATAR, posicions, nPosicions, 0, {});
+					Posicio morts[MAX_MORTS];
+					Moviment m(DAMA_NO_MATAR, posicions, nPosicions, 0, morts);
 					movimentsValids[nMovimentsValids] = m;
 					nMovimentsValids++;
 				}
@@ -275,7 +310,7 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int&
 
 
 
-bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
+bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const {
 	bool matada = true;
 	for (int incColumna = -1;incColumna < 2;incColumna++) {
 		for (int incFila = -1;incFila < 2;incFila++)
@@ -285,10 +320,10 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 				bool limitTrobat = false;
 				int i = 1;
 				//nou moviment:
-				Posicio posicions[32];
+				Posicio posicions[MAX_POSICIONS];
 				int nPosicions = 0;
 				int nMorts = 0;
-				Posicio morts[12];
+				Posicio morts[MAX_MORTS];
 
 
 				while (!limitTrobat) {
@@ -367,7 +402,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int&
 
 
 
-bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const {
+bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const {
 	return true;
 }
 
@@ -387,7 +422,7 @@ void Tauler::actualitzaMovimentsValids()
 	for (int fila = 0; fila < N_FILES;fila++) {
 		for (int col = 0;col < N_COLUMNES;col++) {
 			esborraMoviments(m_tauler[fila][col]);
-			Moviment mv[100] = {};
+			Moviment mv[MAX_MOVIMENTS] = {};
 			int nMv = 0;
 
 			if (m_tauler[fila][col].getTipusFitxa() == TIPUS_NORMAL)
@@ -411,21 +446,25 @@ void Tauler::actualitzaMovimentsValids()
 					damaMoure(pos, mv, nMv);
 
 					if (damaMatar(pos, mv, nMv)) {
-						damaMatarMultiples(pos, mv, nMv);
+						cout <<endl<< "Dama Matar Multiples"<<endl;
+						//damaMatarMultiples(pos, mv, nMv);
 					}
+					cout << "NO?";
 				}
 			}
+			cout <<"nMv: " << nMv<<endl;
 			for (int k = 0; k < nMv; k++)
 			{
-
+				cout <<endl<<"K: " << k << endl;
 				m_tauler[fila][col].setMovimentPos(k, mv[k]);
 				m_tauler[fila][col].setNMovimentsValids(nMv);
 			}
+			cout << endl << "Es aqui on peta?";
 		}
 	}
 }
 
-void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[])
+void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[MAX_POSICIONS])
 {
 	//Recuerda igualar m_nMoviments a el numero de movimientos
 	nPosicions = 0;
@@ -552,7 +591,7 @@ bool Tauler::seleccionaDesti(Posicio &desti) {
 	}
 	else {
 		Posicio posDesti(filaActual, colActual);
-		Posicio posicionsPossibles[10];
+		Posicio posicionsPossibles[MAX_POSICIONS];
 		int nPos = 0;
 		getPosicionsPossibles(Posicio(m_filaFitxaSeleccionada, m_colFitxaSeleccionada), nPos, posicionsPossibles);
 		for (int i = 0;i < nPos;i++) {
@@ -569,7 +608,7 @@ bool Tauler::seleccionaDesti(Posicio &desti) {
 
 
 
-bool Tauler::mouFitxa(const Posicio& desti)//Capçalera canviada
+bool Tauler::mouFitxa(const Posicio& origen,const Posicio& desti)//Lit que origen no fot res.
 {
 
 	m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada];//ho copio tot

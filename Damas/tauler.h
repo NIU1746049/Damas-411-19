@@ -26,10 +26,10 @@ public:
 	}
 	void inicialitza(const string& nomFitxer);
 	void actualitzaMovimentsValids();// Recorre todas las Fitxes y actualiza su variable Moviment con todos los movimientos validos
-	void getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[]);
+	void getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[MAX_POSICIONS]);
 	//bool mouFitxa(const Posicio& origen, const Posicio& desti);
 
-	bool mouFitxa(const Posicio& desti);
+	bool mouFitxa(const Posicio& origen,const Posicio& desti);//Em diu que li foti una posicio mes que sino peta.
 
 	string toString() const;
 
@@ -46,13 +46,13 @@ public:
 	bool gameOver();
 
 	//Comprovar moviments
-	bool normalMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
-	bool normalMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
-	bool normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
+	bool normalMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
+	bool normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
+	bool normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
 
-	bool damaMoure(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
-	bool damaMatar(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
-	bool damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[20], int& nMovimentsValids)const;
+	bool damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
+	bool damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
+	bool damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
 
 	//getters
 	int getNBlanques() const { return m_nBlanques; }

@@ -1,5 +1,8 @@
 #pragma once
 
+const int MAX_POSICIONS = 16;
+const int MAX_MORTS = 8;
+
 typedef enum//Aixi es podra comprovar despres mes facilment si hi havia algun moviment en el q podies matar
 {
 	EMPTY,
@@ -21,7 +24,7 @@ public:
 		m_nMorts = 0;
 
 	};
-	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions,int nMorts,Posicio morts[12]) {
+	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions, int nMorts, Posicio morts[MAX_MORTS]) {
 		m_tipus = tipus;
 		m_nPosicions = nPosicions;
 		for (int i = 0; i < nPosicions; i++) {
@@ -42,9 +45,9 @@ public:
 
 private:
 	TipusMoviment m_tipus;
-	Posicio m_posicions[12];//Inclou la posicio d'origen
+	Posicio m_posicions[MAX_POSICIONS];//Inclou la posicio d'origen
 	int m_nPosicions;
-	Posicio m_morts[12];
+	Posicio m_morts[MAX_MORTS];
 	int m_nMorts;
 	
 
