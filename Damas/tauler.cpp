@@ -341,7 +341,14 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValid
 
 
 	*/
-	return true;
+	for (int j = 0;j < nVisitats;j++) {
+		for (int i = 0;i < visitats[j].getNPosicions();i++) {
+			cout << endl<<"::  "<<visitats[j].getPosicioPos(i).toString() << endl;
+		}
+
+	}
+	
+	return (nVisitats>1);
 	
 }
 

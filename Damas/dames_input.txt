@@ -7,7 +7,9 @@ O h4
 D d8
 X b8
 X h8
-R a5
+R a6
 X g7
 X f6
 X h2
+X b4
+X c5
