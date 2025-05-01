@@ -185,6 +185,8 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 				Posicio tmpP1((posicioActual.getFila() + incrementVertical), (posicioActual.getColumna() + i));
 				Posicio tmpP2((posicioActual.getFila() + 2 * incrementVertical), (posicioActual.getColumna() + 2 * i));
 				
+				//cout << endl << "P1: "<<tmpP1.toString()<<endl;
+				//cout << endl << "P2: "<< tmpP2.toString()<<endl;
 				Posicio posicions[MAX_POSICIONS] = { posicioActual,
 					tmpP2,
 				};
@@ -210,6 +212,7 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 
 
 bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const {
+	cout << "Executant normalMatarMultiples en la posicio: " << posicioActual.toString() << endl;
 	Moviment visitats[MAX_MOVIMENTS];
 	Moviment perVisitar[MAX_MOVIMENTS];
 	Moviment actual[MAX_MOVIMENTS];
@@ -224,19 +227,26 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValid
 
 	Moviment tmpMoviments[MAX_MOVIMENTS];
 	int nTmpMoviments = 0;
-	normalMatar(actual[nActual].getPosicioPos(actual[nActual].getNPosicions() - 1), tmpMoviments, nTmpMoviments);
-	for (int i = 0;i < nTmpMoviments; i++) {
-		perVisitar[nPerVisitar] = tmpMoviments[i];
+	if (
+		((actual[nActual].getPosicioPos(actual[nActual].getNPosicions() - 1).getFila())<N_FILES) &&
+		((actual[nActual].getPosicioPos(actual[nActual].getNPosicions() - 1).getColumna())<N_COLUMNES) &&
+		((actual[nActual].getPosicioPos(actual[nActual].getNPosicions() - 1).getFila())>0)&&
+		((actual[nActual].getPosicioPos(actual[nActual].getNPosicions() - 1).getColumna())>=0)
+		) {
+		normalMatar(actual[nActual].getPosicioPos(actual[nActual].getNPosicions() - 1), tmpMoviments, nTmpMoviments);
+		for (int i = 0;i < nTmpMoviments; i++) {
+			perVisitar[nPerVisitar] = tmpMoviments[i];
 
-		for (int j = 0;j < actual[nActual].getNPosicions();j++) {
-			perVisitar[nPerVisitar].setPosicioPos(j,actual[nActual].getPosicioPos(j));
-			perVisitar[nPerVisitar].setNPosicions(perVisitar[nPerVisitar].getNPosicions()+1);
+			for (int j = 0;j < actual[nActual].getNPosicions();j++) {
+				perVisitar[nPerVisitar].setPosicioPos(j, actual[nActual].getPosicioPos(j));
+				perVisitar[nPerVisitar].setNPosicions(perVisitar[nPerVisitar].getNPosicions() + 1);
+			}
+
+
+			perVisitar[nPerVisitar].setPosicioPos((perVisitar[nPerVisitar].getNPosicions() + 1), tmpMoviments[i].getPosicioPos(1));//Nomes vull lultima, i sempre en tenen 2.
+			perVisitar[nPerVisitar].setNPosicions(tmpMoviments[i].getNPosicions());
+			nPerVisitar++;
 		}
-
-
-		perVisitar[nPerVisitar].setPosicioPos((perVisitar[nPerVisitar].getNPosicions() + 1), tmpMoviments[i].getPosicioPos(1));//Nomes vull lultima, i sempre en tenen 2.
-		perVisitar[nPerVisitar].setNPosicions(tmpMoviments[i].getNPosicions());
-		nPerVisitar++;
 	}
 	nActual++;
 	/*
@@ -277,9 +287,13 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValid
 
 		}
 		*/
-		//aixi jastaria no?
+		for (int k = 0;k < visitats[nVisitats].getNPosicions();k++) {
+			cout << endl << "papo: " << visitats[nVisitats].getPosicioPos(k) << endl;
+		}
 		actual[nActual] = perVisitar[nPerVisitar];
 		visitats[nVisitats] = perVisitar[nPerVisitar];
+		
+		
 		nVisitats++;
 		nPerVisitar--;//realment no cal posar res a l array estil per a "borrar" lo altre, oi?
 
@@ -341,13 +355,17 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValid
 
 
 	*/
-	for (int j = 0;j < nVisitats;j++) {
-		for (int i = 0;i < visitats[j].getNPosicions();i++) {
-			cout << endl<<"::  "<<visitats[j].getPosicioPos(i).toString() << endl;
-		}
-
-	}
 	
+	
+	
+
+	movimentsValids = visitats;
+	nMovimentsValids = nVisitats;
+	
+
+	
+
+
 	return (nVisitats>1);
 	
 }
@@ -737,16 +755,20 @@ bool Tauler::seleccionaDesti(Posicio &desti) {
 bool Tauler::mouFitxa(const Posicio& origen,const Posicio& desti)//Lit que origen no fot res.
 {
 
-	m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada];//ho copio tot
+	m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];//ho copio tot
 	m_tauler[desti.getFila()][desti.getColumna()].setViva(true);
 	//pero no vull que es vagin canviant les posicions aixi que:
 	m_tauler[desti.getFila()][desti.getColumna()].setPosicio(desti);
 	
 
-	m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].setColorITipusFitxa('_');//Fitxa buida
+	m_tauler[origen.getFila()][origen.getColumna()].setColorITipusFitxa('_');//Fitxa buida
 
+
+
+	//
 	m_filaFitxaSeleccionada = desti.getFila();//Mes facil. Aixi despres puc bufar i tota la pesca.
 	m_colFitxaSeleccionada = desti.getColumna();
+	//
 
 	//Ara trobar el moviment que s'ha fet dins de la llista de moviments valids de la fitxa. 
 	bool trobat = false;
