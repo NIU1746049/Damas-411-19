@@ -150,7 +150,7 @@ bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 
 
 bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const {
-
+	cout << "Pero aqui si";
 	bool valid = false;
 	int incrementVertical;
 	if (m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getColorFitxa() == COLOR_BLANC) {
@@ -177,11 +177,11 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 			
 			
 			) {//Parentesis ben posats???????????
-			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() == TIPUS_NORMAL) &&
+			if ((m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getTipusFitxa() != TIPUS_EMPTY) &&
 				(m_tauler[posicioActual.getFila() + 2 * incrementVertical][posicioActual.getColumna() + 2 * i].getTipusFitxa() == TIPUS_EMPTY) &&
 				(m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i].getColorFitxa() != m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getColorFitxa())) {
 				//Fotre el moviment aqui
-
+				cout << endl<<"ESTIC A" << posicioActual.toString() << "SOC DEL TIPUS " <<m_tauler[posicioActual.getFila()][posicioActual.getColumna()].getTipusFitxa() << " I EM PUC MOURE MATANT" << endl;
 				Posicio tmpP1((posicioActual.getFila() + incrementVertical), (posicioActual.getColumna() + i));
 				Posicio tmpP2((posicioActual.getFila() + 2 * incrementVertical), (posicioActual.getColumna() + 2 * i));
 				
@@ -198,7 +198,9 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 				Moviment nouMoviment(NORMAL_MATAR, posicions, 2, 1, tmpP3);
 
 				movimentsValids[nMovimentsValids] = nouMoviment;
+				
 				valid = true;
+				//cout << endl<<":- "<<nouMoviment.getPosicioPos(1).toString()<<endl;
 				nMovimentsValids++;
 
 			}
@@ -575,12 +577,12 @@ void Tauler::actualitzaMovimentsValids()
 
 			if (m_tauler[fila][col].getTipusFitxa() == TIPUS_NORMAL)
 			{
-				//Posicio pos = m_tauler[m_filaFitxaSeleccionada][m_colFitxaSeleccionada].getPosicio();
 				Posicio pos(fila, col);
 
 				normalMoure(pos, mv, nMv);
 
 				if (normalMatar(pos, mv, nMv)) {
+					cout << "ES POT NORMALMATASR";
 					normalMatarMultiples(pos, mv, nMv);
 				}
 
@@ -642,25 +644,50 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 
 }
 
-bool Tauler::bufar(const Posicio &posicioOrigen) {
+bool Tauler::bufar(const Posicio& posicioOrigen,Moviment& movimentFet) {
 	int maxIndex=-1;
 	int maxMorts=-1;
+
+
+	
+
+
+	//busquem el moviment de màximes fitxes
 	for (int i = 0;i < m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getNMoviments();i++) {
+		//DBG
+		for (int k = 0;k < m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(i).getNPosicions();k++) {
+			cout << "tipus de mov: "<< m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(i).getTipus() <<":  "<< m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(i).getPosicioPos(k) << "- kills: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(i).getNMorts()<< ". " << endl;
+		}
+
+		//
 		Moviment moviment = m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(i);
 		if (moviment.getTipus() != NORMAL_NO_MATAR) {
 			if (moviment.getNMorts() > maxMorts) {
 				maxIndex = i;
 				maxMorts = moviment.getNMorts();
+				cout << endl << "maxMorts::: " << maxMorts << endl << "..";
 			}
 		}
 	}
-	if ((movimentFet.getNMorts() < m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts())) {
-		m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].setViva(false);
-		return true;
+	//Si durant algun moviment es mata::
+	if (maxIndex > -1) {
+		cout << endl << "el moviment amb mes kills era:" << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getTipus() << "amb morts: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts() << endl;
+		if ((movimentFet.getNMorts() < m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts())) {
+			//DBG
+			cout << endl << "La fitxa en posicio " << posicioOrigen.toString() << " ha estat bufada. El seu moviment de màximes kills era:" << endl;
+			//for(int i=0;i<m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).)
+			cout << endl << "de tipus: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getTipus() << "amb n de kills: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts() << endl;
+			//
+			m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].setViva(false);
+			return true;
+		}
+		else {
+			return false;
+		}
+
 	}
-	else {
-		return false;
-	}
+	return false;
+	
 	
 }
 bool Tauler::seleccionaFitxa() {
@@ -800,7 +827,7 @@ bool Tauler::mouFitxa(const Posicio& origen,const Posicio& desti)//Lit que orige
 			m_nBlanques -= movimentFet.getNMorts();
 		}
 		convertirADama();
-		//bufar(desti);
+		bufar(desti,movimentFet);
 		eliminarFitxesMortes();
 		
 		
