@@ -43,11 +43,11 @@ ofstream& operator<<(ofstream& fitxer, const Posicio& posicio)
 	return fitxer;
 }
 
-stringstream& operator<<(stringstream& stream, Posicio& posicio) {
-	string pos = posicio.toString();
-	stream << posicio;
-	return stream;
-}
+//stringstream& operator<<(stringstream& stream, Posicio& posicio) {
+//	string pos = posicio.toString();
+//	stream << posicio;
+//	return stream;
+//}
 
 
 void llegeixFitxa(const string& nomFitxer, char& tipusFitxa, Posicio& posicio) { //A llegeixFitxa le entra una posicion? Esta funcion esta en el enunciado?

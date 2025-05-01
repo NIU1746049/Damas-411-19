@@ -132,10 +132,12 @@
     <ClCompile Include="moviment.cpp" />
     <ClCompile Include="posicio.cpp" />
     <ClCompile Include="tauler.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dames.h" />
     <ClInclude Include="fitxes.h" />
+    <ClInclude Include="json.hpp" />
     <ClInclude Include="moviment.h" />
     <ClInclude Include="posicio.h" />
     <ClInclude Include="tauler.h" />

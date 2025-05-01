@@ -26,6 +26,7 @@ public:
 		m_colorFitxa = COLOR_UNDEFINED;
 		m_tipusFitxa = TIPUS_EMPTY;
 		m_viva = true;
+		m_nMoviments = 0;
 	}
 	Fitxa(TipusFitxa tipus, ColorFitxa color, Posicio pos) {
 		m_posicio = pos;
@@ -64,7 +65,7 @@ private:
 	Posicio m_posicio;
 	Moviment m_moviments[20];//canviarAixo
 	//hauria de ser constat
-	int m_nMoviments = 0;
+	int m_nMoviments;
 
 	TipusFitxa m_tipusFitxa;
 	ColorFitxa m_colorFitxa;

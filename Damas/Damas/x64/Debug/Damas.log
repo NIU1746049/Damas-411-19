@@ -1,5 +1,479 @@
-﻿  dames.cpp
-  fitxes.cpp
-  tauler.cpp
-  Generating Code...
-  Damas.vcxproj -> C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\x64\Debug\Damas.exe
+﻿  test.cpp
+C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3): error C2678: binary '<<': no operator found which takes a left-hand operand of type 'std::stringstream' (or there is no acceptable conversion)
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(486,39):
+      could be 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_streambuf<char,std::char_traits<char>> *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_streambuf<char,std::char_traits<char>> *)': cannot convert argument 2 from 'Posicio' to 'std::basic_streambuf<char,std::char_traits<char>> *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(454,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)': cannot convert argument 2 from 'Posicio' to 'const void *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(436,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long double)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long double)': cannot convert argument 2 from 'Posicio' to 'long double'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(418,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)': cannot convert argument 2 from 'Posicio' to 'double'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(400,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(float)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(float)': cannot convert argument 2 from 'Posicio' to 'float'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(382,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned __int64)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned __int64)': cannot convert argument 2 from 'Posicio' to 'unsigned __int64'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(364,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(__int64)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(__int64)': cannot convert argument 2 from 'Posicio' to '__int64'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(346,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned long)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned long)': cannot convert argument 2 from 'Posicio' to 'unsigned long'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(328,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long)': cannot convert argument 2 from 'Posicio' to 'long'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(309,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)': cannot convert argument 2 from 'Posicio' to 'unsigned int'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(283,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)': cannot convert argument 2 from 'Posicio' to 'int'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(264,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned short)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned short)': cannot convert argument 2 from 'Posicio' to 'unsigned short'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(230,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(short)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(short)': cannot convert argument 2 from 'Posicio' to 'short'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(212,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(bool)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(bool)': cannot convert argument 2 from 'Posicio' to 'bool'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(206,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::ios_base &(__cdecl *)(std::ios_base &))'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::ios_base &(__cdecl *)(std::ios_base &))': cannot convert argument 2 from 'Posicio' to 'std::ios_base &(__cdecl *)(std::ios_base &)'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(200,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &))'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &))': cannot convert argument 2 from 'Posicio' to 'std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &)'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(195,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ostream<char,std::char_traits<char>> &(__cdecl *)(std::basic_ostream<char,std::char_traits<char>> &))'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ostream<char,std::char_traits<char>> &(__cdecl *)(std::basic_ostream<char,std::char_traits<char>> &))': cannot convert argument 2 from 'Posicio' to 'std::basic_ostream<char,std::char_traits<char>> &(__cdecl *)(std::basic_ostream<char,std::char_traits<char>> &)'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\posicio.h(42,11):
+      or       'std::ofstream &operator <<(std::ofstream &,const Posicio &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::ofstream &operator <<(std::ofstream &,const Posicio &)': cannot convert argument 1 from 'std::stringstream' to 'std::ofstream &'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\valarray(972,26):
+      or       'std::valarray<_Ty> std::operator <<(const std::valarray<_Ty> &,const std::valarray<_Ty> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::valarray<_Ty> std::operator <<(const std::valarray<_Ty> &,const std::valarray<_Ty> &)': could not deduce template argument for 'const std::valarray<_Ty> &' from 'std::stringstream'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\valarray(798,26):
+      or       'std::valarray<_Ty> std::operator <<(const valarray<_Ty>::value_type &,const std::valarray<_Ty> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::valarray<_Ty> std::operator <<(const valarray<_Ty>::value_type &,const std::valarray<_Ty> &)': could not deduce template argument for 'const std::valarray<_Ty> &' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\valarray(788,26):
+      or       'std::valarray<_Ty> std::operator <<(const std::valarray<_Ty> &,const valarray<_Ty>::value_type &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::valarray<_Ty> std::operator <<(const std::valarray<_Ty> &,const valarray<_Ty>::value_type &)': could not deduce template argument for 'const std::valarray<_Ty> &' from 'std::stringstream'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(1088,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::error_code &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::error_code &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+          'initializing': cannot convert from 'Posicio' to 'const std::error_code &'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              Reason: cannot convert from 'Posicio' to 'const std::error_code'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(1011,9):
+      or       '_Ostr &&std::operator <<(_Ostr &&,const _Ty &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          '_Ostr &&std::operator <<(_Ostr &&,const _Ty &)': could not deduce template argument for '__formal'
+              C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(1010,103):
+              '<template-parameter>': you cannot create a pointer to a reference
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(953,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,unsigned char)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,unsigned char)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+          'initializing': cannot convert from 'Posicio' to 'unsigned char'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(947,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const unsigned char *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const unsigned char *)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+          'initializing': cannot convert from 'Posicio' to 'const unsigned char *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(942,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,signed char)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,signed char)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+          'initializing': cannot convert from 'Posicio' to 'signed char'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(936,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const signed char *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const signed char *)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+          'initializing': cannot convert from 'Posicio' to 'const signed char *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(900,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,_Elem)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,_Elem)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,_Elem)': template parameter '_Elem' is ambiguous
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+              could be 'Posicio'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+              or       'char'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,_Elem)': could not deduce template argument for '_Elem' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(857,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const _Elem *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const _Elem *)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const _Elem *)': could not deduce template argument for 'const _Elem *' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(819,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,char)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,char)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+          'initializing': cannot convert from 'Posicio' to 'char'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(774,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const char *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const char *)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+          'initializing': cannot convert from 'Posicio' to 'const char *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(738,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,char)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,char)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+          'initializing': cannot convert from 'Posicio' to 'char'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(694,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const char *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const char *)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+          'initializing': cannot convert from 'Posicio' to 'const char *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,27):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(3761,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::unique_ptr<_Ty2,_Dx2> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::unique_ptr<_Ty2,_Dx2> &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::unique_ptr<_Ty2,_Dx2> &)': could not deduce template argument for 'const std::unique_ptr<_Ty2,_Dx2> &' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(1979,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::shared_ptr<_Ty> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::shared_ptr<_Ty> &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::shared_ptr<_Ty> &)': could not deduce template argument for 'const std::shared_ptr<_Ty> &' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xstring(3419,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'const std::basic_string<_Elem,_Traits,_Alloc> &' from 'Posicio'
+      C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(31,3):
+      while trying to match the argument list '(std::stringstream, Posicio)'
+  
+C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3): error C2678: binary '<<': no operator found which takes a left-hand operand of type 'std::stringstream' (or there is no acceptable conversion)
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(486,39):
+      could be 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_streambuf<char,std::char_traits<char>> *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_streambuf<char,std::char_traits<char>> *)': cannot convert argument 2 from 'Posicio' to 'std::basic_streambuf<char,std::char_traits<char>> *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(454,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)': cannot convert argument 2 from 'Posicio' to 'const void *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(436,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long double)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long double)': cannot convert argument 2 from 'Posicio' to 'long double'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(418,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(double)': cannot convert argument 2 from 'Posicio' to 'double'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(400,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(float)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(float)': cannot convert argument 2 from 'Posicio' to 'float'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(382,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned __int64)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned __int64)': cannot convert argument 2 from 'Posicio' to 'unsigned __int64'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(364,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(__int64)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(__int64)': cannot convert argument 2 from 'Posicio' to '__int64'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(346,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned long)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned long)': cannot convert argument 2 from 'Posicio' to 'unsigned long'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(328,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(long)': cannot convert argument 2 from 'Posicio' to 'long'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(309,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned int)': cannot convert argument 2 from 'Posicio' to 'unsigned int'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(283,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(int)': cannot convert argument 2 from 'Posicio' to 'int'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(264,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned short)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(unsigned short)': cannot convert argument 2 from 'Posicio' to 'unsigned short'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(230,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(short)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(short)': cannot convert argument 2 from 'Posicio' to 'short'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(212,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(bool)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(bool)': cannot convert argument 2 from 'Posicio' to 'bool'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(206,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::ios_base &(__cdecl *)(std::ios_base &))'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::ios_base &(__cdecl *)(std::ios_base &))': cannot convert argument 2 from 'Posicio' to 'std::ios_base &(__cdecl *)(std::ios_base &)'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(200,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &))'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &))': cannot convert argument 2 from 'Posicio' to 'std::basic_ios<char,std::char_traits<char>> &(__cdecl *)(std::basic_ios<char,std::char_traits<char>> &)'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(195,39):
+      or       'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ostream<char,std::char_traits<char>> &(__cdecl *)(std::basic_ostream<char,std::char_traits<char>> &))'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(std::basic_ostream<char,std::char_traits<char>> &(__cdecl *)(std::basic_ostream<char,std::char_traits<char>> &))': cannot convert argument 2 from 'Posicio' to 'std::basic_ostream<char,std::char_traits<char>> &(__cdecl *)(std::basic_ostream<char,std::char_traits<char>> &)'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\posicio.h(42,11):
+      or       'std::ofstream &operator <<(std::ofstream &,const Posicio &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::ofstream &operator <<(std::ofstream &,const Posicio &)': cannot convert argument 1 from 'std::stringstream' to 'std::ofstream &'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\valarray(972,26):
+      or       'std::valarray<_Ty> std::operator <<(const std::valarray<_Ty> &,const std::valarray<_Ty> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::valarray<_Ty> std::operator <<(const std::valarray<_Ty> &,const std::valarray<_Ty> &)': could not deduce template argument for 'const std::valarray<_Ty> &' from 'std::stringstream'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\valarray(798,26):
+      or       'std::valarray<_Ty> std::operator <<(const valarray<_Ty>::value_type &,const std::valarray<_Ty> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::valarray<_Ty> std::operator <<(const valarray<_Ty>::value_type &,const std::valarray<_Ty> &)': could not deduce template argument for 'const std::valarray<_Ty> &' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\valarray(788,26):
+      or       'std::valarray<_Ty> std::operator <<(const std::valarray<_Ty> &,const valarray<_Ty>::value_type &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::valarray<_Ty> std::operator <<(const std::valarray<_Ty> &,const valarray<_Ty>::value_type &)': could not deduce template argument for 'const std::valarray<_Ty> &' from 'std::stringstream'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(1088,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::error_code &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::error_code &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+          'initializing': cannot convert from 'Posicio' to 'const std::error_code &'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              Reason: cannot convert from 'Posicio' to 'const std::error_code'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(1011,9):
+      or       '_Ostr &&std::operator <<(_Ostr &&,const _Ty &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          '_Ostr &&std::operator <<(_Ostr &&,const _Ty &)': could not deduce template argument for '__formal'
+              C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(1010,103):
+              '<template-parameter>': you cannot create a pointer to a reference
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(953,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,unsigned char)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,unsigned char)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+          'initializing': cannot convert from 'Posicio' to 'unsigned char'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(947,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const unsigned char *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const unsigned char *)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+          'initializing': cannot convert from 'Posicio' to 'const unsigned char *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(942,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,signed char)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,signed char)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+          'initializing': cannot convert from 'Posicio' to 'signed char'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(936,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const signed char *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const signed char *)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+          'initializing': cannot convert from 'Posicio' to 'const signed char *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(900,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,_Elem)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,_Elem)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,_Elem)': template parameter '_Elem' is ambiguous
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+              could be 'Posicio'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+              or       'char'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,_Elem)': could not deduce template argument for '_Elem' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(857,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const _Elem *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const _Elem *)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const _Elem *)': could not deduce template argument for 'const _Elem *' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(819,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,char)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,char)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+          'initializing': cannot convert from 'Posicio' to 'char'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(774,31):
+      or       'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const char *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<char,_Traits> &std::operator <<(std::basic_ostream<char,_Traits> &,const char *)': could not deduce template argument for 'std::basic_ostream<char,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+          'initializing': cannot convert from 'Posicio' to 'const char *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(738,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,char)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,char)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+          'initializing': cannot convert from 'Posicio' to 'char'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\ostream(694,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const char *)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const char *)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+          'initializing': cannot convert from 'Posicio' to 'const char *'
+              C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,39):
+              No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(3761,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::unique_ptr<_Ty2,_Dx2> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::unique_ptr<_Ty2,_Dx2> &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::unique_ptr<_Ty2,_Dx2> &)': could not deduce template argument for 'const std::unique_ptr<_Ty2,_Dx2> &' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\memory(1979,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::shared_ptr<_Ty> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::shared_ptr<_Ty> &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::shared_ptr<_Ty> &)': could not deduce template argument for 'const std::shared_ptr<_Ty> &' from 'Posicio'
+      C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.42.34433\include\xstring(3419,32):
+      or       'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'std::basic_ostream<_Elem,_Traits> &' from 'std::stringstream'
+          C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+          'std::basic_ostream<_Elem,_Traits> &std::operator <<(std::basic_ostream<_Elem,_Traits> &,const std::basic_string<_Elem,_Traits,_Alloc> &)': could not deduce template argument for 'const std::basic_string<_Elem,_Traits,_Alloc> &' from 'Posicio'
+      C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(33,3):
+      while trying to match the argument list '(std::stringstream, Posicio)'
+  
+C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(99,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(450,22): warning C4305: '+=': truncation from 'double' to 'float'
