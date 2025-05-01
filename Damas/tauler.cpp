@@ -2,7 +2,7 @@ using namespace std;
 #include <iostream>
 #include "string"
 
-#include "tauler.h"
+#include "tauler.hpp"
 
 
 void Tauler::actualitzaTaulerEnChars() {

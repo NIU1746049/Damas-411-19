@@ -1,11 +1,11 @@
-#include "tauler.h"//He canviat de hpp a h no passa res oi?
+#include "tauler.hpp"//He canviat de hpp a h no passa res oi?
 #include "json.hpp"
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
-#include "posicio.h"
+#include "posicio.hpp"
 
 
 using namespace std;

@@ -27,9 +27,6 @@
     <ClCompile Include="moviment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="dames.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -38,16 +35,16 @@
     <ClInclude Include="dames.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="fitxes.h">
+    <ClInclude Include="fitxes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="moviment.h">
+    <ClInclude Include="moviment.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="posicio.h">
+    <ClInclude Include="posicio.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tauler.h">
+    <ClInclude Include="tauler.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="json.hpp">

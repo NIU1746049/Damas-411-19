@@ -2,7 +2,7 @@ using namespace std;
 #include <string>
 #include "string"
 
-#include "fitxes.h"
+#include "fitxes.hpp"
 
 void Fitxa::setColorITipusFitxa(char fitxa)
 {

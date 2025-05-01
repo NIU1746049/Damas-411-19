@@ -1,8 +1,8 @@
 #include <string>
-#include <iostream>
+//#include <iostream>
 using namespace std;
 
-#include "posicio.h"
+#include "posicio.hpp"
 
 string Posicio::toString() const {
 	string pos = "a1";
@@ -36,19 +36,22 @@ ifstream& operator>>(ifstream& fitxer, Posicio& posicio)
 	return fitxer;
 }
 
-ofstream& operator<<(ofstream& fitxer, const Posicio& posicio)
-{
+
+ostream& operator<<(ostream& fitxer, const Posicio& posicio) {
 	string pos = posicio.toString();
-	fitxer << posicio;
+	fitxer << pos;
 	return fitxer;
 }
 
-//stringstream& operator<<(stringstream& stream, Posicio& posicio) {
-//	string pos = posicio.toString();
-//	stream << posicio;
-//	return stream;
-//}
-
+/*
+ofstream& operator<<(ofstream& fitxer, const Posicio& posicio)
+{
+	string pos = posicio.toString();
+	
+	fitxer << pos;
+	return fitxer;
+}
+*/
 
 void llegeixFitxa(const string& nomFitxer, char& tipusFitxa, Posicio& posicio) { //A llegeixFitxa le entra una posicion? Esta funcion esta en el enunciado?
 	ifstream fitxer;

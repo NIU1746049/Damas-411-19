@@ -127,7 +127,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="dames.cpp" />
     <ClCompile Include="fitxes.cpp" />
     <ClCompile Include="moviment.cpp" />
     <ClCompile Include="posicio.cpp" />
@@ -136,11 +135,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dames.h" />
-    <ClInclude Include="fitxes.h" />
+    <ClInclude Include="fitxes.hpp" />
     <ClInclude Include="json.hpp" />
-    <ClInclude Include="moviment.h" />
-    <ClInclude Include="posicio.h" />
-    <ClInclude Include="tauler.h" />
+    <ClInclude Include="moviment.hpp" />
+    <ClInclude Include="posicio.hpp" />
+    <ClInclude Include="tauler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="dames_input%28og%29.txt" />
