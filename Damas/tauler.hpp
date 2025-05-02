@@ -54,9 +54,10 @@ public:
 	bool damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
 	bool damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
 	//Auxiliar Moviments
-	void branca(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMENTS], int& tmpNMoviments,
+	void brancaNormal(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMENTS], int& tmpNMoviments,
 		Moviment movimentsDefinitius[MAX_MOVIMENTS], int nMovimentsDefinitius)const;
-
+	void brancaDama(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMENTS], int& tmpNMoviments,
+		Moviment movimentsDefinitius[MAX_MOVIMENTS], int nMovimentsDefinitius)const;
 
 	//getters
 	int getNBlanques() const { return m_nBlanques; }

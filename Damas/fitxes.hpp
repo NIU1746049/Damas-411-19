@@ -60,6 +60,9 @@ public:
 	void setNMovimentsValids(int nMv) { m_nMoviments = nMv; }
 	void setViva(bool viva) { m_viva = viva; }
 	
+
+	//
+	void esborraMoviments();
 	
 private:
 	Posicio m_posicio;

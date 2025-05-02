@@ -30,3 +30,13 @@ void Fitxa::setColorITipusFitxa(char fitxa)
 		break;
 	}
 }
+
+
+
+void Fitxa::esborraMoviments() {
+	for (int i = 0;i < getNMoviments();i++) {
+		Moviment m;
+		m_moviments[i] = m;
+	}
+	m_nMoviments = 0;
+}
