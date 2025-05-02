@@ -1,5 +1,5 @@
 {
-    "score": 1.5,
+    "score": 2.5,
     "stdout_visibility": "visible",
     "tests": [
         {
@@ -40,14 +40,14 @@
         },
         {
             "name": "TEST MOVIMENTS VALIDS 5",
-            "output": "\nTEST MOVIMENTS VALIDS 5\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: d4\n----------\nPosicions possibles esperades: [f2]\n----------\nPosicions possibles obitngudes: [f2, al]\n----------\nERROR\n-----------------------------------------------\n",
-            "status": "failed",
+            "output": "\nTEST MOVIMENTS VALIDS 5\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: d4\n----------\nPosicions possibles esperades: [f2]\n----------\nPosicions possibles obitngudes: [f2]\n----------\nCORRECTE\n-----------------------------------------------\n",
+            "status": "passed",
             "visibility": "visible"
         },
         {
             "name": "TEST MOVIMENTS VALIDS 6",
-            "output": "\nTEST MOVIMENTS VALIDS 6\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: b6\n----------\nPosicions possibles esperades: [d8]\n----------\nPosicions possibles obitngudes: [d8, al]\n----------\nERROR\n-----------------------------------------------\n",
-            "status": "failed",
+            "output": "\nTEST MOVIMENTS VALIDS 6\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: b6\n----------\nPosicions possibles esperades: [d8]\n----------\nPosicions possibles obitngudes: [d8]\n----------\nCORRECTE\n-----------------------------------------------\n",
+            "status": "passed",
             "visibility": "visible"
         },
         {
@@ -58,13 +58,13 @@
         },
         {
             "name": "TEST MOVIMENTS VALIDS 8",
-            "output": "\nTEST MOVIMENTS VALIDS 8\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: a7\n----------\nPosicions possibles esperades: [c5, a3]\n----------\nPosicions possibles obitngudes: [c5, al]\n----------\nERROR\n-----------------------------------------------\n",
+            "output": "\nTEST MOVIMENTS VALIDS 8\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: a7\n----------\nPosicions possibles esperades: [c5, a3]\n----------\nPosicions possibles obitngudes: [c5]\n----------\nERROR\n-----------------------------------------------\n",
             "status": "failed",
             "visibility": "visible"
         },
         {
             "name": "TEST MOVIMENTS VALIDS 9",
-            "output": "\nTEST MOVIMENTS VALIDS 9\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: e3\n----------\nPosicions possibles esperades: [c5, g5, e7]\n----------\nPosicions possibles obitngudes: [c5, g5, al]\n----------\nERROR\n-----------------------------------------------\n",
+            "output": "\nTEST MOVIMENTS VALIDS 9\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: e3\n----------\nPosicions possibles esperades: [c5, g5, e7]\n----------\nPosicions possibles obitngudes: [c5, g5]\n----------\nERROR\n-----------------------------------------------\n",
             "status": "failed",
             "visibility": "visible"
         },

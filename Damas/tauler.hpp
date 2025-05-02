@@ -41,7 +41,7 @@ public:
 	bool comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
 
 	void convertirADama();
-	bool bufar(const Posicio &posicioOrigen,Moviment& MovimentFet);
+	bool bufar(const Posicio& posicioOrigen, Moviment& movimentFet);
 	void eliminarFitxesMortes(); // Asignarlas como vivas despues de eliminarlas
 	bool gameOver();
 
@@ -53,6 +53,10 @@ public:
 	bool damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
 	bool damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
 	bool damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids)const;
+	//Auxiliar Moviments
+	void branca(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMENTS], int& tmpNMoviments,
+		Moviment movimentsDefinitius[MAX_MOVIMENTS], int nMovimentsDefinitius)const;
+
 
 	//getters
 	int getNBlanques() const { return m_nBlanques; }
