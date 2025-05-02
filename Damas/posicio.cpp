@@ -4,14 +4,16 @@ using namespace std;
 
 #include "posicio.hpp"
 
-string Posicio::toString() const {
+string Posicio::toString() const 
+{
 	string pos = "a1";
 	pos[0] = 'a' + m_columna;
 	pos[1] = '1' + (N_FILES - 1) - m_fila;
 	return pos;
 }
 
-void Posicio::fromString(const string& pos) {
+void Posicio::fromString(const string& pos) 
+{
 	m_fila = (N_FILES - 1) - (pos[1] - '1');
 	m_columna = pos[0] - 'a';
 }
@@ -36,24 +38,15 @@ ifstream& operator>>(ifstream& fitxer, Posicio& posicio)
 	return fitxer;
 }
 
-
-ostream& operator<<(ostream& fitxer, const Posicio& posicio) {
-	string pos = posicio.toString();
-	fitxer << pos;
-	return fitxer;
-}
-
-/*
-ofstream& operator<<(ofstream& fitxer, const Posicio& posicio)
+ostream& operator<<(ostream& fitxer, const Posicio& posicio) 
 {
 	string pos = posicio.toString();
-	
 	fitxer << pos;
 	return fitxer;
 }
-*/
 
-void llegeixFitxa(const string& nomFitxer, char& tipusFitxa, Posicio& posicio) { //A llegeixFitxa le entra una posicion? Esta funcion esta en el enunciado?
+void llegeixFitxa(const string& nomFitxer, char& tipusFitxa, Posicio& posicio) 
+{ //A llegeixFitxa le entra una posicion? Esta funcion esta en el enunciado?
 	ifstream fitxer;
 	fitxer.open(nomFitxer);
 	fitxer >> tipusFitxa;
@@ -61,7 +54,8 @@ void llegeixFitxa(const string& nomFitxer, char& tipusFitxa, Posicio& posicio) {
 	fitxer.close();
 }
 
-void escriuFitxa(const string& nomFitxer, char tipusFitxa, const Posicio& posicio) { //A escriuFitxa le entra una posicion? Esta funcion esta en el enunciado?
+void escriuFitxa(const string& nomFitxer, char tipusFitxa, const Posicio& posicio) 
+{ //A escriuFitxa le entra una posicion? Esta funcion esta en el enunciado?
 	ofstream fitxer(nomFitxer);
 	fitxer << tipusFitxa << ' ';
 	fitxer << posicio;

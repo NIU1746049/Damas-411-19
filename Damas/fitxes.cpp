@@ -33,8 +33,10 @@ void Fitxa::setColorITipusFitxa(char fitxa)
 
 
 
-void Fitxa::esborraMoviments() {
-	for (int i = 0;i < getNMoviments();i++) {
+void Fitxa::esborraMoviments() 
+{
+	for (int i = 0;i < getNMoviments();i++) 
+	{
 		Moviment m;
 		m_moviments[i] = m;
 	}

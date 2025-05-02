@@ -1,5 +1,5 @@
 {
-    "score": 8.0,
+    "score": 8.5,
     "stdout_visibility": "visible",
     "tests": [
         {
@@ -136,8 +136,8 @@
         },
         {
             "name": "TEST MOVIMENT FITXA 9",
-            "output": "\nTEST MOVIMENT FITXA 9\n=====================\n\nLlegint estat del tauler del fitxer 'tauler_moviment_fitxa_9.txt'\n---------------\nContingut del tauler inicial: \n8: _ X _ _ _ _ _ D\n7: X _ X _ X _ _ _\n6: _ _ _ _ _ _ _ _\n5: _ _ X _ _ _ X _\n4: _ O _ _ _ _ _ _\n3: _ _ _ _ _ _ _ _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n---------------\nExecutant moviment de posicio: b4 a posicio d6\nMoviment que no mata totes les fitxer que es podrien matar i implica bufar la fitxa\n---------------\nResultat esperat del moviment: TRUE \n-------\nContingut esperat del tauler despres del moviment: \n8: _ X _ _ _ _ _ D\n7: X _ X _ X _ _ _\n6: _ _ _ _ _ _ _ _\n5: _ _ _ _ _ _ X _\n4: _ _ _ _ _ _ _ _\n3: _ _ _ _ _ _ _ _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n----------------\nResultat obtingut del moviment: TRUE \n-------\nContingut obtingut del tauler despres del moviment: \n8:_ X _ _ _ _ _ D \n7:X _ X _ X _ _ _ \n6:_ _ _ O _ _ _ _ \n5:_ _ _ _ _ _ X _ \n4:_ _ _ _ _ _ _ _ \n3:_ _ _ _ _ _ _ _ \n2:_ O _ O _ O _ O \n1:O _ O _ O _ O _ \n  A B C D E F G H \n----------------\nERROR\n-----------------------------------------------\n",
-            "status": "failed",
+            "output": "\nTEST MOVIMENT FITXA 9\n=====================\n\nLlegint estat del tauler del fitxer 'tauler_moviment_fitxa_9.txt'\n---------------\nContingut del tauler inicial: \n8: _ X _ _ _ _ _ D\n7: X _ X _ X _ _ _\n6: _ _ _ _ _ _ _ _\n5: _ _ X _ _ _ X _\n4: _ O _ _ _ _ _ _\n3: _ _ _ _ _ _ _ _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n---------------\nExecutant moviment de posicio: b4 a posicio d6\nMoviment que no mata totes les fitxer que es podrien matar i implica bufar la fitxa\n---------------\nResultat esperat del moviment: TRUE \n-------\nContingut esperat del tauler despres del moviment: \n8: _ X _ _ _ _ _ D\n7: X _ X _ X _ _ _\n6: _ _ _ _ _ _ _ _\n5: _ _ _ _ _ _ X _\n4: _ _ _ _ _ _ _ _\n3: _ _ _ _ _ _ _ _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n----------------\nResultat obtingut del moviment: TRUE \n-------\nContingut obtingut del tauler despres del moviment: \n8:_ X _ _ _ _ _ D \n7:X _ X _ X _ _ _ \n6:_ _ _ _ _ _ _ _ \n5:_ _ _ _ _ _ X _ \n4:_ _ _ _ _ _ _ _ \n3:_ _ _ _ _ _ _ _ \n2:_ O _ O _ O _ O \n1:O _ O _ O _ O _ \n  A B C D E F G H \n----------------\nCORRECTE\n-----------------------------------------------\n",
+            "status": "passed",
             "visibility": "visible"
         },
         {
