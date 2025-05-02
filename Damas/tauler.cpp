@@ -217,19 +217,6 @@ void Tauler::brancaDama(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMEN
 
 
 	if (damaMatar(posicioOrigen, tmpMoviments, tmpNMoviments,fitxaQueEsMou)) {
-		//for (int k = tmpNMovimentsInicial; k < tmpNMoviments;k++) {
-		//	tmpMovimentsInicial[k] = tmpMoviments[k];
-		//}
-		//DEBUG (que es quedi per demostrar que funciona a mitges)
-		/*
-		for (int j = 0;j < tmpNMoviments;j++) {
-			cout << endl << "(Moviment)";
-			for (int q = 0;q < tmpMoviments[j].getNPosicions();q++) {
-				cout << endl << "posicio: " << tmpMoviments[j].getPosicioPos(q).toString()<<endl;
-			}
-		}
-		*/
-		//
 
 		for (int i = tmpNMovimentsInicial;i < tmpNMoviments;i++) {
 
@@ -237,44 +224,28 @@ void Tauler::brancaDama(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMEN
 			brancaDama(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1), tmpMoviments, tmpNMoviments, movimentsDefinitius, nMovimentsDefinitius,fitxaQueEsMou);
 		}
 	}
-	else
-	{
+	Moviment movimentDefinitiuRaw;
+	movimentDefinitiuRaw.setNPosicions(0);
+	for (int j = 0;j < tmpNMoviments;j++) {
+		for (int i = 0;i < tmpMoviments[j].getNPosicions();i++) {
 
 
-
-
-
-
-		Moviment movimentDefinitiuRaw;
-		movimentDefinitiuRaw.setNPosicions(0);
-		
-		
-
-
-		for (int j = 0;j < tmpNMoviments;j++) {
-			for (int i = 0;i < tmpMoviments[j].getNPosicions();i++) {
-			
-				
-				movimentDefinitiuRaw.setPosicioPos(movimentDefinitiuRaw.getNPosicions(), tmpMoviments[j].getPosicioPos(i));
-				movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
-			}
+			movimentDefinitiuRaw.setPosicioPos(movimentDefinitiuRaw.getNPosicions(), tmpMoviments[j].getPosicioPos(i));
+			movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
 		}
-		movimentsDefinitius[nMovimentsDefinitius] = movimentDefinitiuRaw;
-
-		for (int i = 0;i < movimentsDefinitius[nMovimentsDefinitius].getNPosicions();i++) {
-
-			//cout << "kkkkkkkkkkk---> "<< movimentsDefinitius[nMovimentsDefinitius].getPosicioPos(i).toString()<<endl;
-		}
-
-		nMovimentsDefinitius++;
-
-
-
 	}
+	movimentsDefinitius[nMovimentsDefinitius] = movimentDefinitiuRaw;
+
+	for (int i = 0;i < movimentsDefinitius[nMovimentsDefinitius].getNPosicions();i++) {
+
+		//cout << "kkkkkkkkkkk---> "<< movimentsDefinitius[nMovimentsDefinitius].getPosicioPos(i).toString()<<endl;
+	}
+
+	nMovimentsDefinitius++;
 }
 
 
-
+/*
 void Tauler::brancaNormal(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMENTS], int& tmpNMoviments, Moviment movimentsDefinitius[MAX_MOVIMENTS], int nMovimentsDefinitius, Posicio fitxaQueEsMou)const
 {
 
@@ -284,6 +255,7 @@ void Tauler::brancaNormal(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIM
 
 		for (int i = tmpNMovimentsInicial;i < tmpNMoviments;i++) {
 			brancaNormal(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1), tmpMoviments, tmpNMoviments,movimentsDefinitius,nMovimentsDefinitius,fitxaQueEsMou);
+			
 		}
 	}
 	else 
@@ -300,7 +272,33 @@ void Tauler::brancaNormal(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIM
 
 		nMovimentsDefinitius++;
 	}
+}*/
+
+void Tauler::brancaNormal(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMENTS], int& tmpNMoviments, Moviment movimentsDefinitius[MAX_MOVIMENTS], int nMovimentsDefinitius, Posicio fitxaQueEsMou)const
+{
+
+	int tmpNMovimentsInicial = tmpNMoviments;
+
+	if (normalMatar(posicioOrigen, tmpMoviments, tmpNMoviments, fitxaQueEsMou)) {
+
+		for (int i = tmpNMovimentsInicial;i < tmpNMoviments;i++) {
+			brancaNormal(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1), tmpMoviments, tmpNMoviments, movimentsDefinitius, nMovimentsDefinitius, fitxaQueEsMou);
+
+		}
+	}
+	Moviment movimentDefinitiuRaw;
+	movimentDefinitiuRaw.setNPosicions(0);
+	for (int j = 0;j < tmpNMoviments;j++) {
+		for (int i = 0;i < tmpMoviments[j].getNPosicions();i++) {
+			movimentDefinitiuRaw.setPosicioPos(movimentDefinitiuRaw.getNPosicions(), tmpMoviments[j].getPosicioPos(i));
+			movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
+		}
+	}
+	movimentsDefinitius[nMovimentsDefinitius] = movimentDefinitiuRaw;
+
+	nMovimentsDefinitius++;
 }
+
 
 
 
@@ -447,12 +445,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 						) 
 					{
 
-						//if (m_tauler[posicioActual.getFila() + incFila * i][posicioActual.getColumna() + incColumna * i].getTipusFitxa() == TIPUS_EMPTY) {
-						//	Posicio tmpPos1(posicioActual.getFila() + incFila * i, posicioActual.getColumna() + incColumna * i);
-							//posicions[nPosicions] = tmpPos1;
-							//nPosicions++;
-						//}
-						//else {
+						
 						if(m_tauler[posicioActual.getFila() + incFila * i][posicioActual.getColumna() + incColumna * i].getTipusFitxa() != TIPUS_EMPTY){
 							
 							if (
@@ -488,6 +481,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 							
 							limitTrobat = true;
 						}
+						
 					}
 					else {
 						limitTrobat = true;
@@ -542,10 +536,19 @@ void Tauler::actualitzaMovimentsValids()
 					Posicio pos(fila,col);
 					Posicio fitxaQueEsMou = pos;
 
+					
+					
 					damaMoure(pos, mv, nMv, fitxaQueEsMou);
-
-					if (damaMatar(pos, mv, nMv, fitxaQueEsMou)) {
+					bool a = damaMatar(pos, mv, nMv, fitxaQueEsMou);
+					cout << "es pot damaMatar: " << a << endl;
+					if (a) {
+						 
 						damaMatarMultiples(pos, mv, nMv, fitxaQueEsMou);
+						for (int i = 0;i < nMv;i++) {
+							for (int j = 0;j < mv[i].getNPosicions();j++) {
+								cout << endl << "moviment numero " << i << ": pos --> " << mv[i].getPosicioPos(j) << endl;
+							}
+						}
 					}
 				}
 			}
