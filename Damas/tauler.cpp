@@ -384,14 +384,18 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 						((posicioActual.getFila() + incFila * iter)>=0)&&
 						((posicioActual.getColumna() + incColumna * iter)>=0)
 						
+						
+
+						
 						) {//Evitant Stack Overflow, que no se surti del taulell
 
 
 						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getColumna() + incColumna * iter].getTipusFitxa() != TIPUS_EMPTY))
 						{
-							Posicio p2((posicioActual.getFila() + incFila * (iter)), (posicioActual.getColumna() + incColumna * (iter)));
-							Posicio p((posicioActual.getFila() + incFila * (iter-1)), (posicioActual.getColumna() + incColumna * (iter-1)));
-							
+
+							//Posicio p2((posicioActual.getFila() + incFila * (iter)), (posicioActual.getColumna() + incColumna * (iter)));
+							Posicio p((posicioActual.getFila() + (incFila * iter)-incFila), (posicioActual.getColumna() + (incColumna * iter)-incColumna));
+							 
 							if ((p == posicioActual) == false) {
 								posicions[1] = p;
 								limitTrobat = true;
@@ -399,7 +403,7 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 							}
 							else {
 								//cout << p.toString() << ", " << posicioActual.toString() << " son iguals";
-								limitTrobat = false;
+								limitTrobat = true;
 								
 							}
 							
