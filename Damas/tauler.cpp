@@ -375,8 +375,8 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 				bool possible = false;
 				bool limitTrobat = false;//Ja sigui taulell o casella contraria
 				int iter = 1;
-				Posicio posicions[MAX_POSICIONS];
-				posicions[0] = posicioActual;
+				//Posicio posicions[MAX_POSICIONS];
+				//posicions[0] = posicioActual;
 				while (!limitTrobat) {//Iterar per una direccio possible de moviments fins que no sigui possible o be perque ja no estic al taulell o perque mhe trobat una altre fitxa.
 					if (
 						((posicioActual.getFila() + incFila * iter) < N_FILES) && 
@@ -390,16 +390,34 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 						) {//Evitant Stack Overflow, que no se surti del taulell
 
 
-						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getColumna() + incColumna * iter].getTipusFitxa() != TIPUS_EMPTY))
+						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getColumna() + incColumna * iter].getTipusFitxa() == TIPUS_EMPTY)) {
+							Posicio posicions[MAX_POSICIONS];
+							posicions[0] = posicioActual;
+							Posicio p((posicioActual.getFila() + (incFila * iter)), (posicioActual.getColumna() + (incColumna * iter)));
+							posicions[1] = p;
+							Posicio morts[MAX_MORTS] = {};
+							Moviment m(DAMA_NO_MATAR, posicions, 2, 0, morts);
+							movimentsValids[nMovimentsValids] = m;
+							nMovimentsValids++;
+
+						}
+						else
 						{
 
 							//Posicio p2((posicioActual.getFila() + incFila * (iter)), (posicioActual.getColumna() + incColumna * (iter)));
 							Posicio p((posicioActual.getFila() + (incFila * iter)-incFila), (posicioActual.getColumna() + (incColumna * iter)-incColumna));
 							 
 							if ((p == posicioActual) == false) {
+								Posicio posicions[MAX_POSICIONS];
+								posicions[0] = posicioActual;
 								posicions[1] = p;
+								Posicio morts[MAX_MORTS] = {};
+								Moviment m(DAMA_NO_MATAR, posicions, 2, 0, morts);
+								movimentsValids[nMovimentsValids] = m;
+								nMovimentsValids++;
+
 								limitTrobat = true;
-								possible = true;
+								//possible = true;
 							}
 							else {
 								//cout << p.toString() << ", " << posicioActual.toString() << " son iguals";
@@ -414,12 +432,13 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 					}
 					iter++;
 				}
+				/*
 				if (possible) {
 					Posicio morts[MAX_MORTS] = {};
 					Moviment m(DAMA_NO_MATAR, posicions, 2, 0, morts);
 					movimentsValids[nMovimentsValids] = m;
 					nMovimentsValids++;
-				}
+				}*/
 			}
 		}
 	}

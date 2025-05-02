@@ -1,5 +1,5 @@
 {
-    "score": 5.5,
+    "score": 7.0,
     "stdout_visibility": "visible",
     "tests": [
         {
@@ -76,8 +76,8 @@
         },
         {
             "name": "TEST MOVIMENTS VALIDS 11",
-            "output": "\nTEST MOVIMENTS VALIDS 11\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: e1\n----------\nPosicions possibles esperades: [d2, f2, g3]\n----------\nPosicions possibles obitngudes: [d2, g3]\n----------\nERROR\n-----------------------------------------------\n",
-            "status": "failed",
+            "output": "\nTEST MOVIMENTS VALIDS 11\n========================\n\nLlegint estat del tauler del fitxer 'tauler_moviments_valids.txt'\n---------------\nContingut esperat del tauler: \n8: _ X _ _ _ _ _ X\n7: X _ X _ _ _ _ _\n6: _ O _ X _ X _ O\n5: R _ _ _ _ _ _ _\n4: _ O _ X _ X _ O\n3: _ _ D _ O _ _ _\n2: _ O _ _ _ _ _ X\n1: O _ O _ D _ _ _\n   a b c d e f g h\n---------------\nContingut obtingut del tauler: \n8:_ X _ _ _ _ _ X \n7:X _ X _ _ _ _ _ \n6:_ O _ X _ X _ O \n5:R _ _ _ _ _ _ _ \n4:_ O _ X _ X _ O \n3:_ _ D _ O _ _ _ \n2:_ O _ _ _ _ _ X \n1:O _ O _ D _ _ _ \n  A B C D E F G H \n---------------\nRecuperant posicions possibles de la posicio: e1\n----------\nPosicions possibles esperades: [d2, f2, g3]\n----------\nPosicions possibles obitngudes: [d2, f2, g3]\n----------\nCORRECTE\n-----------------------------------------------\n",
+            "status": "passed",
             "visibility": "visible"
         },
         {
@@ -112,8 +112,8 @@
         },
         {
             "name": "TEST MOVIMENT FITXA 5",
-            "output": "\nTEST MOVIMENT FITXA 5\n=====================\n\nLlegint estat del tauler del fitxer 'tauler_moviment_fitxa_5.txt'\n---------------\nContingut del tauler inicial: \n8: _ X _ X _ X _ D\n7: X _ X _ X _ _ _\n6: _ X _ X _ _ _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ _ _ _ _ _\n3: O _ _ _ _ _ O _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n---------------\nExecutant moviment de posicio: h8 a posicio d4\nMoviment dama sense matar\n---------------\nResultat esperat del moviment: TRUE \n-------\nContingut esperat del tauler despres del moviment: \n8: _ X _ X _ X _ _\n7: X _ X _ X _ _ _\n6: _ X _ X _ _ _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ D _ _ _ _\n3: O _ _ _ _ _ O _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n----------------\nResultat obtingut del moviment: FALSE \n-------\nContingut obtingut del tauler despres del moviment: \n8:_ X _ X _ X _ D \n7:X _ X _ X _ _ _ \n6:_ X _ X _ _ _ X \n5:_ _ _ _ _ _ _ _ \n4:_ _ _ _ _ _ _ _ \n3:O _ _ _ _ _ O _ \n2:_ O _ O _ O _ O \n1:O _ O _ O _ O _ \n  A B C D E F G H \n----------------\nERROR\n-----------------------------------------------\n",
-            "status": "failed",
+            "output": "\nTEST MOVIMENT FITXA 5\n=====================\n\nLlegint estat del tauler del fitxer 'tauler_moviment_fitxa_5.txt'\n---------------\nContingut del tauler inicial: \n8: _ X _ X _ X _ D\n7: X _ X _ X _ _ _\n6: _ X _ X _ _ _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ _ _ _ _ _\n3: O _ _ _ _ _ O _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n---------------\nExecutant moviment de posicio: h8 a posicio d4\nMoviment dama sense matar\n---------------\nResultat esperat del moviment: TRUE \n-------\nContingut esperat del tauler despres del moviment: \n8: _ X _ X _ X _ _\n7: X _ X _ X _ _ _\n6: _ X _ X _ _ _ X\n5: _ _ _ _ _ _ _ _\n4: _ _ _ D _ _ _ _\n3: O _ _ _ _ _ O _\n2: _ O _ O _ O _ O\n1: O _ O _ O _ O _\n   a b c d e f g h\n----------------\nResultat obtingut del moviment: TRUE \n-------\nContingut obtingut del tauler despres del moviment: \n8:_ X _ X _ X _ _ \n7:X _ X _ X _ _ _ \n6:_ X _ X _ _ _ X \n5:_ _ _ _ _ _ _ _ \n4:_ _ _ D _ _ _ _ \n3:O _ _ _ _ _ O _ \n2:_ O _ O _ O _ O \n1:O _ O _ O _ O _ \n  A B C D E F G H \n----------------\nCORRECTE\n-----------------------------------------------\n",
+            "status": "passed",
             "visibility": "visible"
         },
         {
