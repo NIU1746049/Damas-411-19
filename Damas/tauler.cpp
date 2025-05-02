@@ -187,7 +187,6 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 					tmpP2,
 				};
 
-				//cout << endl<<"desde "<< posicioActual.toString()<<" posicio desti factible per a normalMatar desde " << tmpP2.toString() << endl;
 				Posicio tmpP3[MAX_POSICIONS] = {tmpP1};
 				
 				
@@ -195,8 +194,13 @@ bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 
 				movimentsValids[nMovimentsValids] = nouMoviment;
 				
-				valid = true;
+				
+
 				nMovimentsValids++;
+				
+
+
+				valid = true;
 
 			}
 		}
@@ -210,15 +214,21 @@ void Tauler::branca(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMENTS],
 	Moviment movimentsDefinitius[MAX_MOVIMENTS], int nMovimentsDefinitius)const {
 
 	int tmpNMovimentsInicial = tmpNMoviments;
-	bool a = normalMatar(posicioOrigen, tmpMoviments, tmpNMoviments);
-	if (a) {
-		//DEBUG (que es quedi per demostrar)
+
+	
+	if (normalMatar(posicioOrigen, tmpMoviments, tmpNMoviments)) {
+		//for (int k = tmpNMovimentsInicial; k < tmpNMoviments;k++) {
+		//	tmpMovimentsInicial[k] = tmpMoviments[k];
+		//}
+		//DEBUG (que es quedi per demostrar que funciona a mitges)
+		/*
 		for (int j = 0;j < tmpNMoviments;j++) {
+			cout << endl << "(Moviment)";
 			for (int q = 0;q < tmpMoviments[j].getNPosicions();q++) {
 				cout << endl << "posicio: " << tmpMoviments[j].getPosicioPos(q).toString()<<endl;
 			}
 		}
-
+		*/
 		//
 
 		for (int i = tmpNMovimentsInicial;i < tmpNMoviments;i++) {
@@ -229,12 +239,40 @@ void Tauler::branca(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMENTS],
 	}
 	else 
 	{
-		//cout << "||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||" << endl;
-		//incrementar fotreli a la llista de moviments definitiva els moviments que than portat fins aqui i incrementar el contador de moviments definitius
+
+		
+
+
+
+
+		Moviment movimentDefinitiuRaw;
+		movimentDefinitiuRaw.setNPosicions(0);
 		for (int j = 0;j < tmpNMoviments;j++) {
-			movimentsDefinitius[nMovimentsDefinitius] = tmpMoviments[j];
-			nMovimentsDefinitius++;
-		}	
+			for (int i = 0;i < tmpMoviments[j].getNPosicions();i++) {
+				movimentDefinitiuRaw.setPosicioPos(movimentDefinitiuRaw.getNPosicions(), tmpMoviments[j].getPosicioPos(i));
+				movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
+			}
+		}
+
+		
+
+
+
+
+		
+		movimentsDefinitius[nMovimentsDefinitius] = movimentDefinitiuRaw;
+		/*
+		cout << "ñoñoño: " << endl;
+		for (int i = 0;i < movimentsDefinitius[nMovimentsDefinitius].getNPosicions();i++) {
+			cout << movimentsDefinitius[nMovimentsDefinitius].getPosicioPos(i).toString() << endl;
+		}*/
+		//fins aqui va bé. Té totes les posicions que ha de tenir. La veritat no entenc perquè després no les mostra on el moviments vàlids.
+
+
+		nMovimentsDefinitius++;
+	
+
+		
 	}
 }
 
@@ -246,16 +284,17 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, Moviment movimentsValid
 	Moviment tmpMoviments[MAX_MOVIMENTS];
 	int tmpNMoviments=0;
 
-
+	cout << "www:"<<endl;
 	branca(posicioActual, tmpMoviments, tmpNMoviments, movimentsValids, nMovimentsValids);
-	//DEBUG
-	cout << endl;
-	/*
-	for (int i = 0;i < nMovimentsValids;i++) {
-		
-		cout <<endl<<"desde la poscio "<< posicioActual.toString() << "ULTIMA POSICIO NORMALMATARMULTIPLES" << movimentsValids[i].getPosicioPos(1).toString() << endl;
-	}*/
 
+
+	cout << "VERIFICANT que s’ha copiat correctament:\n";
+	for (int j = 0; j < movimentsValids[nMovimentsValids].getNPosicions(); j++) {
+		cout << movimentsValids[nMovimentsValids].getPosicioPos(j).toString() << endl;
+	}
+
+	//borrar depsres¿
+	nMovimentsValids++;
 	//
 	return (nMovimentsValids > 0);
 		
@@ -449,11 +488,19 @@ void Tauler::actualitzaMovimentsValids()
 				Posicio pos(fila, col);
 
 				normalMoure(pos, mv, nMv);
-
+				
 				
 				if (normalMatar(pos, mv, nMv)) {
-					cout << endl << "Llista de posicions de MatarMultiples en la posicio " << pos.toString() << ": " << endl;
+					//cout << endl << "Llista de posicions de MatarMultiples en la posicio " << pos.toString() << ": " << endl;
 					normalMatarMultiples(pos, mv, nMv);
+					
+					for (int j = 0;j < nMv;j++) {
+						cout << "CUIR: " << endl;
+						for (int i = 0;i < mv[j].getNPosicions();i++) {
+							cout << endl << mv[j].getPosicioPos(i) << endl;
+						}
+					}
+					
 				}
 			
 				
@@ -487,9 +534,7 @@ void Tauler::actualitzaMovimentsValids()
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[MAX_POSICIONS])
 {
 	nPosicions = 0;
-	cout <<endl<< "arriba quan pos= " << origen.toString()<<endl;
 	actualitzaMovimentsValids();
-	cout << "ooo" << m_tauler[origen.getFila()][origen.getColumna()].getNMoviments() << "ooo";
 	for (int i = 0;i < m_tauler[origen.getFila()][origen.getColumna()].getNMoviments();i++) {
 		cout << m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i).getPosicioPos(1).toString() << "---"<<endl;
 	}
@@ -497,7 +542,6 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 
 	for (int i = 0;i < m_tauler[origen.getFila()][origen.getColumna()].getNMoviments();i++) {
 		Moviment moviment=m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i);
-		cout << "ultima posicio del mov candidat: "<< moviment.getPosicioPos(moviment.getNPosicions() - 1).toString()<<endl;
 
 
 		bool valid = true;
@@ -510,6 +554,7 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 		if (valid) {
 			
 			posicionsPossibles[nPosicions] = moviment.getPosicioPos(moviment.getNPosicions() - 1);
+			//
 			cout << endl << origen.toString() << " --> " << moviment.getPosicioPos(moviment.getNPosicions() - 1).toString()<<endl;
 			nPosicions++;
 		}
