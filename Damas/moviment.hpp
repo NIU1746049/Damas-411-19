@@ -47,6 +47,7 @@ public:
 	void setNPosicions(int n) { m_nPosicions = n; }
 	void setNMorts(int n) { m_nMorts = n; }
 	void addMort(Posicio victima) { m_morts[m_nMorts] = victima; m_nMorts++; }
+	void setMortsPos(int index, Posicio pos) { m_morts[index] = pos; }
 
 private:
 	TipusMoviment m_tipus;

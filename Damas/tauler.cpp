@@ -241,6 +241,19 @@ void Tauler::brancaDama(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMEN
 			movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
 		}
 	}
+
+
+	for (int j = 0;j < tmpNMoviments;j++) {
+		for (int i = 0;i < tmpMoviments[j].getNMorts();i++) {
+
+
+			movimentDefinitiuRaw.setMortsPos(movimentDefinitiuRaw.getNMorts(), tmpMoviments[j].getMortsPos(i));
+			movimentDefinitiuRaw.setNMorts(movimentDefinitiuRaw.getNMorts() + 1);
+		}
+	}
+	
+
+
 	movimentsDefinitius[nMovimentsDefinitius] = movimentDefinitiuRaw;
 
 	for (int i = 0;i < movimentsDefinitius[nMovimentsDefinitius].getNPosicions();i++) {
@@ -273,6 +286,16 @@ void Tauler::brancaNormal(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIM
 			movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
 		}
 	}
+
+	for (int j = 0;j < tmpNMoviments;j++) {
+		for (int i = 0;i < tmpMoviments[j].getNMorts();i++) {
+
+
+			movimentDefinitiuRaw.setMortsPos(movimentDefinitiuRaw.getNMorts(), tmpMoviments[j].getMortsPos(i));
+			movimentDefinitiuRaw.setNMorts(movimentDefinitiuRaw.getNMorts() + 1);
+		}
+	}
+
 	movimentsDefinitius[nMovimentsDefinitius] = movimentDefinitiuRaw;
 
 	nMovimentsDefinitius++;
