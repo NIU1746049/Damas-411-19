@@ -381,23 +381,28 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 					if (
 						((posicioActual.getFila() + incFila * iter) < N_FILES) && 
 						((posicioActual.getColumna() + incColumna * iter) < N_COLUMNES)&&
-						((posicioActual.getFila() + incFila * iter)>0)&&
-						((posicioActual.getColumna() + incColumna * iter)>0)
+						((posicioActual.getFila() + incFila * iter)>=0)&&
+						((posicioActual.getColumna() + incColumna * iter)>=0)
+						
 						) {//Evitant Stack Overflow, que no se surti del taulell
 
-						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getColumna() + incColumna * iter].getTipusFitxa() == TIPUS_EMPTY)) {//que no hi hagi una fitxa.............
-							
-							
-							//cout << endl<<endl<<"POS::: " << p.toString() << ".."<<endl<<endl;
-							//posicions[nPosicions] = p;
-							//nPosicions++;
-						}
-						else {
 
-							Posicio p((posicioActual.getFila() + incFila * iter), (posicioActual.getColumna() + incColumna * iter));
-							posicions[1] = p;
-							limitTrobat = true;
-							possible = true;
+						if ((m_tauler[posicioActual.getFila() + incFila * iter][posicioActual.getColumna() + incColumna * iter].getTipusFitxa() != TIPUS_EMPTY))
+						{
+							Posicio p2((posicioActual.getFila() + incFila * (iter)), (posicioActual.getColumna() + incColumna * (iter)));
+							Posicio p((posicioActual.getFila() + incFila * (iter-1)), (posicioActual.getColumna() + incColumna * (iter-1)));
+							
+							if ((p == posicioActual) == false) {
+								posicions[1] = p;
+								limitTrobat = true;
+								possible = true;
+							}
+							else {
+								//cout << p.toString() << ", " << posicioActual.toString() << " son iguals";
+								limitTrobat = false;
+								
+							}
+							
 						}
 					}
 					else {
@@ -482,6 +487,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 									Posicio tmpPos2(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
 									posicions[0] = posicioActual;
 									posicions[1] = tmpPos2;
+									cout << endl<<"es aquest?" << tmpPos2<<endl;
 									matada = true;
 
 									morts[nMorts] = tmpPos1;
@@ -572,8 +578,8 @@ void Tauler::actualitzaMovimentsValids()
 			for (int k = 0; k < nMv; k++)
 			{
 				m_tauler[fila][col].setMovimentPos(k, mv[k]);
-				m_tauler[fila][col].setNMovimentsValids(nMv);
 			}
+			m_tauler[fila][col].setNMovimentsValids(nMv);
 		}
 	}
 }
@@ -583,7 +589,8 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 	nPosicions = 0;
 	actualitzaMovimentsValids();
 	for (int i = 0;i < m_tauler[origen.getFila()][origen.getColumna()].getNMoviments();i++) {
-		cout << m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i).getPosicioPos(1).toString() << "---"<<endl;
+		//cout << endl << "tipus: " <<m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i).getTipus() << " ";
+		//cout << m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i).getPosicioPos(1).toString() << "---"<<endl;
 	}
 
 
@@ -625,7 +632,7 @@ bool Tauler::bufar(const Posicio& posicioOrigen,Moviment& movimentFet) {
 
 		//
 		Moviment moviment = m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(i);
-		if (moviment.getTipus() != NORMAL_NO_MATAR) {
+		if (moviment.getTipus() != NORMAL_NO_MATAR) {//o dama no matar
 			if (moviment.getNMorts() > maxMorts) {
 				maxIndex = i;
 				maxMorts = moviment.getNMorts();
@@ -643,12 +650,12 @@ bool Tauler::bufar(const Posicio& posicioOrigen,Moviment& movimentFet) {
 	}
 	//Si durant algun moviment es mata::
 	if (maxIndex > -1) {
-		cout << endl << "el moviment amb mes kills era:" << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getTipus() << "amb morts: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts() << endl;
+		//cout << endl << "el moviment amb mes kills era:" << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getTipus() << "amb morts: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts() << endl;
 		if ((movimentFet.getNMorts() < m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts())) {
 			//DBG
-			cout << endl << "La fitxa en posicio " << posicioOrigen.toString() << " ha estat bufada. El seu moviment de màximes kills era:" << endl;
+			//cout << endl << "La fitxa en posicio " << posicioOrigen.toString() << " ha estat bufada. El seu moviment de màximes kills era:" << endl;
 			//for(int i=0;i<m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).)
-			cout << endl << "de tipus: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getTipus() << "amb n de kills: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts() << endl;
+			//cout << endl << "de tipus: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getTipus() << "amb n de kills: " << m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].getMovimentPos(maxIndex).getNMorts() << endl;
 			//
 			m_tauler[posicioOrigen.getFila()][posicioOrigen.getColumna()].setViva(false);
 			return true;
@@ -771,7 +778,7 @@ bool Tauler::mouFitxa(const Posicio& origen,const Posicio& desti)//Lit que orige
 
 
 
-			m_tauler[desti.getFila()][desti.getColumna()].setViva(true);
+			//m_tauler[desti.getFila()][desti.getColumna()].setViva(true);
 			m_tauler[desti.getFila()][desti.getColumna()].setPosicio(desti);
 
 

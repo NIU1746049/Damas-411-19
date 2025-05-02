@@ -66,7 +66,7 @@ public:
 	
 private:
 	Posicio m_posicio;
-	Moviment m_moviments[20];//canviarAixo
+	Moviment m_moviments[MAX_MOVIMENTS];//canviarAixo
 	//hauria de ser constat
 	int m_nMoviments;
 
