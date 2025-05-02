@@ -39,4 +39,5 @@ void Fitxa::esborraMoviments() {
 		m_moviments[i] = m;
 	}
 	m_nMoviments = 0;
+	
 }

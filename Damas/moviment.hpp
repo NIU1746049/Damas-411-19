@@ -22,7 +22,6 @@ public:
 		m_tipus = EMPTY;
 		m_nPosicions = 0;
 		m_nMorts = 0;
-
 	};
 	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions, int nMorts, Posicio morts[MAX_MORTS]) {
 		m_tipus = tipus;
@@ -42,14 +41,12 @@ public:
 	TipusMoviment getTipus() { return m_tipus; }
 	int getNMorts() { return m_nMorts; }
 	Posicio getMortsPos(int index) { return m_morts[index]; }
+	
 	//setters
-
-	void setPosicioPos(int index, Posicio p) {
-		m_posicions[index] = p;
-	}
-	void setNPosicions(int n) {
-		m_nPosicions = n;
-	}
+	void setPosicioPos(int index, Posicio p) { m_posicions[index] = p; }
+	void setNPosicions(int n) { m_nPosicions = n; }
+	void setNMorts(int n) { m_nMorts = n; }
+	void addMort(Posicio victima) { m_morts[m_nMorts] = victima; m_nMorts++; }
 
 private:
 	TipusMoviment m_tipus;
