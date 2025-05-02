@@ -419,14 +419,15 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 
 
 bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids,Posicio fitxaQueEsMou)const {
-	bool matada = true;
+	bool matada = false;
 	for (int incColumna = -1;incColumna < 2;incColumna++) {
 		for (int incFila = -1;incFila < 2;incFila++)
 		{
 			if ((incColumna != 0) && (incFila != 0)) {
-				matada = false;
 				bool limitTrobat = false;
 				int i = 1;
+				//matada = false;
+				
 				//nou moviment:
 				//Posicio posicions[MAX_POSICIONS];
 				//int nPosicions = 0;
@@ -436,6 +437,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 
 
 				while (!limitTrobat) {
+					
 					if (
 						((posicioActual.getFila() + incFila * i) < N_FILES) &&
 						((posicioActual.getColumna() + incColumna * i) < N_COLUMNES) &&
@@ -447,18 +449,26 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 
 						
 						if(m_tauler[posicioActual.getFila() + incFila * i][posicioActual.getColumna() + incColumna * i].getTipusFitxa() != TIPUS_EMPTY){
-							
+
+							Posicio pos((posicioActual.getFila() + incFila * i), (posicioActual.getColumna() + incColumna * i));
+							//cout << "desde:" <<posicioActual.toString()<<": " << pos.toString() << endl;
 							if (
 								((posicioActual.getFila() + (incFila * i) + incFila)<N_FILES)&&
 								((posicioActual.getColumna() + (incColumna * i) + incColumna)<N_COLUMNES)&&
 								((posicioActual.getFila() + (incFila * i) + incFila)>0)&&
 								((posicioActual.getColumna() + (incColumna * i) + incColumna)>0)
 								) {
+								//cout << "2 desde:" << posicioActual.toString() << ": " << pos.toString() << endl;
+
 								if (
 									
 									m_tauler[posicioActual.getFila() + (incFila * i)][posicioActual.getColumna() + (incColumna * i)].getColorFitxa() != m_tauler[fitxaQueEsMou.getFila()][fitxaQueEsMou.getColumna()].getColorFitxa() &&//diferent color
 									m_tauler[posicioActual.getFila() + (incFila * i) + incFila][posicioActual.getColumna() + (incColumna * i) + incColumna].getTipusFitxa() == TIPUS_EMPTY
 									) {
+									Posicio pos2((posicioActual.getFila() + (incFila * i) + incFila), (posicioActual.getColumna() + (incColumna * i) + incColumna));
+									//cout << "3 desde:" << posicioActual.toString() << ": " << pos.toString() << endl;
+									//cout << "4 desde:" << posicioActual.toString() << ": " << pos2.toString() << endl;
+
 									//Posicio tmpP(posicioActual.getFila() + (incFila * i), posicioActual.getColumna() + (incColumna * i));
 									//Posicio tmpP3(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
 									
@@ -469,11 +479,19 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 									Posicio tmpPos2(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
 									posicions[0] = posicioActual;
 									posicions[1] = tmpPos2;
-									//cout << endl<<"es aquest?" << tmpPos2<<endl;
+
 									matada = true;
+									
 
 									morts[nMorts] = tmpPos1;
 									nMorts++;
+
+
+									//
+									Moviment mov(DAMA_MATAR, posicions, 2, 1, morts);
+									movimentsValids[nMovimentsValids] = mov;
+									nMovimentsValids++;
+									//
 
 								}
 
@@ -492,11 +510,6 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 					i++;
 				
 				
-				}
-				if (matada) {
-					Moviment mov(DAMA_MATAR, posicions, 2, 1, morts);
-					movimentsValids[nMovimentsValids] = mov;
-					nMovimentsValids++;
 				}
 			}
 		}
@@ -540,7 +553,7 @@ void Tauler::actualitzaMovimentsValids()
 					
 					damaMoure(pos, mv, nMv, fitxaQueEsMou);
 					bool a = damaMatar(pos, mv, nMv, fitxaQueEsMou);
-					cout << "es pot damaMatar: " << a << endl;
+					cout <<"desde la posicio "<< pos.toString() << " es pot damaMatar: " << a << endl;
 					if (a) {
 						 
 						damaMatarMultiples(pos, mv, nMv, fitxaQueEsMou);
