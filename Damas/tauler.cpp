@@ -79,11 +79,15 @@ void Tauler::inicialitza(const string& nomFitxer)
 
 	m_nBlanques = 0;
 	m_nNegres = 0;
+	Posicio posAux;
 	for (int fila = 0; fila < N_FILES; fila++)
 	{
 		for (int col = 0; col < N_COLUMNES; col++)
 		{
 			m_tauler[fila][col].setColorITipusFitxa(m_taulerEnChars[fila][col]);
+			posAux.setFila(fila);
+			posAux.setColumna(col);
+			m_tauler[fila][col].setPosicio(posAux);
 			//Cuenta cuantas fichas de cada color hay
 			if (m_tauler[fila][col].getColorFitxa() == COLOR_BLANC)
 			{
