@@ -465,33 +465,41 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 									m_tauler[posicioActual.getFila() + (incFila * i)][posicioActual.getColumna() + (incColumna * i)].getColorFitxa() != m_tauler[fitxaQueEsMou.getFila()][fitxaQueEsMou.getColumna()].getColorFitxa() &&//diferent color
 									m_tauler[posicioActual.getFila() + (incFila * i) + incFila][posicioActual.getColumna() + (incColumna * i) + incColumna].getTipusFitxa() == TIPUS_EMPTY
 									) {
-									Posicio pos2((posicioActual.getFila() + (incFila * i) + incFila), (posicioActual.getColumna() + (incColumna * i) + incColumna));
-									//cout << "3 desde:" << posicioActual.toString() << ": " << pos.toString() << endl;
-									//cout << "4 desde:" << posicioActual.toString() << ": " << pos2.toString() << endl;
 
-									//Posicio tmpP(posicioActual.getFila() + (incFila * i), posicioActual.getColumna() + (incColumna * i));
-									//Posicio tmpP3(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
-									
+
 									Posicio tmpPos1(posicioActual.getFila() + incFila * i, posicioActual.getColumna() + incColumna * i);
-									//posicions[nPosicions] = tmpPos1;
-									//nPosicions++;
+									bool trobat = false;
+									for (int j = 0;j < nMovimentsValids;j++) {
+										for (int k = 0;k < movimentsValids[j].getNMorts();k++) {
+											if (movimentsValids[j].getMortsPos(k) == tmpPos1) {
+												trobat = true;
+											}
+										}
+									}
+
+									if (!trobat) {
+										Posicio pos2((posicioActual.getFila() + (incFila * i) + incFila), (posicioActual.getColumna() + (incColumna * i) + incColumna));
+										
+
+										Posicio tmpPos2(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
+										posicions[0] = posicioActual;
+										posicions[1] = tmpPos2;
+
+										matada = true;
+
+
+										morts[nMorts] = tmpPos1;
+										nMorts++;
+
+
+										//
+										Moviment mov(DAMA_MATAR, posicions, 2, 1, morts);
+										movimentsValids[nMovimentsValids] = mov;
+										nMovimentsValids++;
+										//
+
+									}
 									
-									Posicio tmpPos2(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
-									posicions[0] = posicioActual;
-									posicions[1] = tmpPos2;
-
-									matada = true;
-									
-
-									morts[nMorts] = tmpPos1;
-									nMorts++;
-
-
-									//
-									Moviment mov(DAMA_MATAR, posicions, 2, 1, morts);
-									movimentsValids[nMovimentsValids] = mov;
-									nMovimentsValids++;
-									//
 
 								}
 
