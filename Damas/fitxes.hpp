@@ -61,7 +61,7 @@ public:
 	void setViva(bool viva) { m_viva = viva; }
 	
 
-	//
+	//miscelani
 	void esborraMoviments();
 	
 private:

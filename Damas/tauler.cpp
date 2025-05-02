@@ -244,6 +244,7 @@ void Tauler::brancaDama(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIMEN
 		{
 			movimentDefinitiuRaw.setPosicioPos(movimentDefinitiuRaw.getNPosicions(), tmpMoviments[j].getPosicioPos(i));
 			movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
+			movimentDefinitiuRaw.setTipus(DAMA_MATAR_MULTIPLES);
 		}
 	}
 
@@ -280,30 +281,34 @@ void Tauler::brancaNormal(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIM
 
 		}
 	}
-	Moviment movimentDefinitiuRaw;
-	movimentDefinitiuRaw.setNPosicions(0);
-	for (int j = 0;j < tmpNMoviments;j++) {
-		for (int i = 0;i < tmpMoviments[j].getNPosicions();i++) 
-		{
-			movimentDefinitiuRaw.setPosicioPos(movimentDefinitiuRaw.getNPosicions(), tmpMoviments[j].getPosicioPos(i));
-			movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
+	else {
+		Moviment movimentDefinitiuRaw;
+		movimentDefinitiuRaw.setNPosicions(0);
+		for (int j = 0;j < tmpNMoviments;j++) {
+			for (int i = 0;i < tmpMoviments[j].getNPosicions();i++)
+			{
+				movimentDefinitiuRaw.setPosicioPos(movimentDefinitiuRaw.getNPosicions(), tmpMoviments[j].getPosicioPos(i));
+				movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
+				movimentDefinitiuRaw.setTipus(NORMAL_MATAR_MULTIPLES);
+			}
 		}
-	}
 
-	for (int j = 0;j < tmpNMoviments;j++) 
-	{
-		for (int i = 0;i < tmpMoviments[j].getNMorts();i++) 
+		for (int j = 0;j < tmpNMoviments;j++)
 		{
+			for (int i = 0;i < tmpMoviments[j].getNMorts();i++)
+			{
 
 
-			movimentDefinitiuRaw.setMortsPos(movimentDefinitiuRaw.getNMorts(), tmpMoviments[j].getMortsPos(i));
-			movimentDefinitiuRaw.setNMorts(movimentDefinitiuRaw.getNMorts() + 1);
+				movimentDefinitiuRaw.setMortsPos(movimentDefinitiuRaw.getNMorts(), tmpMoviments[j].getMortsPos(i));
+				movimentDefinitiuRaw.setNMorts(movimentDefinitiuRaw.getNMorts() + 1);
+			}
 		}
+
+		movimentsDefinitius[nMovimentsDefinitius] = movimentDefinitiuRaw;
+		nMovimentsDefinitius++;
+
 	}
-
-	movimentsDefinitius[nMovimentsDefinitius] = movimentDefinitiuRaw;
-
-	nMovimentsDefinitius++;
+	
 }
 
 
@@ -567,7 +572,8 @@ void Tauler::actualitzaMovimentsValids()
 				
 					if (damaMatar(pos, mv, nMv, fitxaQueEsMou)) 
 					{
-						 
+						damaMatarMultiples(pos, mv, nMv, fitxaQueEsMou);
+						/*
 						cout << "ES POT MATAR MULTIPLES DESDE "<< pos.toString()<<"?: " << damaMatarMultiples(pos, mv, nMv, fitxaQueEsMou) << endl;
 						
 						for (int i = 0;i < nMv;i++) 
@@ -577,12 +583,16 @@ void Tauler::actualitzaMovimentsValids()
 								cout << endl << "moviment numero " << i << " i tipus: " <<mv[i].getTipus()<< ": pos --> " << mv[i].getPosicioPos(j) << endl;
 							}
 						}
+						*/
 					}
 				}
 			}
 			for (int k = 0; k < nMv; k++)
 			{
 				m_tauler[fila][col].setMovimentPos(k, mv[k]);
+				
+
+				
 			}
 			m_tauler[fila][col].setNMovimentsValids(nMv);
 		}
