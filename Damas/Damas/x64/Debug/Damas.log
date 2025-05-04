@@ -1,2 +1,10 @@
-﻿  tauler.cpp
-  Damas.vcxproj -> C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\x64\Debug\Damas.exe
+﻿  fitxes.cpp
+  moviment.cpp
+  posicio.cpp
+  tauler.cpp
+  test.cpp
+C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(99,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\test.cpp(450,22): warning C4305: '+=': truncation from 'double' to 'float'
+  Generating Code...
+  LINK : C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\x64\Debug\Damas.exe not found or not built by the last incremental link; performing full link
+  Damas.vcxproj -> C:\VisualStudioProjects\Ejercicios_MP\Damas-411-19\Damas\x64\Debug\Damas.exe
