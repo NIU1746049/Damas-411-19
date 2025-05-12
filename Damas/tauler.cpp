@@ -313,21 +313,24 @@ void Tauler::brancaNormal(Posicio posicioOrigen, Moviment tmpMoviments[MAX_MOVIM
 
 
 
-
-bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids,Posicio fitxaQueEsMou)const 
+bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids, Posicio fitxaQueEsMou)const
 {
 
 	Moviment tmpMoviments[MAX_MOVIMENTS];
-	int tmpNMoviments=0;
+	int tmpNMoviments = 0;
 
-	brancaDama(posicioActual, tmpMoviments, tmpNMoviments, movimentsValids, nMovimentsValids,fitxaQueEsMou);
-	nMovimentsValids++;
+
+
+	//jo crec q aixi esta be no? NO?
+	brancaDama(posicioActual, tmpMoviments, tmpNMoviments, movimentsValids, nMovimentsValids, fitxaQueEsMou);
+
+
+	nMovimentsValids += tmpNMoviments;
 	
-	return (nMovimentsValids > 0);
-		
+	return (tmpNMoviments > 0);
+
 
 }
-
 
 
 
@@ -573,25 +576,13 @@ void Tauler::actualitzaMovimentsValids()
 					if (damaMatar(pos, mv, nMv, fitxaQueEsMou)) 
 					{
 						damaMatarMultiples(pos, mv, nMv, fitxaQueEsMou);
-						/*
-						cout << "ES POT MATAR MULTIPLES DESDE "<< pos.toString()<<"?: " << damaMatarMultiples(pos, mv, nMv, fitxaQueEsMou) << endl;
-						
-						for (int i = 0;i < nMv;i++) 
-						{
-							for (int j = 0;j < mv[i].getNPosicions();j++) 
-							{
-								cout << endl << "moviment numero " << i << " i tipus: " <<mv[i].getTipus()<< ": pos --> " << mv[i].getPosicioPos(j) << endl;
-							}
-						}
-						*/
 					}
 				}
 			}
+			
 			for (int k = 0; k < nMv; k++)
 			{
 				m_tauler[fila][col].setMovimentPos(k, mv[k]);
-				
-
 				
 			}
 			m_tauler[fila][col].setNMovimentsValids(nMv);
@@ -599,6 +590,8 @@ void Tauler::actualitzaMovimentsValids()
 	}
 }
 
+
+/*
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[MAX_POSICIONS])
 {
 	nPosicions = 0;
@@ -619,14 +612,81 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 		if (valid) 
 		{
 			
-			posicionsPossibles[nPosicions] = moviment.getPosicioPos(moviment.getNPosicions() - 1);
-			nPosicions++;
+			//posicionsPossibles[nPosicions] = moviment.getPosicioPos(moviment.getNPosicions() - 1);
+			for (int i = 0;i < moviment.getNPosicions() - 1;i++) {
+				posicionsPossibles[nPosicions]=moviment.getPosicioPos(i+1);
+				nPosicions++;
+				
+			}
+
+			
 		}
+		
 		
 	}
 
+}
+*/
+void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[MAX_POSICIONS])
+{
+	nPosicions = 0;
+	//
+	int tmpNPosicions = 0;
+	Posicio tmpPosicionsPossibles[MAX_POSICIONS];
+
+	//
+
+	for (int i = 0;i < m_tauler[origen.getFila()][origen.getColumna()].getNMoviments();i++)
+	{
+		Moviment moviment = m_tauler[origen.getFila()][origen.getColumna()].getMovimentPos(i);
+
+
+		bool valid = true;
+		for (int k = 0; k < tmpNPosicions;k++)
+		{
+
+			if (tmpPosicionsPossibles[k] == moviment.getPosicioPos(moviment.getNPosicions() - 1)) {//No vull que hi hagin posicions repetides
+				valid = false;
+			}
+		}
+		if (valid)
+		{
+
+			for (int i = 0;i < moviment.getNPosicions() - 1;i++) {
+				tmpPosicionsPossibles[tmpNPosicions] = moviment.getPosicioPos(i + 1);
+				tmpNPosicions++;
+
+			}
+
+
+		}
+
+
+	}
+	for (int i = 0;i < tmpNPosicions;i++) {
+		bool trobat = false;
+		int j = 0;
+		while ((j < nPosicions) && (!false)) {
+			if (tmpPosicionsPossibles[i] == posicionsPossibles[j]) {
+				trobat = true;
+			}
+			j++;
+		}
+		if ((!trobat)&&((tmpPosicionsPossibles[i]==origen)==false)) {
+			posicionsPossibles[nPosicions] = tmpPosicionsPossibles[i];
+			nPosicions++;
+		}
+	}
 
 }
+
+
+
+
+
+			
+
+
 
 bool Tauler::bufar(const Posicio& posicioOrigen,Moviment& movimentFet) 
 {
