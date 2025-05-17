@@ -1,8 +1,2 @@
 ﻿  fitxes.cpp
-  tauler.cpp
-  test.cpp
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\test.cpp(99,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\test.cpp(450,22): warning C4305: '+=': truncation from 'double' to 'float'
-  Generating Code...
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(1195,1): warning C4715: 'Tauler::mouFitxa': not all control paths return a value
   Damas.vcxproj -> C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\x64\Debug\Damas.exe

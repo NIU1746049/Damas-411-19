@@ -35,6 +35,9 @@ void Tauler::actualitzaTaulerEnChars()
 							{
 								m_taulerEnChars[i][j] = 'R';
 							}
+							else {
+								m_taulerEnChars[i][j] = '?';//Per debugar
+							}
 						}
 					}
 				}
@@ -1183,6 +1186,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			convertirADama();
 			bufar(origen, movimentFet);
 			eliminarFitxesMortes();
+			
 
 
 
@@ -1190,6 +1194,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 		return trobat;
 
 	}
+	actualitzaTaulerEnChars();
 
 
 }
@@ -1275,7 +1280,7 @@ void Tauler::llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUM
 
 	Posicio posicions[32];
 	char fitxes[32];
-
+	
 	if (fitxer.is_open())
 	{
 		int i = 0;
