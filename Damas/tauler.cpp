@@ -1157,9 +1157,10 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 
 				m_tauler[desti.getFila()][desti.getColumna()]->setPosicio(desti);
-				m_tauler[origen.getFila()][origen.getColumna()]->setColorITipusFitxa('_');//Fitxa buida
-
-
+				//GOTO
+				//m_tauler[origen.getFila()][origen.getColumna()]->setColorITipusFitxa('_');
+				//m_tauler[origen.getFila()][origen.getColumna()] = nullptr;
+				m_tauler[origen.getFila()][origen.getColumna()]->setViva(false);
 				//
 				m_filaFitxaSeleccionada = desti.getFila();//Mes facil. Aixi despres puc bufar i tota la pesca.
 				m_colFitxaSeleccionada = desti.getColumna();

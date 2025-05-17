@@ -1,2 +1,3 @@
-﻿  fitxes.cpp
+﻿  tauler.cpp
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(1201,1): warning C4715: 'Tauler::mouFitxa': not all control paths return a value
   Damas.vcxproj -> C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\x64\Debug\Damas.exe
