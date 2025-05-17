@@ -15,26 +15,33 @@ public:
 		m_colFitxaSeleccionada = 0;
 		m_nBlanques = 0;
 		m_nNegres = 0;
-		/*
-		for (int i = 0; i < N_FILES;i++) {
-			for (int j = 0; j < N_COLUMNES;j++) {
-				Fitxa f;
 
+
+		m_tauler = new Fitxa * *[N_FILES];
+		for (int i = 0; i < N_FILES; i++)
+		{
+			m_tauler[i] = new Fitxa * [N_COLUMNES];
+		}
+
+		for (int i = 0;i < N_FILES;i++) {
+			for (int j = 0;j < N_COLUMNES;j++) {
+				m_tauler[i][j] = nullptr;
 			}
 		}
-		*/
+
+
 	}
 	void inicialitza(const string& nomFitxer);
 	void actualitzaMovimentsValids();// Recorre todas las Fitxes y actualiza su variable Moviment con todos los movimientos validos
 	void getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[MAX_POSICIONS]);
 	//bool mouFitxa(const Posicio& origen, const Posicio& desti);
 
-	bool mouFitxa(const Posicio& origen,const Posicio& desti);//Em diu que li foti una posicio mes que sino peta.
+	bool mouFitxa(const Posicio& origen, const Posicio& desti);//Em diu que li foti una posicio mes que sino peta.
 
 	string toString() const;
 
 	bool seleccionaFitxa(); // Cambia col y filaSeleccionada (cout de "Introduce la ficha" y cin)
-	bool seleccionaDesti(Posicio &desti); //Fa les comprovacions adients tambe
+	bool seleccionaDesti(Posicio& desti); //Fa les comprovacions adients tambe
 
 
 	//int comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
@@ -68,13 +75,13 @@ public:
 	void setTornBlanques(bool tornBlanques) { m_tornBlanques = tornBlanques; }
 
 	void actualitzaTaulerEnChars();
-	
+
 
 private:
 
 	int m_filaFitxaSeleccionada;
 	int m_colFitxaSeleccionada;
-	Fitxa m_tauler[N_FILES][N_COLUMNES];
+	Fitxa*** m_tauler;
 	char m_taulerEnChars[N_FILES][N_COLUMNES];
 	bool m_tornBlanques;
 
@@ -85,8 +92,7 @@ private:
 	//inicialitza
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
 
-	
-	//actualitzaMovimentsValids
+
 
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
 
