@@ -1,5 +1,5 @@
 #pragma once
-
+#include <vector>
 const int MAX_POSICIONS = 16;
 const int MAX_MORTS = 8;
 

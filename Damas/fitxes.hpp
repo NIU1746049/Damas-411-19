@@ -26,7 +26,6 @@ public:
 		m_colorFitxa = COLOR_UNDEFINED;
 		m_tipusFitxa = TIPUS_EMPTY;
 		m_viva = true;
-		m_nMoviments = 0;
 	}
 	Fitxa(TipusFitxa tipus, ColorFitxa color, Posicio pos) {
 		m_posicio = pos;
@@ -47,7 +46,7 @@ public:
 	TipusFitxa getTipusFitxa()const { return m_tipusFitxa; }
 	ColorFitxa getColorFitxa()const { return m_colorFitxa; }
 	Posicio getPosicio()const { return m_posicio;}
-	int getNMoviments()const { return m_nMoviments;}
+	int getNMoviments()const { return m_moviments.size();}
 	bool getViva()const { return m_viva; }
 	Moviment getMovimentPos(const int index)const { return m_moviments[index]; }
 
@@ -56,19 +55,23 @@ public:
 	void setColorFitxa(ColorFitxa colorFitxa) { m_colorFitxa = colorFitxa; }
 	void setColorITipusFitxa(char fitxa);
 	void setPosicio(Posicio posicio) { m_posicio = posicio; }
-	void setMovimentPos(int pos, Moviment m) { m_moviments[pos] = m; }
-	void setNMovimentsValids(int nMv) { m_nMoviments = nMv; }
+	void setNMovimentsValids(int nMv) { m_moviments.resize(nMv); }
 	void setViva(bool viva) { m_viva = viva; }
 	
 
 	//miscelani
+	void afegeixMoviment(Moviment m) { m_moviments.push_back(m); }
+
 	void esborraMoviments();
 	
 private:
 	Posicio m_posicio;
-	Moviment m_moviments[MAX_MOVIMENTS];//canviarAixo
+	//Estatica:
+	//Moviment m_moviments[MAX_MOVIMENTS];//Canviar nom per simetria sbs
 	//hauria de ser constat
-	int m_nMoviments;
+	//Dinamica:
+
+	vector <Moviment> m_moviments;
 
 	TipusFitxa m_tipusFitxa;
 	ColorFitxa m_colorFitxa;

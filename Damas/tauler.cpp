@@ -169,7 +169,7 @@ bool Tauler::normalMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOV
 }
 
 
-bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids, Posicio fitxaQueEsMou)const
+bool Tauler::normalMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids, Posicio fitxaQueEsMou)const // diria que aqui esta el problema
 {
 	bool valid = false;
 	int incrementVertical;
@@ -775,6 +775,7 @@ void Tauler::actualitzaMovimentsValids()
 		for (int col = 0;col < N_COLUMNES;col++)
 		{
 			if (m_tauler[fila][col] != nullptr) {
+				
 				m_tauler[fila][col]->esborraMoviments();
 				Moviment mv[MAX_MOVIMENTS] = {};
 				int nMv = 0;
@@ -783,9 +784,7 @@ void Tauler::actualitzaMovimentsValids()
 				{
 					Posicio pos(fila, col);
 					Posicio fitxaQueEsMou = pos;
-
 					normalMoure(pos, mv, nMv, fitxaQueEsMou);
-
 					if (normalMatar(pos, mv, nMv, fitxaQueEsMou))
 					{
 						normalMatarMultiples(pos, mv, nMv, fitxaQueEsMou);
@@ -797,15 +796,12 @@ void Tauler::actualitzaMovimentsValids()
 					if (m_tauler[fila][col]->getTipusFitxa() == TIPUS_DAMA)
 					{
 						//DEBUG
-						cout << endl << "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
 						//
 						Posicio pos(fila, col);
 						Posicio fitxaQueEsMou = pos;
 
 
-						cout << "Intento fer DamaMoure";
 						damaMoure(pos, mv, nMv, fitxaQueEsMou);//El fallo esta en damaMoure
-						cout << "Supera Dama Moure";
 						damaMatarMultiples(pos, mv, nMv, fitxaQueEsMou);
 						damaMatar(pos, mv, nMv, fitxaQueEsMou);
 
@@ -813,14 +809,11 @@ void Tauler::actualitzaMovimentsValids()
 
 					}
 				}
-
 				for (int k = 0; k < nMv; k++)
 				{
-					m_tauler[fila][col]->setMovimentPos(k, mv[k]);
+					m_tauler[fila][col]->afegeixMoviment(mv[k]);
 
 				}
-				m_tauler[fila][col]->setNMovimentsValids(nMv);
-
 			}
 
 		}
@@ -1149,7 +1142,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 				for (int j = 0; j < m_tauler[desti.getFila()][desti.getColumna()]->getNMoviments();j++)
 				{
-					m_tauler[desti.getFila()][desti.getColumna()]->setMovimentPos(i, m_tauler[desti.getFila()][desti.getColumna()]->getMovimentPos(i));
+					m_tauler[desti.getFila()][desti.getColumna()]->afegeixMoviment(m_tauler[desti.getFila()][desti.getColumna()]->getMovimentPos(i));
 				}
 
 				///..
@@ -1157,9 +1150,6 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 
 				m_tauler[desti.getFila()][desti.getColumna()]->setPosicio(desti);
-				//GOTO
-				//m_tauler[origen.getFila()][origen.getColumna()]->setColorITipusFitxa('_');
-				//m_tauler[origen.getFila()][origen.getColumna()] = nullptr;
 				m_tauler[origen.getFila()][origen.getColumna()]->setViva(false);
 				//
 				m_filaFitxaSeleccionada = desti.getFila();//Mes facil. Aixi despres puc bufar i tota la pesca.

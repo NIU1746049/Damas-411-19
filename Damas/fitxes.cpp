@@ -2,6 +2,7 @@ using namespace std;
 #include <string>
 #include "string"
 
+#include <iostream>
 #include "fitxes.hpp"
 
 void Fitxa::setColorITipusFitxa(char fitxa)
@@ -38,9 +39,10 @@ void Fitxa::esborraMoviments()
 {
 	for (int i = 0;i < getNMoviments();i++) 
 	{
-		Moviment m;
-		m_moviments[i] = m;
+		
+		m_moviments.pop_back();
 	}
-	m_nMoviments = 0;
+	cout << "mida de larray de moviments valids actuals: " << m_moviments.size()<<endl;
+	//m_moviments.resize(0);
 	
 }

@@ -15,24 +15,16 @@
       "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:fitxes.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\tauler.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:tauler.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\moviment.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:moviment.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\posicio.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:posicio.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\posicio.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:posicio.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:test.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\moviment.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:moviment.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\tauler.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{FC094170-42EB-457D-A470-76DCB2F01D92}|Damas.vcxproj|solutionrelative:tauler.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,15 +46,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "test.cpp",
-              "DocumentMoniker": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\test.cpp",
-              "RelativeDocumentMoniker": "test.cpp",
-              "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\test.cpp",
-              "RelativeToolTip": "test.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoBAAB3AAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "fitxes.cpp",
+              "DocumentMoniker": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\fitxes.cpp",
+              "RelativeDocumentMoniker": "fitxes.cpp",
+              "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\fitxes.cpp",
+              "RelativeToolTip": "fitxes.cpp",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-01T14:36:56.454Z"
+              "WhenOpened": "2025-05-17T11:54:31.836Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -72,35 +65,10 @@
               "RelativeDocumentMoniker": "tauler.cpp",
               "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\tauler.cpp",
               "RelativeToolTip": "tauler.cpp",
-              "ViewState": "AgIAAHcEAAAAAAAAAAAjwIoEAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAPMCAAAAAAAAAAAgwAgDAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-04-14T17:27:21.414Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "fitxes.cpp",
-              "DocumentMoniker": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\fitxes.cpp",
-              "RelativeDocumentMoniker": "fitxes.cpp",
-              "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\fitxes.cpp",
-              "RelativeToolTip": "fitxes.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-18T07:59:17.128Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "posicio.cpp",
-              "DocumentMoniker": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\posicio.cpp",
-              "RelativeDocumentMoniker": "posicio.cpp",
-              "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\posicio.cpp",
-              "RelativeToolTip": "posicio.cpp",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-18T07:48:52.354Z"
             },
             {
               "$type": "Document",
@@ -110,13 +78,14 @@
               "RelativeDocumentMoniker": "fitxes.hpp",
               "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\fitxes.hpp",
               "RelativeToolTip": "fitxes.hpp",
-              "ViewState": "AgIAADAAAAAAAAAAAAAgwEYAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAAAEcAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-01T20:56:09.049Z"
+              "WhenOpened": "2025-05-01T20:56:09.049Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "tauler.hpp",
               "DocumentMoniker": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\tauler.hpp",
               "RelativeDocumentMoniker": "tauler.hpp",
@@ -128,13 +97,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "moviment.hpp",
               "DocumentMoniker": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\moviment.hpp",
               "RelativeDocumentMoniker": "moviment.hpp",
               "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\moviment.hpp",
               "RelativeToolTip": "moviment.hpp",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAADIAAAA2AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-05-01T13:16:01.539Z"
             },
@@ -146,7 +115,7 @@
               "RelativeDocumentMoniker": "posicio.hpp",
               "ToolTip": "C:\\Users\\hugca\\Desktop\\pinga\\Damas-411-19\\Damas\\posicio.hpp",
               "RelativeToolTip": "posicio.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-05-02T14:47:42.069Z"
             }
