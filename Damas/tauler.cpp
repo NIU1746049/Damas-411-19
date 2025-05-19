@@ -367,6 +367,7 @@ bool Tauler::damaMatarMultiples(Posicio posicioActual, Moviment movimentsValids[
 //dama
 bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids, Posicio fitxaQueEsMou)const
 {
+	cout << endl<<"entra en damamoure";
 	int nMovimentsValidsInicial = nMovimentsValids;
 	for (int incColumna = -1;incColumna < 2;incColumna++)
 	{
@@ -433,10 +434,12 @@ bool Tauler::damaMoure(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 					}
 					iter++;
 				}
+				cout << endl<<"Surt del bucle de DamaMoure";
 
 			}
 		}
 	}
+	cout <<endl<< "surt dels fors de damaMOure";
 	int incrementMovimentsValids = nMovimentsValids - nMovimentsValidsInicial;
 	if (incrementMovimentsValids > 0)
 	{
@@ -638,6 +641,7 @@ bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIM
 												{
 													cout << endl << "desde la posicio " << posicioActual.toString() << " trobat = true en la posicio següent : " << tmpPos1.toString() << endl;
 
+
 													trobat = true;
 												}
 											}
@@ -770,6 +774,7 @@ void Tauler::actualitzaMovimentsValids()
 
 void Tauler::actualitzaMovimentsValids()
 {
+	cout <<endl<< "entra a actualitzaMoviments valids";
 	for (int fila = 0; fila < N_FILES;fila++)
 	{
 		for (int col = 0;col < N_COLUMNES;col++)
@@ -789,7 +794,9 @@ void Tauler::actualitzaMovimentsValids()
 					{
 						normalMatarMultiples(pos, mv, nMv, fitxaQueEsMou);
 
+
 					}
+
 				}
 				else
 				{
@@ -818,6 +825,7 @@ void Tauler::actualitzaMovimentsValids()
 
 		}
 	}
+	cout << "surt de ACtualitzaMovimentsValids";
 }
 
 
@@ -860,6 +868,7 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 */
 void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[MAX_POSICIONS])//Mod
 {
+
 	//DEBUG
 	cout << endl << "getPosicionsPossibles: " << endl;
 
@@ -1002,6 +1011,7 @@ bool Tauler::bufar(const Posicio& posicioOrigen, Moviment& movimentFet) //mod
 }
 bool Tauler::seleccionaFitxa() //MOD pero crec q ni cal
 {
+
 	cout << "---------------------------------------------" << endl;
 	cout << "Selecció fitxa a moure:" << endl;
 	cout << "---------------------------------------------" << endl;
@@ -1108,6 +1118,7 @@ bool Tauler::seleccionaDesti(Posicio& desti)
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os important
 {
+	cout << endl << "entra a MouFitxa";
 	//Ara trobar el moviment que s'ha fet dins de la llista de moviments valids de la fitxa. 
 	bool trobat = false;
 	int i = 0;
@@ -1115,9 +1126,10 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 
 	if (m_tauler[origen.getFila()][origen.getColumna()] != nullptr) {
-		while ((i < m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments()) && (!trobat))
+		cout << endl << "entra el while";
+		while ((i < m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments()) && (!trobat)) // AQUI ESTA EL POBLEMA; NO SURT DEL WHILE
 		{
-
+			cout << endl << "Sip, ha entrat";
 
 
 			if (m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getPosicioPos(m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getNPosicions() - 1) == desti)
@@ -1129,6 +1141,8 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 				///..Faig aixo, pero sé que després s'haura de sobreccaregar operador
 				//m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];//ho copio tot
+				//GOTO (to-do):
+					//sobrecarregar el operador = de manera que pugui fer que una fitxa pilli tot lo d una altra
 				if (m_tauler[desti.getFila()][desti.getColumna()] == nullptr)
 				{
 					m_tauler[desti.getFila()][desti.getColumna()] = new Fitxa;
@@ -1139,11 +1153,13 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 				m_tauler[desti.getFila()][desti.getColumna()]->setTipusFitxa(m_tauler[origen.getFila()][origen.getColumna()]->getTipusFitxa());
 				m_tauler[desti.getFila()][desti.getColumna()]->setNMovimentsValids(m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments());
 				m_tauler[desti.getFila()][desti.getColumna()]->setPosicio(m_tauler[origen.getFila()][origen.getColumna()]->getPosicio());
-
-				for (int j = 0; j < m_tauler[desti.getFila()][desti.getColumna()]->getNMoviments();j++)
+				//cout << "entra al for";
+				for (int j = 0; j < m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments();j++)
 				{
+				//	cout <<endl<< "iter: " << j;
 					m_tauler[desti.getFila()][desti.getColumna()]->afegeixMoviment(m_tauler[desti.getFila()][desti.getColumna()]->getMovimentPos(i));
 				}
+				//cout <<endl<< "Surt del FOR-n";
 
 				///..
 
@@ -1158,7 +1174,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			}
 			i++;
 		}
-
+		cout << endl << "Surt del while i em pregunto si trobat?";
 		if (trobat) {
 			for (int j = 0; j < movimentFet.getNMorts(); j++)
 			{
@@ -1182,10 +1198,14 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 
 		}
+		cout << "surt de mouFitxa (RETURN TROBAT)";
 		return trobat;
 
+
 	}
+	
 	actualitzaTaulerEnChars();
+	cout << "surt de mouFitxa (NULLPTR)";
 
 
 }

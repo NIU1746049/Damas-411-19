@@ -41,8 +41,5 @@ void Fitxa::esborraMoviments()
 	{
 		
 		m_moviments.pop_back();
-	}
-	cout << "mida de larray de moviments valids actuals: " << m_moviments.size()<<endl;
-	//m_moviments.resize(0);
-	
+	}	
 }
