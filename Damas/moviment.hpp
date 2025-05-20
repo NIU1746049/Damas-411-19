@@ -20,42 +20,39 @@ class Moviment
 public:
 	Moviment() {
 		m_tipus = EMPTY;
-		m_nPosicions = 0;
-		m_nMorts = 0;
 	};
-	Moviment(TipusMoviment tipus, Posicio posicions[N_FILES * N_COLUMNES], int nPosicions, int nMorts, Posicio morts[MAX_MORTS]) {
+	Moviment(TipusMoviment tipus, vector <Posicio> posicions, vector <Posicio> morts) {
 		m_tipus = tipus;
-		m_nPosicions = nPosicions;
-		for (int i = 0; i < nPosicions; i++) {
-			m_posicions[i] = posicions[i];
+		//m_posicions.resize(nPosicions);
+		for (int i = 0; i < posicions.size(); i++) {
+			m_posicions.push_back(posicions[i]);
 		}
-		m_nMorts = nMorts;
-		for (int i = 0;i < nMorts;i++) {
-			m_morts[i] = morts[i];
+		//m_morts.resize(nMorts);
+		for (int i = 0;i < morts.size();i++) {
+			m_morts.push_back(morts[i]);
 		}
+		
 	}
 	
+	
 	//getters
-	int getNPosicions() { return m_nPosicions; }
+	int getNPosicions() { return m_posicions.size(); }
 	Posicio getPosicioPos(int index) { return m_posicions[index]; }
 	TipusMoviment getTipus() { return m_tipus; }
-	int getNMorts() { return m_nMorts; }
+	int getNMorts() { return m_morts.size(); }
 	Posicio getMortsPos(int index) { return m_morts[index]; }
 	
 	//setters
-	void setPosicioPos(int index, Posicio p) { m_posicions[index] = p; }
-	void setNPosicions(int n) { m_nPosicions = n; }
-	void setNMorts(int n) { m_nMorts = n; }
-	void addMort(Posicio victima) { m_morts[m_nMorts] = victima; m_nMorts++; }
-	void setMortsPos(int index, Posicio pos) { m_morts[index] = pos; }
+	void afegirPosicio(Posicio p) { m_posicions.push_back(p); }
+	void setNPosicions(int n) { m_posicions.resize(n); }
+	void setNMorts(int n) { m_morts.resize(n); }
+	void afegirMorts(Posicio pos) { m_morts.push_back(pos); }
 	void setTipus(TipusMoviment tipus) { m_tipus = tipus; }
 
 private:
 	TipusMoviment m_tipus;
-	Posicio m_posicions[MAX_POSICIONS];//Inclou la posicio d'origen
-	int m_nPosicions;
-	Posicio m_morts[MAX_MORTS];
-	int m_nMorts;
+	vector <Posicio> m_posicions;
+	vector <Posicio> m_morts;
 	
 
 };
