@@ -233,7 +233,7 @@ bool Tauler::normalMatar(Posicio posicioActual, vector <Moviment> &movimentsVali
 bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const//AQUI ESTA EL FALLO!!!!
 {
 	vector <Moviment> tmpMoviments;
-
+	cout << endl << "executant brancaNormal desde: " << posicioActual.toString() << endl;
 	brancaNormal(posicioActual, movimentsValids, fitxaQueEsMou);//El problema esta en brancaNormal
 
 
@@ -253,7 +253,7 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movi
 }
 
 
-
+/*
 void Tauler::brancaDama(Posicio posicioOrigen, vector <Moviment> &tmpMoviments, vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const
 {
 
@@ -304,13 +304,40 @@ void Tauler::brancaDama(Posicio posicioOrigen, vector <Moviment> &tmpMoviments, 
 
 	movimentsDefinitius.push_back(movimentDefinitiuRaw);
 }
+*/
 
-void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const {
+void Tauler::brancaDama(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const 
+{
+	int movimentsDefinitiusInicials = movimentsDefinitius.size();
+	cout << endl << "executant brancaNormal desde: " << posicioOrigen.toString() << endl;
+
+	
+
+
+
+
+	if (damaMatar(posicioOrigen, movimentsDefinitius, fitxaQueEsMou)) 
+	{
+		for (int i = movimentsDefinitiusInicials; i < movimentsDefinitius.size();i++) {
+			brancaDama(movimentsDefinitius[i].getPosicioPos(movimentsDefinitius[i].getNPosicions() - 1), movimentsDefinitius, fitxaQueEsMou);
+		}
+	}
+	else {
+		cout << endl << "no puc damaMatar en la posicio: " << posicioOrigen.toString(); // deixa de poder matar en la posicio c7
+	}
+
+}
+
+void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const 
+{
 	int movimentsDefinitiusInicials = movimentsDefinitius.size();
 	if (normalMatar(posicioOrigen, movimentsDefinitius, fitxaQueEsMou)) {
 		for (int i = movimentsDefinitiusInicials; i < movimentsDefinitius.size();i++) {
 			brancaNormal(movimentsDefinitius[i].getPosicioPos(movimentsDefinitius[i].getNPosicions() - 1),movimentsDefinitius,fitxaQueEsMou);
 		}
+	}
+	else {
+		cout << endl << "no puc NormalMatar desde la posicio: " << posicioOrigen.toString() << endl;
 	}
 }
 
@@ -368,20 +395,25 @@ bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movime
 	vector <Moviment> tmpMoviments;
 	
 
-
-
+	//BORRAR DPS, NOMES PER DEBUGAR:
+	//
+	int nMovimentsValidsInicial = movimentsValids.size();
 	//jo crec q aixi esta be no? NO?
-	brancaDama(posicioActual, tmpMoviments, movimentsValids, fitxaQueEsMou);
+	brancaDama(posicioActual, movimentsValids, fitxaQueEsMou);
+	
 	/*
-
-	for (int i = 0;i < tmpMoviments.size();i++) {
+	cout <<endl<< posicioActual.toString()<<endl;
+	for (int i = x;i < movimentsValids.size();i++) {
 		cout << endl << "moviment " << i << ": " << endl;
-		for (int j = 0;j < tmpMoviments[i].getNPosicions();j++) {
-			cout << tmpMoviments[i].getPosicioPos(j).toString() << endl;
+		for (int j = 0;j < movimentsValids[i].getNPosicions();j++) {
+			cout << movimentsValids[i].getPosicioPos(j).toString() << endl;
 		}
 	}
+
 	*/
-	return (tmpMoviments.size() > 0);
+	//ASAPGOTO, revisar NormalMatar i Dama Matar o perque putas no mata
+	
+	return (movimentsValids.size()-nMovimentsValidsInicial > 0);
 
 
 }
@@ -476,130 +508,6 @@ bool Tauler::damaMoure(Posicio posicioActual, vector <Moviment> &movimentsValids
 }
 
 
-/*bool Tauler::damaMatar(Posicio posicioActual, Moviment movimentsValids[MAX_MOVIMENTS], int& nMovimentsValids,Posicio fitxaQueEsMou)const
-{
-	bool matada = false;
-	for (int incColumna = -1;incColumna < 2;incColumna++)
-	{
-		for (int incFila = -1;incFila < 2;incFila++)
-		{
-			if ((incColumna != 0) && (incFila != 0))
-			{
-				bool limitTrobat = false;
-				int i = 1;
-
-				Posicio posicions[MAX_POSICIONS];
-				int nMorts = 0;
-				Posicio morts[MAX_MORTS];
-
-
-				while (!limitTrobat) {
-
-					if (
-						((posicioActual.getFila() + incFila * i) < N_FILES) &&
-						((posicioActual.getColumna() + incColumna * i) < N_COLUMNES) &&
-						((posicioActual.getFila() + incFila * i) > 0) &&
-						((posicioActual.getColumna() + incColumna * i) > 0)
-
-						)//evitar Stack Overflow
-					{
-
-						cout << endl << "en la posicio " << posicioActual.toString() << " s'arriba despres de STACK OVERFLOW i abans de EMPTY";
-						if(m_tauler[posicioActual.getFila() + incFila * i][posicioActual.getColumna() + incColumna * i].getTipusFitxa() != TIPUS_EMPTY)//si la següent NO esta buida
-						{
-							cout << endl << "en la posicio " << posicioActual.toString() << " s'arriba despres de la comprovacio de empty";
-
-							Posicio pos((posicioActual.getFila() + incFila * i), (posicioActual.getColumna() + incColumna * i));
-							if (
-								((posicioActual.getFila() + (incFila * i) + incFila)<N_FILES)&&
-								((posicioActual.getColumna() + (incColumna * i) + incColumna)<N_COLUMNES)&&
-								((posicioActual.getFila() + (incFila * i) + incFila)>0)&&
-								((posicioActual.getColumna() + (incColumna * i) + incColumna)>0)
-								) {
-
-
-								cout << endl << "en la posicio " << posicioActual.toString() << " no es troba un Stack Overflow a la segona comprovacio. (comprovacio de la posicio següent no l altre)";
-
-								if (
-
-									m_tauler[posicioActual.getFila() + (incFila * i)][posicioActual.getColumna() + (incColumna * i)].getColorFitxa() != m_tauler[fitxaQueEsMou.getFila()][fitxaQueEsMou.getColumna()].getColorFitxa() &&//diferent color
-									m_tauler[posicioActual.getFila() + (incFila * i) + incFila][posicioActual.getColumna() + (incColumna * i) + incColumna].getTipusFitxa() == TIPUS_EMPTY
-									) {
-									//DEBUG
-									cout <<endl<< "moment de la veritat" << endl;
-
-									//
-
-									//no recordo que es aixo ni perque serveix pero dona problemes, perque depen de si troba o no troba, el moviment s'afageix o no.
-									Posicio tmpPos1(posicioActual.getFila() + incFila * i, posicioActual.getColumna() + incColumna * i);
-									bool trobat = false;
-
-									for (int j = 0;j < nMovimentsValids;j++)
-									{
-										cout << endl << "entra for"<<endl;
-										for (int k = 0;k < movimentsValids[j].getNMorts();k++)
-										{
-											if (movimentsValids[j].getMortsPos(k) == tmpPos1)
-											{
-												cout << endl << "trobat = true en la posicio següent: " << tmpPos1.toString() << endl;
-
-												trobat = true;
-											}
-										}
-									}
-									///
-
-									if (!trobat)
-									{
-										cout << endl << "entra !trobat" << endl;
-										Posicio pos2((posicioActual.getFila() + (incFila * i) + incFila), (posicioActual.getColumna() + (incColumna * i) + incColumna));
-
-
-										Posicio tmpPos2(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
-										posicions[0] = posicioActual;
-										posicions[1] = tmpPos2;
-
-										matada = true;
-
-
-										morts[nMorts] = tmpPos1;
-										nMorts++;
-
-
-										//
-										Moviment mov(DAMA_MATAR, posicions, 2, 1, morts);
-										movimentsValids[nMovimentsValids] = mov;
-										nMovimentsValids++;
-										//
-
-									}
-
-
-								}
-
-							}
-
-							limitTrobat = true;
-						}
-
-					}
-					else
-					{
-						limitTrobat = true;
-					}
-
-
-
-					i++;
-
-
-				}
-			}
-		}
-	}
-	return matada;
-}
-*/
 
 
 //DamaMatar
@@ -616,42 +524,35 @@ bool Tauler::damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids
 				bool limitTrobat = false;
 				int i = 1;
 
-				//Posicio posicions[MAX_POSICIONS];
-				//int nMorts = 0;
-				//Posicio morts[MAX_MORTS];
+				
 				vector <Posicio> posicions;
 				vector <Posicio> morts;
 
+				cout << endl << "posicio actual: " << posicioActual.toString()<<endl;
 				while (!limitTrobat) {
-
 					if (
 						((posicioActual.getFila() + incFila * i) < N_FILES) &&
 						((posicioActual.getColumna() + incColumna * i) < N_COLUMNES) &&
-						((posicioActual.getFila() + incFila * i) > 0) &&
-						((posicioActual.getColumna() + incColumna * i) > 0)
+						((posicioActual.getFila() + incFila * i) >= 0) &&
+						((posicioActual.getColumna() + incColumna * i) >= 0)
 
 						)//evitar Stack Overflow
 					{
-
 						if (m_tauler[posicioActual.getFila() + incFila * i][posicioActual.getColumna() + incColumna * i] != nullptr)//si la següent NO esta buida
 						{
-
-							Posicio pos((posicioActual.getFila() + incFila * i), (posicioActual.getColumna() + incColumna * i));
+							
 							if (
 								((posicioActual.getFila() + (incFila * i) + incFila) < N_FILES) &&
 								((posicioActual.getColumna() + (incColumna * i) + incColumna) < N_COLUMNES) &&
-								((posicioActual.getFila() + (incFila * i) + incFila) > 0) &&
-								((posicioActual.getColumna() + (incColumna * i) + incColumna) > 0)
+								((posicioActual.getFila() + (incFila * i) + incFila) >= 0) &&
+								((posicioActual.getColumna() + (incColumna * i) + incColumna) >= 0)
 								) {
-
 								if ((m_tauler[posicioActual.getFila() + (incFila * i)][posicioActual.getColumna() + (incColumna * i)] != nullptr) && (m_tauler[fitxaQueEsMou.getFila()][fitxaQueEsMou.getColumna()] != nullptr)) {
-
 									if (
 
 										m_tauler[posicioActual.getFila() + (incFila * i)][posicioActual.getColumna() + (incColumna * i)]->getColorFitxa() != m_tauler[fitxaQueEsMou.getFila()][fitxaQueEsMou.getColumna()]->getColorFitxa() &&//diferent color
 										m_tauler[posicioActual.getFila() + (incFila * i) + incFila][posicioActual.getColumna() + (incColumna * i) + incColumna] == nullptr
 										) {
-
 										//no recordo que es aixo ni perque serveix pero dona problemes, perque depen de si troba o no troba, el moviment s'afageix o no.
 										Posicio tmpPos1(posicioActual.getFila() + incFila * i, posicioActual.getColumna() + incColumna * i);
 										bool trobat = false;
@@ -663,7 +564,6 @@ bool Tauler::damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids
 											{
 												if (movimentsValids[j].getMortsPos(k) == tmpPos1)
 												{
-
 
 													trobat = true;
 												}
@@ -683,6 +583,7 @@ bool Tauler::damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids
 											Posicio tmpPos2(posicioActual.getFila() + (incFila * i) + incFila, posicioActual.getColumna() + (incColumna * i) + incColumna);
 											posicions.push_back(posicioActual);
 											posicions.push_back(tmpPos2);
+											cout <<endl<< "Desde la posicio " << posicioActual.toString() << ", amb DamaMatar et pots moure a  " << tmpPos2.toString()<<endl;
 
 											matada = true;
 
@@ -735,64 +636,7 @@ bool Tauler::damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids
 
 
 
-/*
-void Tauler::actualitzaMovimentsValids()
-{
-	for (int fila = 0; fila < N_FILES;fila++)
-	{
-		for (int col = 0;col < N_COLUMNES;col++)
-		{
-			m_tauler[fila][col].esborraMoviments();
-			Moviment mv[MAX_MOVIMENTS] = {};
-			int nMv = 0;
 
-			if (m_tauler[fila][col].getTipusFitxa() == TIPUS_NORMAL)
-			{
-				Posicio pos(fila, col);
-				Posicio fitxaQueEsMou = pos;
-
-				normalMoure(pos, mv, nMv, fitxaQueEsMou);
-
-				if (normalMatar(pos, mv, nMv, fitxaQueEsMou))
-				{
-					normalMatarMultiples(pos, mv, nMv, fitxaQueEsMou);
-
-				}
-			}
-			else
-			{
-				if (m_tauler[fila][col].getTipusFitxa() == TIPUS_DAMA)
-				{
-					//DEBUG
-					cout << "aaaaaaaaaaaaaaaaaaaaaaaaaaa";
-					//
-					Posicio pos(fila,col);
-					Posicio fitxaQueEsMou = pos;
-
-
-
-					damaMoure(pos, mv, nMv, fitxaQueEsMou);
-
-					if (damaMatar(pos, mv, nMv, fitxaQueEsMou))
-					{
-						//DEBUG
-						cout << "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb";
-						//
-						damaMatarMultiples(pos, mv, nMv, fitxaQueEsMou);
-					}
-				}
-			}
-
-			for (int k = 0; k < nMv; k++)
-			{
-				m_tauler[fila][col].setMovimentPos(k, mv[k]);
-
-			}
-			m_tauler[fila][col].setNMovimentsValids(nMv);
-		}
-	}
-}
-*/
 
 void Tauler::actualitzaMovimentsValids()
 {

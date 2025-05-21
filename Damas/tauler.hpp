@@ -66,8 +66,11 @@ public:
 
 	void brancaNormal(Posicio posicioOrigen,vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
 
-	void brancaDama(Posicio posicioOrigen, vector <Moviment> &tmpMoviments,
-		vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
+	//void brancaDama(Posicio posicioOrigen, vector <Moviment> &tmpMoviments,
+	//	vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
+
+	void brancaDama(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const;
+
 
 	//getters
 	int getNBlanques() const { return m_nBlanques; }
