@@ -61,8 +61,11 @@ public:
 	bool damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
 	bool damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
 	//Auxiliar Moviments
-	void brancaNormal(Posicio posicioOrigen, vector <Moviment> &tmpMoviments,
-		vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
+	//void brancaNormal(Posicio posicioOrigen, vector <Moviment> &tmpMoviments,
+	//	vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
+
+	void brancaNormal(Posicio posicioOrigen,vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
+
 	void brancaDama(Posicio posicioOrigen, vector <Moviment> &tmpMoviments,
 		vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
 

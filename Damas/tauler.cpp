@@ -149,6 +149,9 @@ bool Tauler::normalMoure(Posicio posicioActual, vector <Moviment> &movimentsVali
 		{
 			if (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i] == nullptr)
 			{
+				Posicio pospos(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
+				//cout << endl << "la pos " << pospos.toString() << " esta lliure";
+
 				Posicio p(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
 
 				vector <Posicio> posicions;
@@ -167,7 +170,7 @@ bool Tauler::normalMoure(Posicio posicioActual, vector <Moviment> &movimentsVali
 
 
 	}
-	cout << "n moviments NormalMoure (DINS FUNCIO): " << movimentsValids.size()<<endl;
+
 	return valid;
 
 }
@@ -207,6 +210,13 @@ bool Tauler::normalMatar(Posicio posicioActual, vector <Moviment> &movimentsVali
 				vector <Posicio> tmpP3;
 				tmpP3.push_back(tmpP1);
 
+				///
+				//cout << endl << "normal matar desde " << posicioActual.toString();
+				//for (int i = 0;i < posicions.size();i++) {
+				//	cout << endl << "pos " << i << ": " << posicions[i];
+				//}
+
+				///
 
 				Moviment nouMoviment(NORMAL_MATAR, posicions, tmpP3);
 
@@ -220,16 +230,25 @@ bool Tauler::normalMatar(Posicio posicioActual, vector <Moviment> &movimentsVali
 
 
 
-bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const
+bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const//AQUI ESTA EL FALLO!!!!
 {
 	vector <Moviment> tmpMoviments;
-	int tmpNMoviments = 0;
 
-	brancaNormal(posicioActual, tmpMoviments, movimentsValids, fitxaQueEsMou);
+	brancaNormal(posicioActual, movimentsValids, fitxaQueEsMou);//El problema esta en brancaNormal
+
 
 	//nMovimentsValids++;
-
-
+	/*
+	cout << endl;
+	cout << "POSICIO: " << posicioActual.toString()<<endl;
+	for (int i = 0; i < tmpMoviments.size();i++) {
+		for (int j = 0; j < tmpMoviments[i].getNPosicions();j++) {
+			cout << endl <<"tmp moviments en index " << i << ", posicio en index " << j << tmpMoviments[i].getPosicioPos(j)<<endl;
+		}
+		
+	}
+	cout << endl;
+	*/
 	return (movimentsValids.size() > 0);
 }
 
@@ -253,15 +272,12 @@ void Tauler::brancaDama(Posicio posicioOrigen, vector <Moviment> &tmpMoviments, 
 	}
 	else {
 
-		cout << endl << "DamaMatar dona FALSE quan la posicio es: " << posicioOrigen.toString() << endl;
 	}
 	Moviment movimentDefinitiuRaw;
 	movimentDefinitiuRaw.setNPosicions(0);
 	if (tmpMoviments.size() == 0) {
-		cout << "Return?";
 		return;
 	}
-	cout << "Passat?";
 	for (int j = 0;j < tmpMoviments.size();j++)
 	{
 		for (int i = 0;i < tmpMoviments[j].getNPosicions();i++)
@@ -289,7 +305,18 @@ void Tauler::brancaDama(Posicio posicioOrigen, vector <Moviment> &tmpMoviments, 
 	movimentsDefinitius.push_back(movimentDefinitiuRaw);
 }
 
+void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const {
+	int movimentsDefinitiusInicials = movimentsDefinitius.size();
+	if (normalMatar(posicioOrigen, movimentsDefinitius, fitxaQueEsMou)) {
+		for (int i = movimentsDefinitiusInicials; i < movimentsDefinitius.size();i++) {
+			brancaNormal(movimentsDefinitius[i].getPosicioPos(movimentsDefinitius[i].getNPosicions() - 1),movimentsDefinitius,fitxaQueEsMou);
+		}
+	}
+}
 
+
+
+/*
 void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment> &tmpMoviments, vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const
 {
 
@@ -332,7 +359,7 @@ void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment> &tmpMoviments
 	}
 
 }
-
+*/
 
 
 bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const
@@ -345,8 +372,7 @@ bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movime
 
 	//jo crec q aixi esta be no? NO?
 	brancaDama(posicioActual, tmpMoviments, movimentsValids, fitxaQueEsMou);
-	cout << "Supera branca Dama?";
-	//
+	/*
 
 	for (int i = 0;i < tmpMoviments.size();i++) {
 		cout << endl << "moviment " << i << ": " << endl;
@@ -354,8 +380,7 @@ bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movime
 			cout << tmpMoviments[i].getPosicioPos(j).toString() << endl;
 		}
 	}
-	//
-	cout << "I a més a més arriba al final de branca dama";
+	*/
 	return (tmpMoviments.size() > 0);
 
 
@@ -368,7 +393,6 @@ bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movime
 //dama
 bool Tauler::damaMoure(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const
 {
-	cout << endl<<"entra en damamoure";
 	int nMovimentsValidsInicial = movimentsValids.size();
 	for (int incColumna = -1;incColumna < 2;incColumna++)
 	{
@@ -435,12 +459,10 @@ bool Tauler::damaMoure(Posicio posicioActual, vector <Moviment> &movimentsValids
 					}
 					iter++;
 				}
-				cout << endl<<"Surt del bucle de DamaMoure";
 
 			}
 		}
 	}
-	cout <<endl<< "surt dels fors de damaMOure";
 	int incrementMovimentsValids = movimentsValids.size() - nMovimentsValidsInicial;
 	if (incrementMovimentsValids > 0)
 	{
@@ -641,7 +663,6 @@ bool Tauler::damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids
 											{
 												if (movimentsValids[j].getMortsPos(k) == tmpPos1)
 												{
-													cout << endl << "desde la posicio " << posicioActual.toString() << " trobat = true en la posicio següent : " << tmpPos1.toString() << endl;
 
 
 													trobat = true;
@@ -656,7 +677,6 @@ bool Tauler::damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids
 										if (!trobat)
 										{
 
-											cout << endl << "entra !troba:::::::::::::::::::::::::::::::::::::::::::::::::::::::t" << endl;
 											Posicio pos2((posicioActual.getFila() + (incFila * i) + incFila), (posicioActual.getColumna() + (incColumna * i) + incColumna));
 
 
@@ -776,7 +796,6 @@ void Tauler::actualitzaMovimentsValids()
 
 void Tauler::actualitzaMovimentsValids()
 {
-	cout <<endl<< "entra a actualitzaMoviments valids";
 	for (int fila = 0; fila < N_FILES;fila++)
 	{
 		for (int col = 0;col < N_COLUMNES;col++)
@@ -791,8 +810,7 @@ void Tauler::actualitzaMovimentsValids()
 				{
 					Posicio pos(fila, col);
 					Posicio fitxaQueEsMou = pos;
-					normalMoure(pos, mv, fitxaQueEsMou);
-					cout <<endl<< "n de moviments NormalMoure (fora funcio): " << mv.size()<<endl;
+					bool x = normalMoure(pos, mv, fitxaQueEsMou);
 					if (normalMatar(pos, mv, fitxaQueEsMou))
 					{
 						normalMatarMultiples(pos, mv, fitxaQueEsMou);
@@ -828,7 +846,6 @@ void Tauler::actualitzaMovimentsValids()
 
 		}
 	}
-	cout << "surt de ActualitzaMovimentsValids";
 }
 
 
@@ -970,7 +987,8 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 					k++;
 				}
 
-				if ((!trobat) && ((tmpMoviment.getPosicioPos(j) == origen) == false)) {
+				if ((!trobat) && ((tmpMoviment.getPosicioPos(j) == origen) == false)) {//Definitivament el problema esta en normalMatarMultiples
+					//cout <<endl<< "Tipus: " << tmpMoviment.getTipus() << " posicio " << tmpMoviment.getPosicioPos(j)<<endl;
 					posicionsPossibles[nPosicions] = tmpMoviment.getPosicioPos(j);
 					nPosicions++;
 				}

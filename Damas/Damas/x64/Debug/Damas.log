@@ -8,9 +8,9 @@ C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\moviment.hpp(42,39): warning C42
 C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\fitxes.hpp(49,52): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'tauler.cpp')
   
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(241,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(296,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(372,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(444,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(1247,1): warning C4715: 'Tauler::mouFitxa': not all control paths return a value
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(260,27): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(309,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(396,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(466,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(1265,1): warning C4715: 'Tauler::mouFitxa': not all control paths return a value
   Damas.vcxproj -> C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\x64\Debug\Damas.exe
