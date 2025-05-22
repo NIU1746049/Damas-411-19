@@ -234,22 +234,24 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movi
 {
 	vector <Moviment> tmpMoviments;
 	cout << endl << "executant brancaNormal desde: " << posicioActual.toString() << endl;
-	brancaNormal(posicioActual, movimentsValids, fitxaQueEsMou);//El problema esta en brancaNormal
+	brancaNormal(posicioActual, tmpMoviments, fitxaQueEsMou);
 
+	Moviment tmpMoviment;
 
-	//nMovimentsValids++;
-	/*
-	cout << endl;
-	cout << "POSICIO: " << posicioActual.toString()<<endl;
 	for (int i = 0; i < tmpMoviments.size();i++) {
-		for (int j = 0; j < tmpMoviments[i].getNPosicions();j++) {
-			cout << endl <<"tmp moviments en index " << i << ", posicio en index " << j << tmpMoviments[i].getPosicioPos(j)<<endl;
-		}
-		
+		tmpMoviment.afegirPosicio(posicioActual);
+		tmpMoviment.afegirPosicio(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1)); //afegeixo lultima pos
+		tmpMoviment.afegirMorts(tmpMoviments[i].getMortsPos(0));//sempre estara en 0
+
+		movimentsValids.push_back(tmpMoviment);
+
 	}
-	cout << endl;
-	*/
-	return (movimentsValids.size() > 0);
+
+
+
+
+	
+	return (tmpMoviments.size() > 1);
 }
 
 
@@ -343,77 +345,28 @@ void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment>& movimentsDef
 
 
 
-/*
-void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment> &tmpMoviments, vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const
-{
-
-	int tmpNMovimentsInicial = tmpMoviments.size();
-
-	if (normalMatar(posicioOrigen, tmpMoviments, fitxaQueEsMou))
-	{
-
-		for (int i = tmpNMovimentsInicial;i < tmpMoviments.size();i++)
-		{
-			brancaNormal(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1), tmpMoviments, movimentsDefinitius, fitxaQueEsMou);//ASAPGOTO
-
-		}
-	}
-	else {
-		Moviment movimentDefinitiuRaw;
-		movimentDefinitiuRaw.setNPosicions(0);
-		for (int j = 0;j < tmpMoviments.size();j++) {
-			for (int i = 0;i < tmpMoviments[j].getNPosicions();i++)
-			{
-				movimentDefinitiuRaw.afegirPosicio(tmpMoviments[j].getPosicioPos(i));
-				movimentDefinitiuRaw.setNPosicions(movimentDefinitiuRaw.getNPosicions() + 1);
-				movimentDefinitiuRaw.setTipus(NORMAL_MATAR_MULTIPLES);
-			}
-		}
-
-		for (int j = 0;j < tmpMoviments.size();j++)
-		{
-			for (int i = 0;i < tmpMoviments[j].getNMorts();i++)
-			{
-
-
-				movimentDefinitiuRaw.afegirPosicio(tmpMoviments[j].getMortsPos(i));
-				movimentDefinitiuRaw.setNMorts(movimentDefinitiuRaw.getNMorts() + 1);
-			}
-		}
-
-		movimentsDefinitius.push_back(movimentDefinitiuRaw);
-
-	}
-
-}
-*/
-
-
 bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const
 {
 
 	vector <Moviment> tmpMoviments;
 	
 
-	//BORRAR DPS, NOMES PER DEBUGAR:
-	//
-	int nMovimentsValidsInicial = movimentsValids.size();
-	//jo crec q aixi esta be no? NO?
-	brancaDama(posicioActual, movimentsValids, fitxaQueEsMou);
 	
-	/*
-	cout <<endl<< posicioActual.toString()<<endl;
-	for (int i = x;i < movimentsValids.size();i++) {
-		cout << endl << "moviment " << i << ": " << endl;
-		for (int j = 0;j < movimentsValids[i].getNPosicions();j++) {
-			cout << movimentsValids[i].getPosicioPos(j).toString() << endl;
-		}
+	int nMovimentsValidsInicial = movimentsValids.size();
+	brancaDama(posicioActual, tmpMoviments, fitxaQueEsMou);
+	
+	Moviment tmpMoviment;
+
+	for (int i = 0; i < tmpMoviments.size();i++) {
+		tmpMoviment.afegirPosicio(posicioActual);
+		tmpMoviment.afegirPosicio(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1)); //afegeixo lultima pos
+		tmpMoviment.afegirMorts(tmpMoviments[i].getMortsPos(0));//sempre estara en 0
+		
+		movimentsValids.push_back(tmpMoviment);
+		
 	}
 
-	*/
-	//ASAPGOTO, revisar NormalMatar i Dama Matar o perque putas no mata
-	
-	return (movimentsValids.size()-nMovimentsValidsInicial > 0);
+	return (tmpMoviments.size()> 1);
 
 
 }
