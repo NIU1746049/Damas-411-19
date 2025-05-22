@@ -8,10 +8,10 @@ C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\moviment.hpp(42,39): warning C42
 C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\fitxes.hpp(49,52): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'tauler.cpp')
   
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(313,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(335,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(355,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(381,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(451,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(1062,1): warning C4715: 'Tauler::mouFitxa': not all control paths return a value
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(258,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(277,34): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(295,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(328,30): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(398,31): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\tauler.cpp(874,1): warning C4715: 'Tauler::mouFitxa': not all control paths return a value
   Damas.vcxproj -> C:\Users\hugca\Desktop\pinga\Damas-411-19\Damas\x64\Debug\Damas.exe

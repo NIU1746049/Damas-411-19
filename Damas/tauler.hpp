@@ -34,41 +34,40 @@ public:
 	void inicialitza(const string& nomFitxer);
 	void actualitzaMovimentsValids();// Recorre todas las Fitxes y actualiza su variable Moviment con todos los movimientos validos
 	void getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posicio posicionsPossibles[MAX_POSICIONS]);
-	//bool mouFitxa(const Posicio& origen, const Posicio& desti);
 
 	bool mouFitxa(const Posicio& origen, const Posicio& desti);//Em diu que li foti una posicio mes que sino peta.
 
 	string toString() const;
 
-	bool seleccionaFitxa(); // Cambia col y filaSeleccionada (cout de "Introduce la ficha" y cin)
-	bool seleccionaDesti(Posicio& desti); //Fa les comprovacions adients tambe
 
+	//--- 
+	//Comentades pero no eliminades perque potser ens serveixen en un futur:
+	//bool seleccionaFitxa(); // Cambia col y filaSeleccionada (cout de "Introduce la ficha" y cin)
+	//bool seleccionaDesti(Posicio& desti); //Fa les comprovacions adients tambe
+	//---
 
 	//int comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
 	bool comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
 
 	void convertirADama();
 	bool bufar(const Posicio& posicioOrigen, Moviment& movimentFet);
-	void eliminarFitxesMortes(); // Asignarlas como vivas despues de eliminarlas
+	void eliminarFitxesMortes();
 	bool gameOver();
 
+
 	//Comprovar moviments
+		//normal:
 	bool normalMoure(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
 	bool normalMatar(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
 	bool normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
-
+		//dama:
 	bool damaMoure(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
 	bool damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
 	bool damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
+	
+
 	//Auxiliar Moviments
-	//void brancaNormal(Posicio posicioOrigen, vector <Moviment> &tmpMoviments,
-	//	vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
-
 	void brancaNormal(Posicio posicioOrigen,vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
-
-	//void brancaDama(Posicio posicioOrigen, vector <Moviment> &tmpMoviments,
-	//	vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
-
 	void brancaDama(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const;
 
 
@@ -77,9 +76,9 @@ public:
 	int getNNegres() const { return m_nNegres; }
 	bool getTornBlanques() const { return m_tornBlanques; }
 
+
 	//setters
 	void setTornBlanques(bool tornBlanques) { m_tornBlanques = tornBlanques; }
-
 	void actualitzaTaulerEnChars();
 
 

@@ -27,8 +27,8 @@ public:
 	int getColumna() const { return m_columna; }
 
 	//setters
-	void setFila(int fila) { m_fila = fila; }
-	void setColumna(int columna) { m_columna = columna; }
+	void setFila(int& fila) { m_fila = fila; }
+	void setColumna(int& columna) { m_columna = columna; }
 
 
 	string toString() const;
@@ -41,8 +41,6 @@ private:
 };
 
 ifstream& operator>>(ifstream& fitxer, Posicio& posicio);
-//ofstream& operator<<(ofstream& fitxer, const Posicio& posicio);
 ostream& operator<<(ostream& fitxer, const Posicio& posicio);
 //que sino em dona error el test.cpp:
 
-//stringstream& operator<<(stringstream& stream, Posicio& posicio);

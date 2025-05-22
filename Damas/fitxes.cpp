@@ -7,13 +7,8 @@ using namespace std;
 
 void Fitxa::setColorITipusFitxa(char fitxa)
 {
-	switch (fitxa) // Posar aquest codi en Fitxa
+	switch (fitxa)
 	{
-	//case '_':
-		//m_tipusFitxa = TIPUS_EMPTY;
-		//m_colorFitxa = COLOR_UNDEFINED; //ja no te sentit perque un estat de no-fitxa ja no es representa dins la fitxa sino per nullptr
-		
-		break;
 	case 'O':
 		m_tipusFitxa = TIPUS_NORMAL;
 		m_colorFitxa = COLOR_BLANC;
@@ -39,7 +34,6 @@ void Fitxa::esborraMoviments()
 {
 	for (int i = 0;i < getNMoviments();i++) 
 	{
-		
 		m_moviments.pop_back();
 	}	
 }
