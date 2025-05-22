@@ -1,0 +1,9 @@
+﻿  joc.cpp
+C:\Users\abelp\Desktop\codi_lliurament_final\0. C++ Code\Logic Game\joc.cpp(37,81): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\abelp\Desktop\codi_lliurament_final\0. C++ Code\Logic Game\joc.cpp(37,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\abelp\Desktop\codi_lliurament_final\0. C++ Code\Logic Game\joc.cpp(43,77): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\abelp\Desktop\codi_lliurament_final\0. C++ Code\Logic Game\joc.cpp(43,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\abelp\Desktop\codi_lliurament_final\0. C++ Code\Logic Game\joc.cpp(43,57): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+  Generating Code...
+  MP_Practica.vcxproj -> C:\Users\abelp\Desktop\codi_lliurament_final\2. Platforms\0. Windows Desktop\Program\MP_Practica.exe
