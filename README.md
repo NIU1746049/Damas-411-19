@@ -2,6 +2,14 @@
 Abel i Hug, 411-19.
 
 
+
+Primerament, Tauler és la classe central. Dins de Tauler tenim tots els mètodes centrals del joc (com mouFitxa, getPosicionsPossibles...).
+Implementada com una matriu dinàmica de punters a objectes Fitxa, tenim m_tauler. 
+
+
+
+
+
 Tauler es la classe central.
 
 Dins de tauler tens una matriu de fitxes. Cada fitxa té un objecte de posició i un array de movimentsValids.
