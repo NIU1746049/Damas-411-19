@@ -17,10 +17,10 @@ public:
 		m_nNegres = 0;
 
 
-		m_tauler = new Fitxa * *[N_FILES];
+		m_tauler = new Fitxa**[N_FILES];
 		for (int i = 0; i < N_FILES; i++)
 		{
-			m_tauler[i] = new Fitxa * [N_COLUMNES];
+			m_tauler[i] = new Fitxa*[N_COLUMNES];
 		}
 
 		for (int i = 0;i < N_FILES;i++) {
@@ -75,12 +75,13 @@ public:
 	int getNBlanques() const { return m_nBlanques; }
 	int getNNegres() const { return m_nNegres; }
 	bool getTornBlanques() const { return m_tornBlanques; }
-
+	Fitxa*** getPtrTauler() const { return m_tauler; }
 
 	//setters
 	void setTornBlanques(bool tornBlanques) { m_tornBlanques = tornBlanques; }
 	void actualitzaTaulerEnChars();
 
+	void visualitzaTauler(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY);
 
 private:
 

@@ -3,7 +3,10 @@ using namespace std;
 
 #include "posicio.hpp"
 #include "moviment.hpp"
+#include "GraphicManager.h"
+
 const int MAX_MOVIMENTS = 16;
+
 typedef enum
 {
 	TIPUS_NORMAL,
@@ -48,6 +51,7 @@ public:
 	Posicio getPosicio()const { return m_posicio;}
 	int getNMoviments()const { return m_moviments.size();}
 	bool getViva()const { return m_viva; }
+	vector<Moviment> getMoviments()const { return m_moviments; }
 	Moviment getMovimentPos(const int index)const { return m_moviments[index]; }
 
 	//setters
@@ -64,8 +68,9 @@ public:
 
 	void esborraMoviments();
 
-	void visualitza();//Passar la posicion por parametro o no?
-	
+	void visualitzaFitxa(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY);
+	void visualitzaMoviments(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY);
+
 private:
 	Posicio m_posicio;
 	//Estatica:

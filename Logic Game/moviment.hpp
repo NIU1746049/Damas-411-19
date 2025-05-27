@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include "posicio.hpp"
 const int MAX_POSICIONS = 16;
 const int MAX_MORTS = 8;
 
@@ -48,6 +49,7 @@ public:
 	void setNMorts(int n) { m_morts.resize(n); }
 	void afegirMorts(Posicio pos) { m_morts.push_back(pos); }
 	void setTipus(TipusMoviment tipus) { m_tipus = tipus; }
+
 
 private:
 	TipusMoviment m_tipus;

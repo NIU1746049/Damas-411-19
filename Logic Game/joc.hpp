@@ -12,22 +12,23 @@ class Joc
 {
 
 public:
-    Joc() { m_filaPeca = 0; m_columnaPeca = 0; m_mouseStatusAnterior = false; m_dibuixaFitxa = false; m_columnaRatoli = 0; m_filaRatoli = 0; };
+    Joc() { m_fitxaSeleccionada = false; m_mouseStatusAnterior = false; m_columnaRatoli = 0; m_filaRatoli = 0; m_tornAnteriorBlanques = false; };
     
     void inicialitza(const string nomFitxer);
     bool actualitza(int mousePosX, int mousePosY, bool mouseStatus);
-    
+    void visualitzaJoc(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY);
     
 private:
-    Tauler tauler;
+    Tauler m_tauler;
+    bool m_fitxaSeleccionada;
+    int m_colFitxaSeleccionada;
+    int m_filaFitxaSeleccionada;
+    bool m_tornAnteriorBlanques;
+
     bool m_mouseStatusAnterior;
-
-    int m_filaPeca;
-    int m_columnaPeca;
-
-    bool m_dibuixaFitxa;
     int m_columnaRatoli;
     int m_filaRatoli;
+
 };
 
 #endif 

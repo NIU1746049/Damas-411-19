@@ -62,7 +62,7 @@ void Tauler::inicialitza(const string& nomFitxer)//mod
 		{
 			for (int col = 0; col < N_COLUMNES; col++)
 			{
-				if (fila <= 3) // Si estan arriba
+				if (fila < 3) // Si estan arriba
 				{
 					if ((col + fila) % 2 == 1) // Es negra
 					{
@@ -73,7 +73,7 @@ void Tauler::inicialitza(const string& nomFitxer)//mod
 						m_taulerEnChars[fila][col] = '_';
 					}
 				}
-				else if (fila >= 4) // Si estan abajo
+				else if (fila > 4) // Si estan abajo
 				{
 					if ((col + fila) % 2 == 1) // Es blanca
 					{
@@ -1061,4 +1061,18 @@ bool Tauler::gameOver()
 	}
 
 	return false;
+}
+
+void Tauler::visualitzaTauler(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY)
+{
+	for (int fila = 0; fila < N_FILES; fila++)
+	{
+		for(int col = 0; col < N_COLUMNES; col++)
+		{
+			if(m_tauler[fila][col] != nullptr)
+			{
+				m_tauler[fila][col]->visualitzaFitxa(zeroDeX, zeroDeY, ampladaX, alcadaY);
+			}
+		}
+	}
 }

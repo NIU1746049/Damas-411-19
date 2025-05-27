@@ -42,7 +42,7 @@ int main(int argc, const char* argv[])
     pantalla.show();
 
     Joc joc;
-
+    joc.inicialitza("null");
     do
     {
         // Captura tots els events de ratolí i teclat de l'ultim cicle
