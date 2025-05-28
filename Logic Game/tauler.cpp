@@ -62,9 +62,9 @@ void Tauler::inicialitza(const string& nomFitxer)//mod
 		{
 			for (int col = 0; col < N_COLUMNES; col++)
 			{
-				if (fila < 3) // Si estan arriba
+				if (fila <= 3) // Si estan arriba
 				{
-					if ((col + fila) % 2 == 1) // Es negra
+					if ((col + fila) % 2 == 1 && fila!=3) // Es negra
 					{
 						m_taulerEnChars[fila][col] = 'X';
 					}
@@ -73,9 +73,9 @@ void Tauler::inicialitza(const string& nomFitxer)//mod
 						m_taulerEnChars[fila][col] = '_';
 					}
 				}
-				else if (fila > 4) // Si estan abajo
+				else if (fila >= 4) // Si estan abajo
 				{
-					if ((col + fila) % 2 == 1) // Es blanca
+					if ((col + fila) % 2 == 1 && fila != 4) // Es blanca
 					{
 						m_taulerEnChars[fila][col] = 'O';
 					}
@@ -112,6 +112,10 @@ void Tauler::inicialitza(const string& nomFitxer)//mod
 			}
 			else {//No caldria pero per si de cas
 				m_tauler[fila][col] = nullptr;
+				//
+				Posicio bigD(fila, col);
+				cout << "Posicio " << bigD.toString() << " nullptr" << endl;
+				//
 			}
 
 		}
@@ -147,8 +151,11 @@ bool Tauler::normalMoure(Posicio posicioActual, vector <Moviment> &movimentsVali
 			(i != 0)
 			)
 		{
+			Posicio bigD(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
+			cout << endl << "desde: " << posicioActual.toString() << " revisant si puc NormalMoure a " << bigD.toString() << endl;
 			if (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i] == nullptr)
 			{
+				cout << endl << "SI ES POT" << endl;
 				Posicio pospos(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
 
 				Posicio p(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
@@ -163,6 +170,12 @@ bool Tauler::normalMoure(Posicio posicioActual, vector <Moviment> &movimentsVali
 				valid = true;
 				
 			}
+			else {
+				cout << endl << "NO ES POT PERQUE TENIM: "<< m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i]->getTipusFitxa();
+				
+				
+			}
+
 
 
 		}

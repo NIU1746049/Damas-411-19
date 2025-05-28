@@ -32,7 +32,8 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	{
 		m_columnaRatoli = (mousePosX - (POS_X_TAULER + CASELLA_INICIAL_X)) / AMPLADA_CASELLA;
 		m_filaRatoli = (mousePosY - (POS_Y_TAULER + CASELLA_INICIAL_Y)) / ALCADA_CASELLA;
-		cout << "Fitxa seleciconada = " << m_fitxaSeleccionada << endl;
+		//abel putita
+		//cout << "Fitxa seleciconada = " << m_fitxaSeleccionada << endl;
 
 		if (mouseStatus && !m_mouseStatusAnterior)
 		{
