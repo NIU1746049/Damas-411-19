@@ -872,7 +872,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			bufar(origen, movimentFet);
 			eliminarFitxesMortes();
 			
-
+			m_tornBlanques = !m_tornBlanques;
 
 
 		}

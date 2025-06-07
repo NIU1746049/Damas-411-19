@@ -39,6 +39,7 @@ public:
 	//getters
 	int getNPosicions() { return m_posicions.size(); }
 	Posicio getPosicioPos(int index) { return m_posicions[index]; }
+	Posicio getUltimaPosicio() { return m_posicions[m_posicions.size() - 1]; }
 	TipusMoviment getTipus() { return m_tipus; }
 	int getNMorts() { return m_morts.size(); }
 	Posicio getMortsPos(int index) { return m_morts[index]; }

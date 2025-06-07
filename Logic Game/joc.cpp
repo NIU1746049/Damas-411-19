@@ -20,10 +20,6 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
 	GraphicManager::getInstance()->drawSprite(GRAFIC_TAULER, POS_X_TAULER, POS_Y_TAULER);
 	
-	if (m_tauler.getTornBlanques() != m_tornAnteriorBlanques)
-	{
-		m_tauler.actualitzaMovimentsValids();
-	}
 
 	if ((mousePosX >= (POS_X_TAULER + CASELLA_INICIAL_X)) &&
 		(mousePosY >= POS_Y_TAULER + CASELLA_INICIAL_Y) &&
@@ -32,8 +28,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	{
 		m_columnaRatoli = (mousePosX - (POS_X_TAULER + CASELLA_INICIAL_X)) / AMPLADA_CASELLA;
 		m_filaRatoli = (mousePosY - (POS_Y_TAULER + CASELLA_INICIAL_Y)) / ALCADA_CASELLA;
-		//abel putita
-		//cout << "Fitxa seleciconada = " << m_fitxaSeleccionada << endl;
+		cout << "Fitxa seleciconada = " << m_fitxaSeleccionada << endl;
 
 		if (mouseStatus && !m_mouseStatusAnterior)
 		{
@@ -50,17 +45,33 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 			{
 				if (m_tauler.getPtrTauler()[m_filaRatoli][m_columnaRatoli] != nullptr && m_tauler.getTornBlanques() == m_tauler.getPtrTauler()[m_filaRatoli][m_columnaRatoli]->getColorFitxa() - 1) //COLOR_NEGRE = 1 y COLOR_BLANC = 2, por eso el "-1"
 				{
-					//Si se selecciona otra ficha del mismo color: iguie habiendo una ficha seleccionada, solo cambio cual
+					//Si se selecciona otra ficha del mismo color: siguie habiendo una ficha seleccionada, solo cambio cual
 					m_colFitxaSeleccionada = m_columnaRatoli;
 					m_filaFitxaSeleccionada = m_filaRatoli;
 				}
-				//else if()
-				//{
-				//	//Si se selecciona una cassilla valida: se mueve y se desselecciona la ficha
+				else 
+				{
+					//Si se selecciona una cassilla valida: se mueve y se desselecciona la ficha
+					//Posicio posMovimentI;
+					//bool trobat = false;
+					//int indexMov = 0;
+					//while (!trobat && indexMov < m_tauler.getPtrTauler()[m_filaFitxaSeleccionada][m_colFitxaSeleccionada]->getNMoviments())
+					//{
+					//	posMovimentI = m_tauler.getPtrTauler()[m_filaFitxaSeleccionada][m_colFitxaSeleccionada]->getMoviments()[indexMov].getUltimaPosicio();
+					//	if (posMovimentI.getFila() == m_filaRatoli && posMovimentI.getColumna() == m_columnaRatoli)
+					//	{
+					//		trobat = true;
+					//	}
+					//}
 
+					//if (trobat)
+					//{
+					//	m_tauler.mouFitxa(Posicio(m_filaFitxaSeleccionada, m_colFitxaSeleccionada), Posicio(m_filaRatoli, m_columnaRatoli));
+					//}
 
-				//	m_fitxaSeleccionada = false;
-				//}
+					m_tauler.mouFitxa(Posicio(m_filaFitxaSeleccionada, m_colFitxaSeleccionada), Posicio(m_filaRatoli, m_columnaRatoli));
+					m_fitxaSeleccionada = false;
+				}
 			}
 		}
 	}
@@ -81,8 +92,12 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	//4B) Desseleccionar la ficha e ir a 1)
 	//4C) Ir a 2)
 
+	if (m_tauler.getTornBlanques() != m_tauler.getTornFrameAnteriorBlanques())
+	{
+		m_tauler.actualitzaMovimentsValids();
+	}
 	
-	m_tornAnteriorBlanques = m_tauler.getTornBlanques();
+	m_tauler.setTornFrameAnteriorBlanques(m_tauler.getTornBlanques());
 	m_mouseStatusAnterior = mouseStatus;
 	return false;
 }
@@ -94,7 +109,7 @@ void Joc::visualitzaJoc(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY)
 
 	if (m_fitxaSeleccionada == true)
 	{
-		m_tauler.getPtrTauler()[m_colFitxaSeleccionada][m_filaFitxaSeleccionada]->visualitzaMoviments(zeroDeX, zeroDeY, ampladaX, alcadaY);
+		m_tauler.getPtrTauler()[m_filaFitxaSeleccionada][m_colFitxaSeleccionada]->visualitzaMoviments(zeroDeX, zeroDeY, ampladaX, alcadaY);
 	}
 }
 

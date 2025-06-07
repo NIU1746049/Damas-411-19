@@ -12,7 +12,7 @@ class Joc
 {
 
 public:
-    Joc() { m_fitxaSeleccionada = false; m_mouseStatusAnterior = false; m_columnaRatoli = 0; m_filaRatoli = 0; m_tornAnteriorBlanques = false; };
+    Joc() { m_fitxaSeleccionada = false; m_mouseStatusAnterior = false; m_columnaRatoli = 0; m_filaRatoli = 0; };
     
     void inicialitza(const string nomFitxer);
     bool actualitza(int mousePosX, int mousePosY, bool mouseStatus);
@@ -23,7 +23,6 @@ private:
     bool m_fitxaSeleccionada;
     int m_colFitxaSeleccionada;
     int m_filaFitxaSeleccionada;
-    bool m_tornAnteriorBlanques;
 
     bool m_mouseStatusAnterior;
     int m_columnaRatoli;

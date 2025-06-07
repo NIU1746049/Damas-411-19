@@ -11,6 +11,7 @@ class Tauler
 public:
 	Tauler() {
 		m_tornBlanques = true;
+		m_tornFrameAnteriorBlanques = false;
 		m_filaFitxaSeleccionada = 0;
 		m_colFitxaSeleccionada = 0;
 		m_nBlanques = 0;
@@ -75,10 +76,12 @@ public:
 	int getNBlanques() const { return m_nBlanques; }
 	int getNNegres() const { return m_nNegres; }
 	bool getTornBlanques() const { return m_tornBlanques; }
+	bool getTornFrameAnteriorBlanques() const { return m_tornFrameAnteriorBlanques; }
 	Fitxa*** getPtrTauler() const { return m_tauler; }
 
 	//setters
 	void setTornBlanques(bool tornBlanques) { m_tornBlanques = tornBlanques; }
+	void setTornFrameAnteriorBlanques(bool tornAnteriorBlancques) { m_tornFrameAnteriorBlanques = tornAnteriorBlancques; }
 	void actualitzaTaulerEnChars();
 
 	void visualitzaTauler(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY);
@@ -90,6 +93,7 @@ private:
 	Fitxa*** m_tauler;
 	char m_taulerEnChars[N_FILES][N_COLUMNES];
 	bool m_tornBlanques;
+	bool m_tornFrameAnteriorBlanques;
 
 	int m_nBlanques;
 	int m_nNegres;

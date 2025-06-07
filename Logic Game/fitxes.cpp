@@ -31,10 +31,11 @@ void Fitxa::setColorITipusFitxa(char fitxa)
 
 void Fitxa::esborraMoviments() 
 {
-	for (int i = 0;i < getNMoviments();i++) 
-	{
-		m_moviments.pop_back();
-	}	
+	//for (int i = 0;i < getNMoviments();i++) 
+	//{
+	//	m_moviments.pop_back();
+	//}	
+	m_moviments.resize(0);
 }
 
 void Fitxa::visualitzaFitxa(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY)
