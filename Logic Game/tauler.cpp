@@ -640,7 +640,7 @@ bool Tauler::bufar(const Posicio& posicioOrigen, Moviment& movimentFet) //mod
 	{
 		for (int fila = 0; fila < N_FILES; fila++)
 		{
-			if (m_tauler[fila][col] != nullptr) {
+			if (m_tauler[fila][col] != nullptr && m_tauler[fila][col]->getColorFitxa() - 1 == m_tornBlanques) {
 				for (int i = 0; i < m_tauler[fila][col]->getNMoviments(); i++)
 				{
 
@@ -664,7 +664,7 @@ bool Tauler::bufar(const Posicio& posicioOrigen, Moviment& movimentFet) //mod
 		}
 	}
 
-	//Si durant algun moviment es mata::
+	//Si durant algun moviment es mata
 	if (maxIndex != -1)
 	{
 		if (movimentFet.getNMorts() < maxMorts)
