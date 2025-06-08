@@ -102,6 +102,7 @@ private:
 	//inicialitza
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
 	void getNPartida();
+	void RecreaPartida(const string nomFitxer);
 	int nPartida;
 	string nomFitxerPartida;
 

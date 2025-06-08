@@ -57,6 +57,7 @@ void Tauler::inicialitza(const string& nomFitxer)//mod
 	//
 	getNPartida();
 	//
+	
 
 	if (nomFitxer != "null")
 	{
@@ -805,6 +806,25 @@ bool Tauler::seleccionaDesti(Posicio& desti)
 	return valid;
 }
 */
+
+void Tauler::RecreaPartida(const string nomFitxer) {
+	ifstream fitxer;
+	fitxer.open(nomFitxer);
+	Posicio origen;
+	Posicio desti;
+
+	while (!fitxer.eof()) {
+		string origenRaw;
+		string destiRaw;
+
+		fitxer >> origenRaw >> destiRaw;
+
+		origen.fromString(origenRaw);
+		desti.fromString(destiRaw);
+
+		mouFitxa(origen, desti);
+	}
+}
 
 void Tauler::getNPartida() {
 	string nomFitxer = "gestio_historials.txt";
