@@ -3,7 +3,9 @@ using namespace std;
 #include "string"
 
 #include "tauler.hpp"
-
+//
+#include <fstream>
+//
 
 void Tauler::actualitzaTaulerEnChars()
 {
@@ -52,6 +54,10 @@ void Tauler::actualitzaTaulerEnChars()
 
 void Tauler::inicialitza(const string& nomFitxer)//mod
 {
+	//
+	getNPartida();
+	//
+
 	if (nomFitxer != "null")
 	{
 		llegeixTauler(nomFitxer, m_taulerEnChars);
@@ -800,7 +806,33 @@ bool Tauler::seleccionaDesti(Posicio& desti)
 }
 */
 
+void Tauler::getNPartida() {
+	string nomFitxer = "gestio_historials.txt";
+	ifstream fitxer;
+	fitxer.open(nomFitxer);
+	fitxer >> nPartida;//nPartida esta dins de tauler
+	fitxer.close();
 
+	ofstream fitxer2;
+	fitxer2.open(nomFitxer);
+	fitxer2 << (nPartida + 1);
+	fitxer.close();
+
+	//
+	//string nomPartida = "historial_moviments" + std::to_string(nPartida);
+	nomFitxerPartida = "historial_moviments" + std::to_string(nPartida) + ".txt";
+	//
+}
+
+
+void Tauler::guardarMoviment(Moviment movimentFet,const string nomFitxer) {
+
+	ofstream fitxer;
+	fitxer.open(nomFitxer, ofstream::app);
+	fitxer << movimentFet.getPosicioPos(0).toString() << " " << movimentFet.getPosicioPos(movimentFet.getNPosicions() - 1).toString()<<endl; //Posicio origen i posicio desti
+	
+	fitxer.close();
+}
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os important
 {
@@ -819,8 +851,8 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			{
 				movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
 				trobat = true;
-
-
+				guardarMoviment(movimentFet, nomFitxerPartida); // Esta a resources
+				
 
 				///..Faig aixo, pero sé que després s'haura de sobreccaregar operador
 				//m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];//ho copio tot

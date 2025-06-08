@@ -85,7 +85,7 @@ public:
 	void actualitzaTaulerEnChars();
 
 	void visualitzaTauler(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY);
-
+	void guardarMoviment(Moviment movimentFet, const string nomFitxer);
 private:
 
 	int m_filaFitxaSeleccionada;
@@ -101,7 +101,9 @@ private:
 
 	//inicialitza
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
-
+	void getNPartida();
+	int nPartida;
+	string nomFitxerPartida;
 
 
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
