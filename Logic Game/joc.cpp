@@ -112,8 +112,9 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 300, 300, 1.5, "Play");
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 300, 360, 1.5, "Replay");
 
-		text = "Coordenada X: " + to_string(mousePosX) + "\nCoordenada Y: " + to_string(mousePosY);
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 100, 100, 0.8, text);
+		//Para ver las coordenadas del raton y saber donde poner las imagenes
+		//text = "Coordenada X: " + to_string(mousePosX) + "\nCoordenada Y: " + to_string(mousePosY);
+		//GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 100, 100, 0.8, text);
 		break;
 
 	case PANTALLA_JOC:
@@ -130,11 +131,25 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 		break;
 
 	case PANTALLA_VICT_BLANQUES:
+		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
 
+		posTextX = POS_X_TAULER;
+		posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
+		text = "PosX: " + to_string(m_columnaRatoli) + "\nPosY: " + to_string(m_filaRatoli);
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, text);
+
+		GraphicManager::getInstance()->drawFont(FONT_RED_30, 220, 250, 2, " VICTORIA\nBLANQUES");
 		break;
 
 	case PANTALLA_VICT_NEGRES:
+		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
 
+		posTextX = POS_X_TAULER;
+		posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
+		text = "PosX: " + to_string(m_columnaRatoli) + "\nPosY: " + to_string(m_filaRatoli);
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, text);
+
+		GraphicManager::getInstance()->drawFont(FONT_RED_30, 230, 250, 2, "VICTORIA\n NEGRES");
 		break;
 	}
 
