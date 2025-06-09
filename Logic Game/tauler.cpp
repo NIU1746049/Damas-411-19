@@ -7,6 +7,70 @@ using namespace std;
 #include <fstream>
 //
 
+
+void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
+	ifstream fitxer;
+	fitxer.open(nomFitxer);
+	Posicio origen;
+	Posicio desti;
+
+	m_nMovimentsReplay = 0;
+
+	while (!fitxer.eof())  // potser while(fitxer >> origen >> desti)
+	{
+		m_nMovimentsReplay++;
+	}
+	fitxer.close();
+
+	m_partidaReplay = new Posicio * [m_nMovimentsReplay];
+
+	for (int i = 0; i < m_nMovimentsReplay; i++) {
+		m_partidaReplay[i] = new Posicio[2];
+	}
+
+	fitxer.open(nomFitxer);
+	int i = 0;
+	while (!fitxer.eof()) {
+		fitxer >> origen >> desti;
+		m_partidaReplay[i][0] = origen;
+		m_partidaReplay[i][1] = desti;
+	}
+	fitxer.close();
+	m_contadorMovimentsReplay = 0;
+}
+
+
+void Tauler::replayEndavant() {
+	if (m_contadorMovimentsReplay < m_nMovimentsReplay) {
+		Posicio origen = m_partidaReplay[m_contadorMovimentsReplay][0];
+		Posicio desti = m_partidaReplay[m_contadorMovimentsReplay][1];
+		mouFitxa(origen, desti);
+		m_contadorMovimentsReplay++;
+	}
+}
+
+
+void Tauler::replayCapEnrere() {
+	if (m_contadorMovimentsReplay > 0) {
+
+		string nomFitxerNull;
+		inicialitza(nomFitxerNull);
+		for (int i = 0; i < m_contadorMovimentsReplay;i++) {
+			Posicio origen = m_partidaReplay[i][0];
+			Posicio desti = m_partidaReplay[i][1];
+			mouFitxa(origen, desti);
+		}
+		m_contadorMovimentsReplay--;
+
+
+	}
+}
+
+
+
+
+
+
 void Tauler::actualitzaTaulerEnChars()
 {
 	for (int i = 0;i < N_FILES;i++)
@@ -843,24 +907,6 @@ bool Tauler::seleccionaDesti(Posicio& desti)
 }
 */
 
-void Tauler::RecreaPartida(const string nomFitxer) {
-	ifstream fitxer;
-	fitxer.open(nomFitxer);
-	Posicio origen;
-	Posicio desti;
-
-	while (!fitxer.eof()) {
-		string origenRaw;
-		string destiRaw;
-
-		fitxer >> origenRaw >> destiRaw;
-
-		origen.fromString(origenRaw);
-		desti.fromString(destiRaw);
-
-		mouFitxa(origen, desti);
-	}
-}
 
 void Tauler::getNPartida() {
 	string nomFitxer = "gestio_historials.txt";

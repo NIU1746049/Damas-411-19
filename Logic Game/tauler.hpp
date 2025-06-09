@@ -92,6 +92,7 @@ public:
 
 	void visualitzaTauler(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY);
 	void guardarMoviment(Moviment movimentFet, const string nomFitxer);
+	void inicialitzaPartidaReplay(const string nomFitxer);
 private:
 
 	int m_filaFitxaSeleccionada;
@@ -113,6 +114,11 @@ private:
 	void RecreaPartida(const string nomFitxer);
 	int m_nPartida;
 	string m_nomFitxerPartida;
+	int m_nMovimentsReplay;
+	Posicio** m_partidaReplay;
+	int m_contadorMovimentsReplay;
+	void replayEndavant();
+	void replayCapEnrere();
 
 
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
