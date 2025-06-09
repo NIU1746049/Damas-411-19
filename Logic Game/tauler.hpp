@@ -102,11 +102,15 @@ private:
 	//inicialitza
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
 	void getNPartida();
-	void RecreaPartida(const string nomFitxer);
+	//void RecreaPartida(const string nomFitxer);
+	void InicialitzaPartidaReplay(const string nomFitxer);
+	Posicio** m_partidaReplay;
 	int nPartida;
 	string nomFitxerPartida;
-
-
+	int m_contadorMovimentsReplay;
+	void replayEndavant();
+	int m_nMovimentsReplay;
+	void replayCapEnrere();
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
 
 };
