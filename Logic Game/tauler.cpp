@@ -235,7 +235,35 @@ bool Tauler::normalMatar(Posicio posicioActual, vector <Moviment> &movimentsVali
 }
 
 
+bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment>& movimentsValids, Posicio fitxaQueEsMou)const {
+	vector <Moviment> tmpMoviments;
+	Moviment movimentBranca;
+	brancaNormal(posicioActual, movimentBranca, movimentsValids, tmpMoviments, fitxaQueEsMou);
 
+	return true; //solucionaho despres
+}
+
+void Tauler::brancaNormal(Posicio posicioOrigen, Moviment movimentBranca, vector <Moviment>& movimentsDefinitius, vector <Moviment> tmpMoviments, Posicio fitxaQueEsMou)const {
+	if ((posicioOrigen == fitxaQueEsMou) == false) {
+		movimentBranca.afegirPosicio(posicioOrigen);
+		movimentBranca.afegirMorts(tmpMoviments[tmpMoviments.size() - 1].getMortsPos(0));
+		
+
+		movimentsDefinitius.push_back(movimentBranca);
+	}
+	
+
+	int nTmpMoviments = tmpMoviments.size();
+	if (normalMatar(posicioOrigen, tmpMoviments, fitxaQueEsMou)) {
+		for (int i = nTmpMoviments; i < tmpMoviments.size();i++) {
+			brancaNormal(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1), movimentBranca, movimentsDefinitius, tmpMoviments, fitxaQueEsMou);
+		}
+	}
+}
+
+
+
+/*
 bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const//AQUI ESTA EL FALLO!!!!
 {
 	vector <Moviment> tmpMoviments;
@@ -264,7 +292,7 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movi
 	
 	return (tmpMoviments.size() > 1);
 }
-
+*/
 
 void Tauler::brancaDama(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const 
 {
@@ -284,7 +312,7 @@ void Tauler::brancaDama(Posicio posicioOrigen, vector <Moviment>& movimentsDefin
 	
 
 }
-
+/*
 void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const 
 {
 	int movimentsDefinitiusInicials = movimentsDefinitius.size();
@@ -295,6 +323,7 @@ void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment>& movimentsDef
 	}
 	
 }
+*/
 
 
 
@@ -567,6 +596,7 @@ void Tauler::actualitzaMovimentsValids()
 				if (m_tauler[fila][col]->getTipusFitxa() == TIPUS_NORMAL)
 				{
 					normalMoure(pos, mv, fitxaQueEsMou);
+					//   normalMatar(pos, mv, fitxaQueEsMou);
 					normalMatarMultiples(pos, mv, fitxaQueEsMou);
 				}
 				else
