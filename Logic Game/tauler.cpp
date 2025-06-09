@@ -97,6 +97,10 @@ void Tauler::inicialitza(const string& nomFitxer)//mod
 
 	m_nBlanques = 0;
 	m_nNegres = 0;
+	m_nMovBlanques = -1;
+	m_nMovNegres = -1;
+	m_tornBlanques = true;
+	m_tornFrameAnteriorBlanques = false;
 	Posicio posAux;
 	for (int fila = 0; fila < N_FILES; fila++)
 	{
@@ -121,7 +125,6 @@ void Tauler::inicialitza(const string& nomFitxer)//mod
 				m_tauler[fila][col] = nullptr;
 				//
 				Posicio bigD(fila, col);
-				cout << "Posicio " << bigD.toString() << " nullptr" << endl;
 				//
 			}
 
@@ -159,10 +162,8 @@ bool Tauler::normalMoure(Posicio posicioActual, vector <Moviment> &movimentsVali
 			)
 		{
 			Posicio bigD(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
-			cout << endl << "desde: " << posicioActual.toString() << " revisant si puc NormalMoure a " << bigD.toString() << endl;
 			if (m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i] == nullptr)
 			{
-				cout << endl << "SI ES POT" << endl;
 				Posicio pospos(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
 
 				Posicio p(posicioActual.getFila() + incrementVertical, posicioActual.getColumna() + i);
@@ -177,16 +178,8 @@ bool Tauler::normalMoure(Posicio posicioActual, vector <Moviment> &movimentsVali
 				valid = true;
 				
 			}
-			else {
-				cout << endl << "NO ES POT PERQUE TENIM: "<< m_tauler[posicioActual.getFila() + incrementVertical][posicioActual.getColumna() + i]->getTipusFitxa();
-				
-				
-			}
-
-
 
 		}
-
 
 	}
 
@@ -558,6 +551,8 @@ bool Tauler::damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids
 
 void Tauler::actualitzaMovimentsValids()
 {
+	m_nMovBlanques = 0;
+	m_nMovNegres = 0;
 	for (int fila = 0; fila < N_FILES;fila++)
 	{
 		for (int col = 0;col < N_COLUMNES;col++)
@@ -586,6 +581,14 @@ void Tauler::actualitzaMovimentsValids()
 				for (int k = 0; k < mv.size(); k++)
 				{
 					m_tauler[fila][col]->afegeixMoviment(mv[k]);
+					if (m_tauler[fila][col]->getColorFitxa() == COLOR_BLANC)
+					{
+						m_nMovBlanques++;
+					}
+					else if (m_tauler[fila][col]->getColorFitxa() == COLOR_NEGRE)
+					{
+						m_nMovNegres++;
+					}
 				}
 			}
 
@@ -830,17 +833,17 @@ void Tauler::getNPartida() {
 	string nomFitxer = "gestio_historials.txt";
 	ifstream fitxer;
 	fitxer.open(nomFitxer);
-	fitxer >> nPartida;//nPartida esta dins de tauler
+	fitxer >> m_nPartida;//nPartida esta dins de tauler
 	fitxer.close();
 
 	ofstream fitxer2;
 	fitxer2.open(nomFitxer);
-	fitxer2 << (nPartida + 1);
+	fitxer2 << (m_nPartida + 1);
 	fitxer.close();
 
 	//
-	//string nomPartida = "historial_moviments" + std::to_string(nPartida);
-	nomFitxerPartida = "historial_moviments" + std::to_string(nPartida) + ".txt";
+	//string nomPartida = "historial_moviments" + std::to_string(m_nPartida);
+	m_nomFitxerPartida = "historial_moviments" + std::to_string(m_nPartida) + ".txt";
 	//
 }
 
@@ -871,7 +874,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			{
 				movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
 				trobat = true;
-				guardarMoviment(movimentFet, nomFitxerPartida); // Esta a resources
+				guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
 				
 
 				///..Faig aixo, pero sé que després s'haura de sobreccaregar operador

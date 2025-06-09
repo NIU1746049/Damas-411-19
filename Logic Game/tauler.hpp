@@ -16,6 +16,8 @@ public:
 		m_colFitxaSeleccionada = 0;
 		m_nBlanques = 0;
 		m_nNegres = 0;
+		m_nMovBlanques = -1;
+		m_nMovNegres = -1;
 
 
 		m_tauler = new Fitxa**[N_FILES];
@@ -75,6 +77,8 @@ public:
 	//getters
 	int getNBlanques() const { return m_nBlanques; }
 	int getNNegres() const { return m_nNegres; }
+	int getNMovBlanques() const { return m_nMovBlanques; }
+	int getNMovNegres() const { return m_nMovNegres; }
 	bool getTornBlanques() const { return m_tornBlanques; }
 	bool getTornFrameAnteriorBlanques() const { return m_tornFrameAnteriorBlanques; }
 	Fitxa*** getPtrTauler() const { return m_tauler; }
@@ -97,14 +101,16 @@ private:
 
 	int m_nBlanques;
 	int m_nNegres;
+	int m_nMovBlanques;
+	int m_nMovNegres;
 
 
 	//inicialitza
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
 	void getNPartida();
 	void RecreaPartida(const string nomFitxer);
-	int nPartida;
-	string nomFitxerPartida;
+	int m_nPartida;
+	string m_nomFitxerPartida;
 
 
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
