@@ -77,6 +77,7 @@ public:
 
 
 	//getters
+	bool getModeReplay() const { return m_modeReplay; }
 	int getNBlanques() const { return m_nBlanques; }
 	int getNNegres() const { return m_nNegres; }
 	int getNMovBlanques() const { return m_nMovBlanques; }
@@ -84,8 +85,10 @@ public:
 	bool getTornBlanques() const { return m_tornBlanques; }
 	bool getTornFrameAnteriorBlanques() const { return m_tornFrameAnteriorBlanques; }
 	Fitxa*** getPtrTauler() const { return m_tauler; }
+	void getNPartida();
 
 	//setters
+	void setModeReplay(bool modeReplay) { m_modeReplay = modeReplay; }
 	void setTornBlanques(bool tornBlanques) { m_tornBlanques = tornBlanques; }
 	void setTornFrameAnteriorBlanques(bool tornAnteriorBlancques) { m_tornFrameAnteriorBlanques = tornAnteriorBlancques; }
 	void actualitzaTaulerEnChars();
@@ -93,6 +96,11 @@ public:
 	void visualitzaTauler(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY);
 	void guardarMoviment(Moviment movimentFet, const string nomFitxer);
 	void inicialitzaPartidaReplay(const string nomFitxer);
+
+	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
+	void replayEndavant();
+	void replayCapEnrere();
+	void RecreaPartida(const string nomFitxer);
 private:
 
 	int m_filaFitxaSeleccionada;
@@ -107,20 +115,15 @@ private:
 	int m_nMovBlanques;
 	int m_nMovNegres;
 
-
+	bool m_modeReplay;
 	//inicialitza
-	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
-	void getNPartida();
-	void RecreaPartida(const string nomFitxer);
+	
+	
 	int m_nPartida;
 	string m_nomFitxerPartida;
 	int m_nMovimentsReplay;
 	Posicio** m_partidaReplay;
 	int m_contadorMovimentsReplay;
-	void replayEndavant();
-	void replayCapEnrere();
-
-
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
 
 };

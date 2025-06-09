@@ -15,14 +15,15 @@ void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
 	Posicio desti;
 
 	m_nMovimentsReplay = 0;
-
+	string relleno;
 	while (!fitxer.eof())  // potser while(fitxer >> origen >> desti)
 	{
 		m_nMovimentsReplay++;
+		fitxer >> relleno >> relleno; //Porque son 2 posiciones por linea
 	}
 	fitxer.close();
 
-	m_partidaReplay = new Posicio * [m_nMovimentsReplay];
+	m_partidaReplay = new Posicio * [m_nMovimentsReplay]; //Usando un vector y la función resize o una lista no haria falta recorrer el fichero para contar m_nMovimentsReplay
 
 	for (int i = 0; i < m_nMovimentsReplay; i++) {
 		m_partidaReplay[i] = new Posicio[2];
@@ -34,6 +35,7 @@ void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
 		fitxer >> origen >> desti;
 		m_partidaReplay[i][0] = origen;
 		m_partidaReplay[i][1] = desti;
+		i++;
 	}
 	fitxer.close();
 	m_contadorMovimentsReplay = 0;
@@ -955,7 +957,10 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 				{
 					movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
 					trobat = true;
-					guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
+					if(!m_modeReplay)
+					{
+						guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
+					}
 				}
 				else if (movimentFet.getNMorts() < m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getNMorts())
 				{

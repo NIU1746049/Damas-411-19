@@ -33,12 +33,16 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 			case PANTALLA_MENU:
 				if (mousePosX > 300 && mousePosX < 450 && mousePosY > 310 && mousePosY < 365)
 				{
-					inicialitza("null");
 					m_pantalla = PANTALLA_JOC;
+
+					m_tauler.setModeReplay(false);
 				}
 				else if (mousePosX > 300 && mousePosX < 450 && mousePosY > 375 && mousePosY < 430)
 				{
-					m_pantalla = PANTALLA_JOC;
+					m_pantalla = PANTALLA_REPLAY;
+
+					m_tauler.inicialitzaPartidaReplay("historial_moviments13.txt");
+					m_tauler.setModeReplay(true);
 				}
 				break;
 
@@ -88,7 +92,14 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 				break;
 
 			case PANTALLA_REPLAY:
-
+				if (mousePosX < 250)
+				{
+					m_tauler.replayEndavant();
+				}
+				else
+				{
+					m_tauler.replayEndavant();
+				}
 				break;
 
 			case PANTALLA_VICT_BLANQUES: 
@@ -128,7 +139,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 		break;
 
 	case PANTALLA_REPLAY:
-
+		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
 		break;
 
 	case PANTALLA_VICT_BLANQUES:
@@ -175,11 +186,13 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 
 	if (m_tauler.getNNegres() == 0 || (!m_tauler.getTornBlanques() && m_tauler.getNMovNegres() == 0))
 	{
+		inicialitza("null");
 		m_pantalla = PANTALLA_VICT_BLANQUES;
 		return true;
 	}
 	else if (m_tauler.getNBlanques() == 0 || (m_tauler.getTornBlanques() && m_tauler.getNMovBlanques() == 0))
 	{
+		inicialitza("null");
 		m_pantalla = PANTALLA_VICT_NEGRES;
 		return true;
 	}
