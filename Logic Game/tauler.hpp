@@ -100,7 +100,7 @@ public:
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
 	void replayEndavant();
 	void replayCapEnrere();
-	void RecreaPartida(const string nomFitxer);
+	//void RecreaPartida(const string nomFitxer);
 private:
 
 	int m_filaFitxaSeleccionada;

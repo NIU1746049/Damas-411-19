@@ -41,7 +41,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 				{
 					m_pantalla = PANTALLA_REPLAY;
 
-					m_tauler.inicialitzaPartidaReplay("historial_moviments13.txt");
+					m_tauler.inicialitzaPartidaReplay("historial_moviments45.txt");
 					m_tauler.setModeReplay(true);
 				}
 				break;

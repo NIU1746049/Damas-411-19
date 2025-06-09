@@ -10,7 +10,9 @@ using namespace std;
 
 void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
 	ifstream fitxer;
-	fitxer.open(nomFitxer);
+	string pathFitxer = "./data/Games/" + nomFitxer;
+	cout << endl << pathFitxer<<endl;
+	fitxer.open(pathFitxer);
 	Posicio origen;
 	Posicio desti;
 
@@ -29,10 +31,10 @@ void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
 		m_partidaReplay[i] = new Posicio[2];
 	}
 
-	fitxer.open(nomFitxer);
+	fitxer.open(pathFitxer);
 	int i = 0;
-	while (!fitxer.eof()) {
-		fitxer >> origen >> desti;
+	while (fitxer >> origen >> desti) {
+		//
 		m_partidaReplay[i][0] = origen;
 		m_partidaReplay[i][1] = desti;
 		i++;
@@ -43,6 +45,7 @@ void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
 
 
 void Tauler::replayEndavant() {
+	
 	if (m_contadorMovimentsReplay < m_nMovimentsReplay) {
 		Posicio origen = m_partidaReplay[m_contadorMovimentsReplay][0];
 		Posicio desti = m_partidaReplay[m_contadorMovimentsReplay][1];
@@ -304,6 +307,7 @@ bool Tauler::normalMatar(Posicio posicioActual, vector <Moviment> &movimentsVali
 bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment>& movimentsValids, Posicio fitxaQueEsMou)const {
 	vector <Moviment> tmpMoviments;
 	Moviment movimentBranca;
+	movimentBranca.afegirPosicio(posicioActual);
 	Posicio mortBranca;
 	brancaNormal(posicioActual ,mortBranca, movimentBranca, movimentsValids, tmpMoviments, fitxaQueEsMou);
 
@@ -924,7 +928,7 @@ void Tauler::getNPartida() {
 
 	//
 	//string nomPartida = "historial_moviments" + std::to_string(m_nPartida);
-	m_nomFitxerPartida = "historial_moviments" + std::to_string(m_nPartida) + ".txt";
+	m_nomFitxerPartida = "./data/Games/historial_moviments" + std::to_string(m_nPartida) + ".txt";//GOTO
 	//
 }
 
@@ -933,6 +937,14 @@ void Tauler::guardarMoviment(Moviment movimentFet,const string nomFitxer) {
 
 	ofstream fitxer;
 	fitxer.open(nomFitxer, ofstream::app);
+	//
+	cout << endl;
+	for (int i = 0; i < movimentFet.getNPosicions();i++) {
+		cout << movimentFet.getPosicioPos(i).toString()<<" ";
+	}
+	cout << endl;
+
+	//
 	fitxer << movimentFet.getPosicioPos(0).toString() << " " << movimentFet.getPosicioPos(movimentFet.getNPosicions() - 1).toString()<<endl; //Posicio origen i posicio desti
 	
 	fitxer.close();
@@ -940,6 +952,7 @@ void Tauler::guardarMoviment(Moviment movimentFet,const string nomFitxer) {
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os important
 {
+	cout << endl << origen.toString() << " cap a: " << desti.toString() << endl;
 	//Ara trobar el moviment que s'ha fet dins de la llista de moviments valids de la fitxa. 
 	bool trobat = false;
 	int i = 0;
@@ -957,10 +970,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 				{
 					movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
 					trobat = true;
-					if(!m_modeReplay)
-					{
-						guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
-					}
+					
 				}
 				else if (movimentFet.getNMorts() < m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getNMorts())
 				{
@@ -974,6 +984,10 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 		}
 		if (trobat)
 		{
+			if (!m_modeReplay)
+			{
+				guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
+			}
 			///..Faig aixo, pero sé que després s'haura de sobreccaregar operador
 				//m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];//ho copio tot
 				//GOTO (to-do):
