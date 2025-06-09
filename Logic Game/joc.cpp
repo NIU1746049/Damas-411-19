@@ -33,6 +33,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 			case PANTALLA_MENU:
 				if (mousePosX > 300 && mousePosX < 450 && mousePosY > 310 && mousePosY < 365)
 				{
+					inicialitza("null");
 					m_pantalla = PANTALLA_JOC;
 				}
 				else if (mousePosX > 300 && mousePosX < 450 && mousePosY > 375 && mousePosY < 430)
