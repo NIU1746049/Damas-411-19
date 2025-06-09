@@ -238,15 +238,17 @@ bool Tauler::normalMatar(Posicio posicioActual, vector <Moviment> &movimentsVali
 bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment>& movimentsValids, Posicio fitxaQueEsMou)const {
 	vector <Moviment> tmpMoviments;
 	Moviment movimentBranca;
-	brancaNormal(posicioActual, movimentBranca, movimentsValids, tmpMoviments, fitxaQueEsMou);
+	Posicio mortBranca;
+	brancaNormal(posicioActual ,mortBranca, movimentBranca, movimentsValids, tmpMoviments, fitxaQueEsMou);
 
 	return true; //solucionaho despres
 }
 
-void Tauler::brancaNormal(Posicio posicioOrigen, Moviment movimentBranca, vector <Moviment>& movimentsDefinitius, vector <Moviment> tmpMoviments, Posicio fitxaQueEsMou)const {
+void Tauler::brancaNormal(Posicio posicioOrigen, Posicio mortBranca, Moviment movimentBranca, vector <Moviment>& movimentsDefinitius, vector <Moviment> tmpMoviments, Posicio fitxaQueEsMou)const {
 	if ((posicioOrigen == fitxaQueEsMou) == false) {
 		movimentBranca.afegirPosicio(posicioOrigen);
-		movimentBranca.afegirMorts(tmpMoviments[tmpMoviments.size() - 1].getMortsPos(0));
+		movimentBranca.afegirMorts(mortBranca);
+		//movimentBranca.afegirMorts(tmpMoviments[tmpMoviments.size() - 1].getMortsPos(0));
 		
 
 		movimentsDefinitius.push_back(movimentBranca);
@@ -256,7 +258,8 @@ void Tauler::brancaNormal(Posicio posicioOrigen, Moviment movimentBranca, vector
 	int nTmpMoviments = tmpMoviments.size();
 	if (normalMatar(posicioOrigen, tmpMoviments, fitxaQueEsMou)) {
 		for (int i = nTmpMoviments; i < tmpMoviments.size();i++) {
-			brancaNormal(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1), movimentBranca, movimentsDefinitius, tmpMoviments, fitxaQueEsMou);
+			mortBranca = tmpMoviments[i].getMortsPos(0);
+			brancaNormal(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1), mortBranca, movimentBranca, movimentsDefinitius, tmpMoviments, fitxaQueEsMou);
 		}
 	}
 }
