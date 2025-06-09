@@ -31,11 +31,11 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 			switch (m_pantalla)
 			{
 			case PANTALLA_MENU:
-				if (mousePosX < 225)
+				if (mousePosX > 300 && mousePosX < 450 && mousePosY > 310 && mousePosY < 365)
 				{
 					m_pantalla = PANTALLA_JOC;
 				}
-				else
+				else if (mousePosX > 300 && mousePosX < 450 && mousePosY > 375 && mousePosY < 430)
 				{
 					m_pantalla = PANTALLA_JOC;
 				}
@@ -108,7 +108,12 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	switch (m_pantalla)
 	{
 	case PANTALLA_MENU:
+		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 300, 300, 1.5, "Play");
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 300, 360, 1.5, "Replay");
 
+		text = "Coordenada X: " + to_string(mousePosX) + "\nCoordenada Y: " + to_string(mousePosY);
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 100, 100, 0.8, text);
 		break;
 
 	case PANTALLA_JOC:

@@ -899,50 +899,60 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 
 	if (m_tauler[origen.getFila()][origen.getColumna()] != nullptr) {
-		while ((i < m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments()) && (!trobat)) // AQUI ESTA EL POBLEMA; NO SURT DEL WHILE
+		for (i = 0; i < m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments(); i++)
 		{
 
-
+			//Busca el movimiento con mas muertes
 			if (m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getPosicioPos(m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getNPosicions() - 1) == desti)
 			{
-				movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
-				trobat = true;
-				guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
-				
+				if (!trobat)
+				{
+					movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
+					trobat = true;
+					guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
+				}
+				else if (movimentFet.getNMorts() < m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getNMorts())
+				{
+					movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
+				}
+			}
+			if (trobat)
+			{
 
-				///..Faig aixo, pero sé que després s'haura de sobreccaregar operador
+			}
+		}
+		if (trobat)
+		{
+			///..Faig aixo, pero sé que després s'haura de sobreccaregar operador
 				//m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];//ho copio tot
 				//GOTO (to-do):
 					//sobrecarregar el operador = de manera que pugui fer que una fitxa pilli tot lo d una altra
-				if (m_tauler[desti.getFila()][desti.getColumna()] == nullptr)
-				{
-					m_tauler[desti.getFila()][desti.getColumna()] = new Fitxa;
-				}
-
-
-				m_tauler[desti.getFila()][desti.getColumna()]->setColorFitxa(m_tauler[origen.getFila()][origen.getColumna()]->getColorFitxa());
-				m_tauler[desti.getFila()][desti.getColumna()]->setTipusFitxa(m_tauler[origen.getFila()][origen.getColumna()]->getTipusFitxa());
-				m_tauler[desti.getFila()][desti.getColumna()]->setNMovimentsValids(m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments());
-				m_tauler[desti.getFila()][desti.getColumna()]->setPosicio(m_tauler[origen.getFila()][origen.getColumna()]->getPosicio());
-				for (int j = 0; j < m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments();j++)
-				{
-					m_tauler[desti.getFila()][desti.getColumna()]->afegeixMoviment(m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(j));//former i
-				}
-
-				///..
-
-
-
-				m_tauler[desti.getFila()][desti.getColumna()]->setPosicio(desti);
-				m_tauler[origen.getFila()][origen.getColumna()]->setViva(false);
-				/*
-				m_filaFitxaSeleccionada = desti.getFila();//Mes facil. Aixi despres puc bufar i tota la pesca.
-				m_colFitxaSeleccionada = desti.getColumna();
-				*/			
+			if (m_tauler[desti.getFila()][desti.getColumna()] == nullptr)
+			{
+				m_tauler[desti.getFila()][desti.getColumna()] = new Fitxa;
 			}
-			i++;
-		}
-		if (trobat) {
+
+
+			m_tauler[desti.getFila()][desti.getColumna()]->setColorFitxa(m_tauler[origen.getFila()][origen.getColumna()]->getColorFitxa());
+			m_tauler[desti.getFila()][desti.getColumna()]->setTipusFitxa(m_tauler[origen.getFila()][origen.getColumna()]->getTipusFitxa());
+			m_tauler[desti.getFila()][desti.getColumna()]->setNMovimentsValids(m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments());
+			m_tauler[desti.getFila()][desti.getColumna()]->setPosicio(m_tauler[origen.getFila()][origen.getColumna()]->getPosicio());
+			for (int j = 0; j < m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments(); j++)
+			{
+				m_tauler[desti.getFila()][desti.getColumna()]->afegeixMoviment(m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(j));//former i
+			}
+
+			///..
+
+
+
+			m_tauler[desti.getFila()][desti.getColumna()]->setPosicio(desti);
+			m_tauler[origen.getFila()][origen.getColumna()]->setViva(false);
+			/*
+			m_filaFitxaSeleccionada = desti.getFila();//Mes facil. Aixi despres puc bufar i tota la pesca.
+			m_colFitxaSeleccionada = desti.getColumna();
+			*/
+
 			for (int j = 0; j < movimentFet.getNMorts(); j++)
 			{
 				m_tauler[movimentFet.getMortsPos(j).getFila()][movimentFet.getMortsPos(j).getColumna()]->setViva(false);//Matar totes les fitxes que el moviment mata.
@@ -959,7 +969,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			convertirADama();
 			bufar(origen, movimentFet);
 			eliminarFitxesMortes();
-			
+
 			m_tornBlanques = !m_tornBlanques;
 
 
@@ -968,8 +978,8 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 
 	}
-	
-	actualitzaTaulerEnChars();
+
+	//actualitzaTaulerEnChars();
 
 
 }
