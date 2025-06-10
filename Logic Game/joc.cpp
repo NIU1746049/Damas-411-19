@@ -41,7 +41,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 				{
 					m_pantalla = PANTALLA_REPLAY;
 
-					m_tauler.inicialitzaPartidaReplay("historial_moviments45.txt");
+					m_tauler.inicialitzaPartidaReplay("historial_moviments28.txt");
 					m_tauler.setModeReplay(true);
 				}
 				break;
@@ -114,9 +114,8 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	}
 
 
-	int posTextX;
-	int posTextY;
-	string text;
+	int posTextX = POS_X_TAULER + 20;
+	int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
 	switch (m_pantalla)
 	{
 	case PANTALLA_MENU:
@@ -132,34 +131,41 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	case PANTALLA_JOC:
 		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
 
-		posTextX = POS_X_TAULER;
-		posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
-		text = "PosX: " + to_string(m_columnaRatoli) + "\nPosY: " + to_string(m_filaRatoli);
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, text);
+		if(m_tauler.getTornBlanques())
+		{
+			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, "Torn: Blanques");
+		}
+		else
+		{
+			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, "Torn: Negres");
+		}
+
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, POS_Y_TAULER, 0.8, "Mode: Play");
 		break;
 
 	case PANTALLA_REPLAY:
 		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
+
+		if (m_tauler.getTornBlanques())
+		{
+			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, "Torn: Blanques");
+		}
+		else
+		{
+			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, "Torn: Negres");
+		}
+
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, POS_Y_TAULER, 0.8, "Mode: Replay");
 		break;
 
 	case PANTALLA_VICT_BLANQUES:
 		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
-
-		posTextX = POS_X_TAULER;
-		posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
-		text = "PosX: " + to_string(m_columnaRatoli) + "\nPosY: " + to_string(m_filaRatoli);
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, text);
 
 		GraphicManager::getInstance()->drawFont(FONT_RED_30, 220, 250, 2, " VICTORIA\nBLANQUES");
 		break;
 
 	case PANTALLA_VICT_NEGRES:
 		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
-
-		posTextX = POS_X_TAULER;
-		posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
-		text = "PosX: " + to_string(m_columnaRatoli) + "\nPosY: " + to_string(m_filaRatoli);
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, text);
 
 		GraphicManager::getInstance()->drawFont(FONT_RED_30, 230, 250, 2, "VICTORIA\n NEGRES");
 		break;
