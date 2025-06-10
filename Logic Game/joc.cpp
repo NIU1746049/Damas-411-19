@@ -41,7 +41,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 				{
 					m_pantalla = PANTALLA_REPLAY;
 
-					m_tauler.inicialitzaPartidaReplay("historial_moviments28.txt");
+					m_tauler.inicialitzaPartidaReplay("historial_moviments0.txt");
 					m_tauler.setModeReplay(true);
 				}
 				break;
@@ -92,13 +92,13 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 				break;
 
 			case PANTALLA_REPLAY:
-				if (mousePosX < 250)
+				if (mousePosX > 250)
 				{
 					m_tauler.replayEndavant();
 				}
 				else
 				{
-					m_tauler.replayEndavant();
+					m_tauler.replayCapEnrere();
 				}
 				break;
 
