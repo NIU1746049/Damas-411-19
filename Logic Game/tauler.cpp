@@ -200,9 +200,7 @@ void Tauler::inicialitza(const string& nomFitxer)//mod
 			}
 			else {//No caldria pero per si de cas
 				m_tauler[fila][col] = nullptr;
-				//
-				Posicio bigD(fila, col);
-				//
+				
 			}
 
 		}
@@ -343,61 +341,6 @@ void Tauler::brancaNormal(Posicio posicioOrigen, Posicio mortBranca, Moviment mo
 }
 
 
-
-/*
-bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const//AQUI ESTA EL FALLO!!!!
-{
-	vector <Moviment> tmpMoviments;
-	brancaNormal(posicioActual, tmpMoviments, fitxaQueEsMou);
-
-	Moviment tmpMoviment;
-
-	for (int i = 0; i < tmpMoviments.size();i++) {
-		if (i == 0) {
-			tmpMoviment.setTipus(NORMAL_MATAR);
-		}
-		else {
-			tmpMoviment.setTipus(NORMAL_MATAR_MULTIPLES);
-		}
-		tmpMoviment.afegirPosicio(posicioActual);
-		tmpMoviment.afegirPosicio(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1)); //afegeixo lultima pos
-		tmpMoviment.afegirMorts(tmpMoviments[i].getMortsPos(0));//sempre estara en 0
-
-		movimentsValids.push_back(tmpMoviment);
-
-	}
-
-
-
-
-	
-	return (tmpMoviments.size() > 1);
-}
-*/
-
-
-/*
-void Tauler::brancaDama(Posicio posicioOrigen, Posicio mortBranca, Moviment movimentBranca, vector <Moviment>& movimentsDefinitius, vector <Moviment> tmpMoviments, Posicio fitxaQueEsMou)const
-{
-	int movimentsDefinitiusInicials = movimentsDefinitius.size();
-
-	
-
-
-
-
-	if (damaMatar(posicioOrigen, movimentsDefinitius, fitxaQueEsMou)) 
-	{
-		for (int i = movimentsDefinitiusInicials; i < movimentsDefinitius.size();i++) {
-			brancaDama(movimentsDefinitius[i].getPosicioPos(movimentsDefinitius[i].getNPosicions() - 1), movimentsDefinitius, fitxaQueEsMou);
-		}
-	}
-	
-
-}
-*/
-
-
 bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment>& movimentsValids, Posicio fitxaQueEsMou)const {
 	vector <Moviment> tmpMoviments;
 	Moviment movimentBranca;
@@ -429,59 +372,6 @@ void Tauler::brancaDama(Posicio posicioOrigen, Posicio mortBranca, Moviment movi
 		}
 	}
 }
-
-
-/*
-void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const 
-{
-	int movimentsDefinitiusInicials = movimentsDefinitius.size();
-	if (normalMatar(posicioOrigen, movimentsDefinitius, fitxaQueEsMou)) {
-		for (int i = movimentsDefinitiusInicials; i < movimentsDefinitius.size();i++) {
-			brancaNormal(movimentsDefinitius[i].getPosicioPos(movimentsDefinitius[i].getNPosicions() - 1),movimentsDefinitius,fitxaQueEsMou);
-		}
-	}
-	
-}
-*/
-
-
-/*
-bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const
-{
-
-	vector <Moviment> tmpMoviments;
-	
-
-	
-	int nMovimentsValidsInicial = movimentsValids.size();
-	brancaDama(posicioActual, tmpMoviments, fitxaQueEsMou);
-	
-	Moviment tmpMoviment;
-
-	for (int i = 0; i < tmpMoviments.size();i++) {
-		if (i == 0) {
-			tmpMoviment.setTipus(NORMAL_MATAR);
-		}
-		else {
-			tmpMoviment.setTipus(NORMAL_MATAR_MULTIPLES);
-		}
-
-		tmpMoviment.afegirPosicio(posicioActual);
-		tmpMoviment.afegirPosicio(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1)); //afegeixo lultima pos
-		tmpMoviment.afegirMorts(tmpMoviments[i].getMortsPos(0));//sempre estara en 0 perque nomes fem una captura per moviment (perque tots en la llista tmpMoviment son damaMatar i no multiples)
-		
-		movimentsValids.push_back(tmpMoviment);
-		
-	}
-
-	return (tmpMoviments.size()> 1);
-
-
-}
-*/
-
-
-
 
 
 //dama
@@ -878,113 +768,6 @@ bool Tauler::bufar(const Posicio& posicioOrigen, Moviment& movimentFet) //mod
 
 }
 
-
-/*
-bool Tauler::seleccionaFitxa()
-{
-
-	cout << "---------------------------------------------" << endl;
-	cout << "Selecció fitxa a moure:" << endl;
-	cout << "---------------------------------------------" << endl;
-
-	string fitxaRaw;
-	bool valid = true;
-	cout << endl << "Introdueix posicio: ";
-	cin >> fitxaRaw;
-	cout << endl;
-	Posicio p;
-	p.fromString(fitxaRaw);
-	int filaActual = p.getFila();
-	int colActual = p.getColumna();
-
-	if ((filaActual > N_FILES) || (colActual > N_COLUMNES) || (filaActual < 0) || (colActual < 0))
-	{
-		cout << "Overflow";
-		valid = false;
-	}
-	else {
-		if (m_tauler[filaActual][colActual] != nullptr) {//no crec q clagui pero ho provem igual
-			if (m_tornBlanques) {
-				if (m_tauler[filaActual][colActual]->getColorFitxa() == COLOR_BLANC)
-				{
-					valid = true;
-				}
-				else {
-					valid = false;
-				}
-			}
-			else {
-				if (m_tauler[filaActual][colActual]->getColorFitxa() == COLOR_NEGRE)
-				{
-					valid = true;
-				}
-				else {
-					valid = false;
-				}
-			}
-
-		}
-
-
-	}
-
-	if (valid) {
-		m_colFitxaSeleccionada = colActual;
-		m_filaFitxaSeleccionada = filaActual;
-	}
-	return valid;
-
-
-}
-*/
-
-
-/*
-bool Tauler::seleccionaDesti(Posicio& desti)
-{
-	cout << "---------------------------------------------" << endl;
-	cout << "Selecció posició destí" << endl;
-	cout << "---------------------------------------------" << endl;
-	string fitxaRaw;
-	bool valid = false;
-	cout << endl << "Introdueix posicio: ";
-	cin >> fitxaRaw;
-	cout << endl;
-	Posicio p;
-	p.fromString(fitxaRaw);
-	int filaActual = p.getFila();
-	int colActual = p.getColumna();
-
-
-
-
-	if ((filaActual > N_FILES) || (colActual > N_COLUMNES) || (filaActual < 0) || (colActual < 0))
-	{
-		cout << "Overflow";
-		valid = false;
-
-	}
-	else
-	{
-		Posicio posDesti(filaActual, colActual);
-		Posicio posicionsPossibles[MAX_POSICIONS];
-		int nPos = 0;
-		getPosicionsPossibles(Posicio(m_filaFitxaSeleccionada, m_colFitxaSeleccionada), nPos, posicionsPossibles);
-		for (int i = 0;i < nPos;i++)
-		{
-			if (posDesti == posicionsPossibles[i])
-			{
-				desti = posDesti;
-				valid = true;//Perque llavors esta dins de les posicions possibles
-			}
-		}
-	}
-
-	return valid;
-}
-*/
-
-
 void Tauler::getNPartida() {
 	string nomFitxer = "gestio_historials.txt";
 	ifstream fitxer;
@@ -1197,20 +980,25 @@ void Tauler::llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUM
 	ifstream fitxer;
 	fitxer.open(nomFitxer);
 
-	Posicio posicions[32];
-	char fitxes[32];
-	
+	vector <Posicio> posicions;
+	vector <char> fitxes;
+
+	Posicio tmpPosicio;
+	char tmpFitxa;
+
+	//GOTODR
 	if (fitxer.is_open())
 	{
-		int i = 0;
+		//int i = 0;
 		while (fitxer.eof() == false)
 		{
-			fitxer >> fitxes[i];
-			fitxer >> posicions[i];
+			fitxer >> tmpFitxa;
+			fitxer >> tmpPosicio;
+			posicions.push_back(tmpPosicio);
+			fitxes.push_back(tmpFitxa);
 
-			tauler[posicions[i].getFila()][posicions[i].getColumna()] = fitxes[i];
+			tauler[posicions[posicions.size()-1].getFila()][posicions[posicions.size()-1].getColumna()] = fitxes[fitxes.size()-1];
 
-			i++;
 		}
 	}
 	fitxer.close();
