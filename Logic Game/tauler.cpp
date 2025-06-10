@@ -980,7 +980,6 @@ void Tauler::convertirADama()
 		if (m_tauler[0][col] != nullptr) {
 			if (m_tauler[0][col]->getColorFitxa() == COLOR_BLANC)
 			{
-				m_bufar = false;
 				m_tauler[0][col]->setTipusFitxa(TIPUS_DAMA);
 			}
 
@@ -995,7 +994,6 @@ void Tauler::convertirADama()
 			
 			if (m_tauler[7][col]->getColorFitxa() == COLOR_NEGRE)
 			{
-				m_bufar = false;
 				m_tauler[7][col]->setTipusFitxa(TIPUS_DAMA);
 			}
 		}

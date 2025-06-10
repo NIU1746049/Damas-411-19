@@ -43,11 +43,7 @@ public:
 	string toString() const;
 
 
-	//--- 
-	//Comentades pero no eliminades perque potser ens serveixen en un futur:
-	//bool seleccionaFitxa(); // Cambia col y filaSeleccionada (cout de "Introduce la ficha" y cin)
-	//bool seleccionaDesti(Posicio& desti); //Fa les comprovacions adients tambe
-	//---
+	
 
 	//int comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
 	bool comptaNumeroMovimentsPossibles(const ColorFitxa color) const;
@@ -95,13 +91,15 @@ public:
 	void actualitzaTaulerEnChars();
 
 	void visualitzaTauler(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY);
-	void guardarMoviment(Moviment movimentFet, const string nomFitxer);
-	void inicialitzaPartidaReplay(const string nomFitxer);
+	
 
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
+
 	void replayEndavant();
 	void replayCapEnrere();
-	//void RecreaPartida(const string nomFitxer);
+	void inicialitzaPartidaReplay(const string nomFitxer);
+	void guardarMoviment(Moviment movimentFet, const string nomFitxer);
+	
 private:
 
 	int m_filaFitxaSeleccionada;
@@ -117,7 +115,6 @@ private:
 	int m_nMovNegres;
 
 	bool m_modeReplay;
-	//inicialitza
 	
 	
 	int m_nPartida;
@@ -126,9 +123,5 @@ private:
 	Posicio** m_partidaReplay;
 	int m_contadorMovimentsReplay;
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
-	//
-	//
-	//
-	bool m_bufar = true;
 
 };
