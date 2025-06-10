@@ -24,11 +24,9 @@ public:
 	};
 	Moviment(TipusMoviment tipus, vector <Posicio> posicions, vector <Posicio> morts) {
 		m_tipus = tipus;
-		//m_posicions.resize(nPosicions);
 		for (int i = 0; i < posicions.size(); i++) {
 			m_posicions.push_back(posicions[i]);
 		}
-		//m_morts.resize(nMorts);
 		for (int i = 0;i < morts.size();i++) {
 			m_morts.push_back(morts[i]);
 		}

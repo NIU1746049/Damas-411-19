@@ -11,7 +11,6 @@ using namespace std;
 void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
 	ifstream fitxer;
 	string pathFitxer = "./data/Games/" + nomFitxer;
-	cout << endl << pathFitxer<<endl;
 	fitxer.open(pathFitxer);
 	Posicio origen;
 	Posicio desti;
@@ -324,7 +323,6 @@ void Tauler::brancaNormal(Posicio posicioOrigen, Posicio mortBranca, Moviment mo
 	if ((posicioOrigen == fitxaQueEsMou) == false) {
 		movimentBranca.afegirPosicio(posicioOrigen);
 		movimentBranca.afegirMorts(mortBranca);
-		//movimentBranca.afegirMorts(tmpMoviments[tmpMoviments.size() - 1].getMortsPos(0));
 		
 
 		movimentsDefinitius.push_back(movimentBranca);
@@ -357,7 +355,6 @@ void Tauler::brancaDama(Posicio posicioOrigen, Posicio mortBranca, Moviment movi
 	if ((posicioOrigen == fitxaQueEsMou) == false) {
 		movimentBranca.afegirPosicio(posicioOrigen);
 		movimentBranca.afegirMorts(mortBranca);
-		//movimentBranca.afegirMorts(tmpMoviments[tmpMoviments.size() - 1].getMortsPos(0));
 
 
 		movimentsDefinitius.push_back(movimentBranca);
@@ -590,7 +587,6 @@ bool Tauler::damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids
 
 void Tauler::actualitzaMovimentsValids()
 {
-	cout << endl << "MOVIMENTS VALIDS:::::::::::" << endl;
 	m_nMovBlanques = 0;
 	m_nMovNegres = 0;
 	for (int fila = 0; fila < N_FILES;fila++)
@@ -630,24 +626,10 @@ void Tauler::actualitzaMovimentsValids()
 					{
 						m_nMovNegres++;
 					}
-				}
-				//
-				cout << endl << "peça a fila: " << fila << " columna: " << col << "té els moviments: ";
-				for (int i = 0; i < m_tauler[fila][col]->getNMoviments();i++) {
-					for (int j = 0; j < m_tauler[fila][col]->getMovimentPos(i).getNPosicions();j++) {
-						cout<<endl << m_tauler[fila][col]->getMovimentPos(i).getPosicioPos(j);
-					}
-				}
-				cout<<endl << "Fi" << endl;
-					
+				}		
 			}
-			
-
-
 		}
-	}
-	cout << endl << endl << endl;
-	 
+	}	 
 }
 
 
@@ -690,7 +672,7 @@ void Tauler::getPosicionsPossibles(const Posicio& origen, int& nPosicions, Posic
 
 
 
-bool Tauler::bufar(const Posicio& posicioOrigen, Moviment& movimentFet) //mod
+bool Tauler::bufar(const Posicio& posicioOrigen, Moviment& movimentFet)
 {
 	int maxIndex = -1;
 	//Posicion de la ficha con el mejor movimiento
@@ -780,10 +762,9 @@ void Tauler::getNPartida() {
 	fitxer2 << (m_nPartida + 1);
 	fitxer.close();
 
-	//
-	//string nomPartida = "historial_moviments" + std::to_string(m_nPartida);
-	m_nomFitxerPartida = "./data/Games/historial_moviments" + std::to_string(m_nPartida) + ".txt";//GOTO
-	//
+	
+	m_nomFitxerPartida = "./data/Games/historial_moviments" + std::to_string(m_nPartida) + ".txt";
+	
 }
 
 
@@ -832,16 +813,10 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			{
 				guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
 			}
-			///..Faig aixo, pero sé que després s'haura de sobreccaregar operador
-				//m_tauler[desti.getFila()][desti.getColumna()] = m_tauler[origen.getFila()][origen.getColumna()];//ho copio tot
-				//GOTO (to-do):
-					//sobrecarregar el operador = de manera que pugui fer que una fitxa pilli tot lo d una altra
 			if (m_tauler[desti.getFila()][desti.getColumna()] == nullptr)
 			{
 				m_tauler[desti.getFila()][desti.getColumna()] = new Fitxa;
 			}
-			///////////////////////////////
-			cout << endl << origen.toString() << " cap a: " << desti.toString() << endl;
 
 			m_tauler[desti.getFila()][desti.getColumna()]->setColorFitxa(m_tauler[origen.getFila()][origen.getColumna()]->getColorFitxa());
 			m_tauler[desti.getFila()][desti.getColumna()]->setTipusFitxa(m_tauler[origen.getFila()][origen.getColumna()]->getTipusFitxa());
@@ -852,16 +827,12 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 				m_tauler[desti.getFila()][desti.getColumna()]->afegeixMoviment(m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(j));//former i
 			}
 
-			///..
 
 
 
 			m_tauler[desti.getFila()][desti.getColumna()]->setPosicio(desti);
 			m_tauler[origen.getFila()][origen.getColumna()]->setViva(false);
-			/*
-			m_filaFitxaSeleccionada = desti.getFila();//Mes facil. Aixi despres puc bufar i tota la pesca.
-			m_colFitxaSeleccionada = desti.getColumna();
-			*/
+
 
 			for (int j = 0; j < movimentFet.getNMorts(); j++)
 			{
@@ -877,12 +848,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			}
 
 			convertirADama();
-			//GOTO DEBUG
-			/*
-			if (m_bufar) {
-				bufar(origen, movimentFet);
-			}
-			*/
+
 			bufar(origen, movimentFet);
 
 			eliminarFitxesMortes();
@@ -896,7 +862,6 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 	}
 
-	//actualitzaTaulerEnChars();
 
 
 }
@@ -1040,7 +1005,7 @@ void Tauler::convertirADama()
 
 
 
-void Tauler::eliminarFitxesMortes() //MOD
+void Tauler::eliminarFitxesMortes()
 {
 
 	//ELIMINAR EL CONTINGUT DE CADA CELA DE L ARRAY DINAMIC. DELETE I DESPRES TORNA A SER NULLPTR
