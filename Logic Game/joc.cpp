@@ -15,8 +15,8 @@ void Joc::inicialitza(const string nomFitxer)
 	m_tauler.inicialitza(nomFitxer);
 }
 
-bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus) 
-{	
+bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
+{
 
 	if ((mousePosX >= (POS_X_TAULER + CASELLA_INICIAL_X)) &&
 		(mousePosY >= POS_Y_TAULER + CASELLA_INICIAL_Y) &&
@@ -41,7 +41,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 				{
 					m_pantalla = PANTALLA_REPLAY;
 
-					m_tauler.inicialitzaPartidaReplay("historial_moviments0.txt");
+					m_tauler.inicialitzaPartidaReplay("historial_moviments28.txt");
 					m_tauler.setModeReplay(true);
 				}
 				break;
@@ -94,7 +94,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 			case PANTALLA_REPLAY:
 				if (mousePosX < 250)
 				{
-					m_tauler.replayCapEnrere();
+					m_tauler.replayEndavant();
 				}
 				else
 				{
@@ -102,7 +102,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 				}
 				break;
 
-			case PANTALLA_VICT_BLANQUES: 
+			case PANTALLA_VICT_BLANQUES:
 				m_pantalla = PANTALLA_MENU;
 				break;
 
@@ -114,9 +114,8 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	}
 
 
-	int posTextX;
-	int posTextY;
-	string text;
+	int posTextX = POS_X_TAULER + 20;
+	int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
 	switch (m_pantalla)
 	{
 	case PANTALLA_MENU:
@@ -132,23 +131,35 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	case PANTALLA_JOC:
 		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
 
-		posTextX = POS_X_TAULER;
-		posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
-		text = "PosX: " + to_string(m_columnaRatoli) + "\nPosY: " + to_string(m_filaRatoli);
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, text);
+		if (m_tauler.getTornBlanques())
+		{
+			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, "Torn: Blanques");
+		}
+		else
+		{
+			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, "Torn: Negres");
+		}
+
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, POS_Y_TAULER, 0.8, "Mode: Play");
 		break;
 
 	case PANTALLA_REPLAY:
 		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
+
+		if (m_tauler.getTornBlanques())
+		{
+			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, "Torn: Blanques");
+		}
+		else
+		{
+			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, "Torn: Negres");
+		}
+
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, POS_Y_TAULER, 0.8, "Mode: Replay");
 		break;
 
 	case PANTALLA_VICT_BLANQUES:
 		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
-
-		posTextX = POS_X_TAULER;
-		posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
-		text = "PosX: " + to_string(m_columnaRatoli) + "\nPosY: " + to_string(m_filaRatoli);
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, text);
 
 		GraphicManager::getInstance()->drawFont(FONT_RED_30, 220, 250, 2, " VICTORIA\nBLANQUES");
 		break;
@@ -156,16 +167,9 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	case PANTALLA_VICT_NEGRES:
 		visualitzaJoc(POS_X_TAULER + CASELLA_INICIAL_X, POS_Y_TAULER + CASELLA_INICIAL_Y, AMPLADA_CASELLA, ALCADA_CASELLA);
 
-		posTextX = POS_X_TAULER;
-		posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
-		text = "PosX: " + to_string(m_columnaRatoli) + "\nPosY: " + to_string(m_filaRatoli);
-		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, text);
-
 		GraphicManager::getInstance()->drawFont(FONT_RED_30, 230, 250, 2, "VICTORIA\n NEGRES");
 		break;
 	}
-
-	
 
 
 
@@ -180,7 +184,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	{
 		m_tauler.actualitzaMovimentsValids();
 	}
-	
+
 	m_tauler.setTornFrameAnteriorBlanques(m_tauler.getTornBlanques());
 	m_mouseStatusAnterior = mouseStatus;
 
@@ -215,4 +219,3 @@ void Joc::visualitzaJoc(int zeroDeX, int zeroDeY, int ampladaX, int alcadaY)
 		m_tauler.getPtrTauler()[m_filaFitxaSeleccionada][m_colFitxaSeleccionada]->visualitzaMoviments(zeroDeX, zeroDeY, ampladaX, alcadaY);
 	}
 }
-
