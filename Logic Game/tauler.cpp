@@ -795,17 +795,27 @@ bool Tauler::bufar(const Posicio& posicioOrigen, Moviment& movimentFet) //mod
 			{
 				//Ultima posicion del movimiento
 				Posicio posFinal = movimentFet.getPosicioPos(movimentFet.getNPosicions() - 1);
-				if (m_tauler[posFinal.getFila()][posFinal.getColumna()] != nullptr) {
-					m_tauler[posFinal.getFila()][posFinal.getColumna()]->setViva(false);//aixo pot donar problemes?
+				m_tauler[posFinal.getFila()][posFinal.getColumna()]->setViva(false);
+				if (m_tauler[posFinal.getFila()][posFinal.getColumna()]->getColorFitxa() == COLOR_BLANC)
+				{
+					m_nBlanques--;
 				}
-
+				else if (m_tauler[posFinal.getFila()][posFinal.getColumna()]->getColorFitxa() == COLOR_NEGRE)
+				{
+					m_nNegres--;
+				}
 			}
 			else
 			{
-				if (m_tauler[maxFila][maxCol] != nullptr) {//defensiva
-					m_tauler[maxFila][maxCol]->setViva(false);
+				m_tauler[maxFila][maxCol]->setViva(false);
+				if (m_tauler[maxFila][maxCol]->getColorFitxa() == COLOR_BLANC)
+				{
+					m_nBlanques--;
 				}
-
+				else if (m_tauler[maxFila][maxCol]->getColorFitxa() == COLOR_NEGRE)
+				{
+					m_nNegres--;
+				}
 			}
 			return true;
 		}
