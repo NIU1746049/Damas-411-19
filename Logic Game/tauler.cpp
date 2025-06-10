@@ -30,21 +30,23 @@ void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
 	for (int i = 0; i < m_nMovimentsReplay; i++) {
 		m_partidaReplay[i] = new Posicio[2];
 	}
-
-	fitxer.open(pathFitxer);
+	//Def
+	ifstream fitxer2;
+	fitxer2.open(pathFitxer);
 	int i = 0;
-	while (fitxer >> origen >> desti) {
+	while (fitxer2 >> origen >> desti) {
 		//
 		m_partidaReplay[i][0] = origen;
 		m_partidaReplay[i][1] = desti;
 		i++;
 	}
-	fitxer.close();
+	fitxer2.close();
 	m_contadorMovimentsReplay = 0;
 }
 
 
 void Tauler::replayEndavant() {
+	cout << endl << "Endavant, contador movReplay: " << m_contadorMovimentsReplay;
 	
 	if (m_contadorMovimentsReplay < m_nMovimentsReplay) {
 		Posicio origen = m_partidaReplay[m_contadorMovimentsReplay][0];
@@ -56,17 +58,24 @@ void Tauler::replayEndavant() {
 
 
 void Tauler::replayCapEnrere() {
-	if (m_contadorMovimentsReplay > 0) {
+	if (m_contadorMovimentsReplay >= 0) {
+		cout << endl << "Enrere, contador movReplay: " << m_contadorMovimentsReplay;
+		Posicio origen;
+		Posicio desti;
+		inicialitza("null");
 
-		string nomFitxerNull;
-		inicialitza(nomFitxerNull);
+		if (m_contadorMovimentsReplay > 0) {
+			m_contadorMovimentsReplay--;
+		}
+
 		for (int i = 0; i < m_contadorMovimentsReplay;i++) {
-			Posicio origen = m_partidaReplay[i][0];
-			Posicio desti = m_partidaReplay[i][1];
+			actualitzaMovimentsValids();
+			origen = m_partidaReplay[i][0];
+			desti = m_partidaReplay[i][1];
 			mouFitxa(origen, desti);
 		}
-		m_contadorMovimentsReplay--;
-
+		
+		
 
 	}
 }
@@ -952,7 +961,7 @@ void Tauler::guardarMoviment(Moviment movimentFet,const string nomFitxer) {
 
 bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os important
 {
-	cout << endl << origen.toString() << " cap a: " << desti.toString() << endl;
+	
 	//Ara trobar el moviment que s'ha fet dins de la llista de moviments valids de la fitxa. 
 	bool trobat = false;
 	int i = 0;
@@ -960,12 +969,14 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 
 	if (m_tauler[origen.getFila()][origen.getColumna()] != nullptr) {
+		cout << endl << "Fitxa origen trobada (el lloc origen no es nullptr";
 		for (i = 0; i < m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments(); i++)
 		{
 
-			//Busca el movimiento con mas muertes
+			//busca max kills
 			if (m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getPosicioPos(m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getNPosicions() - 1) == desti)
 			{
+				cout << endl << "Trobat moviment amb el mateix final";
 				if (!trobat)
 				{
 					movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
@@ -977,13 +988,14 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 					movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
 				}
 			}
-			if (trobat)
-			{
+			//if (trobat)
+			//{
 
-			}
+			//}
 		}
 		if (trobat)
 		{
+			cout << endl << "Trobat";
 			if (!m_modeReplay)
 			{
 				guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
@@ -996,7 +1008,8 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			{
 				m_tauler[desti.getFila()][desti.getColumna()] = new Fitxa;
 			}
-
+			///////////////////////////////
+			cout << endl << origen.toString() << " cap a: " << desti.toString() << endl;
 
 			m_tauler[desti.getFila()][desti.getColumna()]->setColorFitxa(m_tauler[origen.getFila()][origen.getColumna()]->getColorFitxa());
 			m_tauler[desti.getFila()][desti.getColumna()]->setTipusFitxa(m_tauler[origen.getFila()][origen.getColumna()]->getTipusFitxa());
