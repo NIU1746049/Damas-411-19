@@ -46,11 +46,11 @@ void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
 
 
 void Tauler::replayEndavant() {
-	cout << endl << "Endavant, contador movReplay: " << m_contadorMovimentsReplay;
 	
 	if (m_contadorMovimentsReplay < m_nMovimentsReplay) {
 		Posicio origen = m_partidaReplay[m_contadorMovimentsReplay][0];
 		Posicio desti = m_partidaReplay[m_contadorMovimentsReplay][1];
+		actualitzaMovimentsValids();
 		mouFitxa(origen, desti);
 		m_contadorMovimentsReplay++;
 	}
@@ -59,7 +59,6 @@ void Tauler::replayEndavant() {
 
 void Tauler::replayCapEnrere() {
 	if (m_contadorMovimentsReplay >= 0) {
-		cout << endl << "Enrere, contador movReplay: " << m_contadorMovimentsReplay;
 		Posicio origen;
 		Posicio desti;
 		inicialitza("null");
@@ -376,7 +375,9 @@ bool Tauler::normalMatarMultiples(Posicio posicioActual, vector <Moviment> &movi
 }
 */
 
-void Tauler::brancaDama(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const 
+
+/*
+void Tauler::brancaDama(Posicio posicioOrigen, Posicio mortBranca, Moviment movimentBranca, vector <Moviment>& movimentsDefinitius, vector <Moviment> tmpMoviments, Posicio fitxaQueEsMou)const
 {
 	int movimentsDefinitiusInicials = movimentsDefinitius.size();
 
@@ -394,6 +395,42 @@ void Tauler::brancaDama(Posicio posicioOrigen, vector <Moviment>& movimentsDefin
 	
 
 }
+*/
+
+
+bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment>& movimentsValids, Posicio fitxaQueEsMou)const {
+	vector <Moviment> tmpMoviments;
+	Moviment movimentBranca;
+	movimentBranca.afegirPosicio(posicioActual);
+	Posicio mortBranca;
+	brancaDama(posicioActual, mortBranca, movimentBranca, movimentsValids, tmpMoviments, fitxaQueEsMou);
+
+	return true; //solucionaho despres
+}
+
+
+
+void Tauler::brancaDama(Posicio posicioOrigen, Posicio mortBranca, Moviment movimentBranca, vector <Moviment>& movimentsDefinitius, vector <Moviment> tmpMoviments, Posicio fitxaQueEsMou)const {
+	if ((posicioOrigen == fitxaQueEsMou) == false) {
+		movimentBranca.afegirPosicio(posicioOrigen);
+		movimentBranca.afegirMorts(mortBranca);
+		//movimentBranca.afegirMorts(tmpMoviments[tmpMoviments.size() - 1].getMortsPos(0));
+
+
+		movimentsDefinitius.push_back(movimentBranca);
+	}
+
+
+	int nTmpMoviments = tmpMoviments.size();
+	if (damaMatar(posicioOrigen, tmpMoviments, fitxaQueEsMou)) {
+		for (int i = nTmpMoviments; i < tmpMoviments.size();i++) {
+			mortBranca = tmpMoviments[i].getMortsPos(0);
+			brancaDama(tmpMoviments[i].getPosicioPos(tmpMoviments[i].getNPosicions() - 1), mortBranca, movimentBranca, movimentsDefinitius, tmpMoviments, fitxaQueEsMou);
+		}
+	}
+}
+
+
 /*
 void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const 
 {
@@ -408,7 +445,7 @@ void Tauler::brancaNormal(Posicio posicioOrigen, vector <Moviment>& movimentsDef
 */
 
 
-
+/*
 bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const
 {
 
@@ -441,6 +478,7 @@ bool Tauler::damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movime
 
 
 }
+*/
 
 
 
@@ -662,6 +700,7 @@ bool Tauler::damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids
 
 void Tauler::actualitzaMovimentsValids()
 {
+	cout << endl << "MOVIMENTS VALIDS:::::::::::" << endl;
 	m_nMovBlanques = 0;
 	m_nMovNegres = 0;
 	for (int fila = 0; fila < N_FILES;fila++)
@@ -702,10 +741,23 @@ void Tauler::actualitzaMovimentsValids()
 						m_nMovNegres++;
 					}
 				}
+				//
+				cout << endl << "peça a fila: " << fila << " columna: " << col << "té els moviments: ";
+				for (int i = 0; i < m_tauler[fila][col]->getNMoviments();i++) {
+					for (int j = 0; j < m_tauler[fila][col]->getMovimentPos(i).getNPosicions();j++) {
+						cout<<endl << m_tauler[fila][col]->getMovimentPos(i).getPosicioPos(j);
+					}
+				}
+				cout<<endl << "Fi" << endl;
+					
 			}
+			
+
 
 		}
 	}
+	cout << endl << endl << endl;
+	 
 }
 
 
@@ -956,14 +1008,7 @@ void Tauler::guardarMoviment(Moviment movimentFet,const string nomFitxer) {
 
 	ofstream fitxer;
 	fitxer.open(nomFitxer, ofstream::app);
-	//
-	cout << endl;
-	for (int i = 0; i < movimentFet.getNPosicions();i++) {
-		cout << movimentFet.getPosicioPos(i).toString()<<" ";
-	}
-	cout << endl;
-
-	//
+	
 	fitxer << movimentFet.getPosicioPos(0).toString() << " " << movimentFet.getPosicioPos(movimentFet.getNPosicions() - 1).toString()<<endl; //Posicio origen i posicio desti
 	
 	fitxer.close();
@@ -979,14 +1024,12 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 
 
 	if (m_tauler[origen.getFila()][origen.getColumna()] != nullptr) {
-		cout << endl << "Fitxa origen trobada (el lloc origen no es nullptr";
 		for (i = 0; i < m_tauler[origen.getFila()][origen.getColumna()]->getNMoviments(); i++)
 		{
 
 			//busca max kills
 			if (m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getPosicioPos(m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i).getNPosicions() - 1) == desti)
 			{
-				cout << endl << "Trobat moviment amb el mateix final";
 				if (!trobat)
 				{
 					movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
@@ -998,14 +1041,10 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 					movimentFet = m_tauler[origen.getFila()][origen.getColumna()]->getMovimentPos(i);
 				}
 			}
-			//if (trobat)
-			//{
-
-			//}
+			
 		}
 		if (trobat)
 		{
-			cout << endl << "Trobat";
 			if (!m_modeReplay)
 			{
 				guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
@@ -1055,7 +1094,14 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 			}
 
 			convertirADama();
+			//GOTO DEBUG
+			/*
+			if (m_bufar) {
+				bufar(origen, movimentFet);
+			}
+			*/
 			bufar(origen, movimentFet);
+
 			eliminarFitxesMortes();
 
 			m_tornBlanques = !m_tornBlanques;
@@ -1174,12 +1220,14 @@ void Tauler::llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUM
 
 void Tauler::convertirADama()
 {
+	
 	//Damas Blancas
 	for (int col = 0; col < N_COLUMNES; col++)
 	{
 		if (m_tauler[0][col] != nullptr) {
 			if (m_tauler[0][col]->getColorFitxa() == COLOR_BLANC)
 			{
+				m_bufar = false;
 				m_tauler[0][col]->setTipusFitxa(TIPUS_DAMA);
 			}
 
@@ -1191,8 +1239,10 @@ void Tauler::convertirADama()
 	for (int col = 0; col < N_COLUMNES; col++)
 	{
 		if (m_tauler[7][col] != nullptr) {
+			
 			if (m_tauler[7][col]->getColorFitxa() == COLOR_NEGRE)
 			{
+				m_bufar = false;
 				m_tauler[7][col]->setTipusFitxa(TIPUS_DAMA);
 			}
 		}

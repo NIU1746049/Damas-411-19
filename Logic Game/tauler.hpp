@@ -68,12 +68,13 @@ public:
 	bool damaMoure(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
 	bool damaMatar(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
 	bool damaMatarMultiples(Posicio posicioActual, vector <Moviment> &movimentsValids, Posicio fitxaQueEsMou)const;
+
 	
 
 	//Auxiliar Moviments
 	//void brancaNormal(Posicio posicioOrigen,vector <Moviment> &movimentsDefinitius, Posicio fitxaQueEsMou)const;
 	void brancaNormal(Posicio posicioOrigen, Posicio mortBranca, Moviment movimentBranca, vector <Moviment>& movimentsDefinitius, vector <Moviment> tmpMoviments, Posicio fitxaQueEsMou)const;
-	void brancaDama(Posicio posicioOrigen, vector <Moviment>& movimentsDefinitius, Posicio fitxaQueEsMou)const;
+	void brancaDama(Posicio posicioOrigen, Posicio mortBranca, Moviment movimentBranca, vector <Moviment>& movimentsDefinitius, vector <Moviment> tmpMoviments, Posicio fitxaQueEsMou)const;
 
 
 	//getters
@@ -125,5 +126,9 @@ private:
 	Posicio** m_partidaReplay;
 	int m_contadorMovimentsReplay;
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
+	//
+	//
+	//
+	bool m_bufar = true;
 
 };
