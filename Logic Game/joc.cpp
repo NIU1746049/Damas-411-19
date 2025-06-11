@@ -21,7 +21,8 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 	if ((mousePosX >= (POS_X_TAULER + CASELLA_INICIAL_X)) &&
 		(mousePosY >= POS_Y_TAULER + CASELLA_INICIAL_Y) &&
 		(mousePosX <= (POS_X_TAULER + CASELLA_INICIAL_X + AMPLADA_CASELLA * NUM_COLS_TAULER)) &&
-		(mousePosY <= (POS_Y_TAULER + CASELLA_INICIAL_Y + ALCADA_CASELLA * NUM_FILES_TAULER)))
+		(mousePosY <= (POS_Y_TAULER + CASELLA_INICIAL_Y + ALCADA_CASELLA * NUM_FILES_TAULER)) ||
+		m_pantalla == PANTALLA_REPLAY)
 	{
 		m_columnaRatoli = (mousePosX - (POS_X_TAULER + CASELLA_INICIAL_X)) / AMPLADA_CASELLA;
 		m_filaRatoli = (mousePosY - (POS_Y_TAULER + CASELLA_INICIAL_Y)) / ALCADA_CASELLA;
@@ -42,7 +43,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 				{
 					m_pantalla = PANTALLA_REPLAY;
 
-					m_tauler.inicialitzaPartidaReplay("historial_moviments252.txt");
+					m_tauler.inicialitzaPartidaReplay("historial_moviments165.txt");
 					m_tauler.setModeReplay(true);
 				}
 				break;
@@ -93,13 +94,13 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 				break;
 
 			case PANTALLA_REPLAY:
-				if (mousePosX > 450)
-				{
-					m_tauler.replayEndavant();
-				}
-				else
+				if (mousePosX > 520 && mousePosX < 585 && mousePosY > 620 && mousePosY < 670)
 				{
 					m_tauler.replayCapEnrere();
+				}
+				else if (mousePosX > 585 && mousePosX < 650 && mousePosY > 620 && mousePosY < 670)
+				{
+					m_tauler.replayEndavant();
 				}
 				break;
 
@@ -114,7 +115,7 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 		}
 	}
 
-
+	string text;
 	int posTextX = POS_X_TAULER + 20;
 	int posTextY = POS_Y_TAULER + (ALCADA_CASELLA * NUM_FILES_TAULER) + 120;
 	switch (m_pantalla)
@@ -123,10 +124,6 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 		GraphicManager::getInstance()->drawSprite(GRAFIC_FONS, 0, 0);
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 300, 300, 1.5, "Play");
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 300, 360, 1.5, "Replay");
-
-		//Para ver las coordenadas del raton y saber donde poner las imagenes
-		//text = "Coordenada X: " + to_string(mousePosX) + "\nCoordenada Y: " + to_string(mousePosY);
-		//GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 100, 100, 0.8, text);
 		break;
 
 	case PANTALLA_JOC:
@@ -155,8 +152,12 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 		{
 			GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, posTextY, 0.8, "Torn: Negres");
 		}
-
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX, POS_Y_TAULER, 0.8, "Mode: Replay");
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX + 430, posTextY - 20, 1.5, "<= =>");
+
+		//Para ver las coordenadas del raton y saber donde poner las imagenes
+		text = "Coordenada X: " + to_string(mousePosX) + "\nCoordenada Y: " + to_string(mousePosY);
+		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 100, 100, 0.8, text);
 		break;
 
 	case PANTALLA_VICT_BLANQUES:
