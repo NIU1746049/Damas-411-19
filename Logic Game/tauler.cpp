@@ -932,7 +932,7 @@ string Tauler::toString() const
 
 
 
-void Tauler::llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const // NO MOD PERO CREC QUE ES IGUAL PERQUE ES TAULER EN CHARS
+void Tauler::llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const 
 {
 	for (int i = 0; i < N_FILES; i++)
 	{
@@ -951,10 +951,8 @@ void Tauler::llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUM
 	Posicio tmpPosicio;
 	char tmpFitxa;
 
-	//GOTODR
 	if (fitxer.is_open())
 	{
-		//int i = 0;
 		while (fitxer.eof() == false)
 		{
 			fitxer >> tmpFitxa;
@@ -962,14 +960,12 @@ void Tauler::llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUM
 			posicions.push_back(tmpPosicio);
 			fitxes.push_back(tmpFitxa);
 
-			tauler[posicions[posicions.size()-1].getFila()][posicions[posicions.size()-1].getColumna()] = fitxes[fitxes.size()-1];
+			tauler[posicions[posicions.size() - 1].getFila()][posicions[posicions.size() - 1].getColumna()] = fitxes[fitxes.size() - 1];
 
 		}
 	}
 	fitxer.close();
 }
-
-
 
 void Tauler::convertirADama()
 {
@@ -1023,7 +1019,7 @@ void Tauler::eliminarFitxesMortes()
 	}
 }
 
-bool Tauler::comptaNumeroMovimentsPossibles(const ColorFitxa color) const //MOD
+bool Tauler::comptaNumeroMovimentsPossibles(const ColorFitxa color) const 
 {
 	int nMoviments = 0;
 	for (int fila = 0; fila < N_FILES; fila++)
