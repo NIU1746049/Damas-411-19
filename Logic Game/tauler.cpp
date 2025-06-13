@@ -10,7 +10,6 @@ using namespace std;
 
 void Tauler::inicialitzaPartidaReplay() {
 	ifstream fitxer;
-	//string pathFitxer = "./data/Games/" + nomFitxer;
 
 	fitxer.open(m_fitxerMoviments);
 	Posicio origen;
@@ -131,9 +130,6 @@ void Tauler::actualitzaTaulerEnChars()
 
 void Tauler::inicialitza(const string& nomFitxer)//mod
 {
-	//
-	//getNPartida();
-	//
 	
 
 	if (nomFitxer != "null")
@@ -936,6 +932,7 @@ void Tauler::llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUM
 
 	ifstream fitxer;
 	fitxer.open(nomFitxer);
+
 
 	vector <Posicio> posicions;
 	vector <char> fitxes;
