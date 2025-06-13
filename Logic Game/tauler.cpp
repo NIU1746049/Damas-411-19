@@ -8,10 +8,11 @@ using namespace std;
 //
 
 
-void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
+void Tauler::inicialitzaPartidaReplay() {
 	ifstream fitxer;
-	string pathFitxer = "./data/Games/" + nomFitxer;
-	fitxer.open(pathFitxer);
+	//string pathFitxer = "./data/Games/" + nomFitxer;
+
+	fitxer.open(m_fitxerMoviments);
 	Posicio origen;
 	Posicio desti;
 
@@ -31,7 +32,7 @@ void Tauler::inicialitzaPartidaReplay(const string nomFitxer) {
 	}
 	//Def
 	ifstream fitxer2;
-	fitxer2.open(pathFitxer);
+	fitxer2.open(m_fitxerMoviments);
 	int i = 0;
 	while (fitxer2 >> origen >> desti) {
 		//
@@ -131,7 +132,7 @@ void Tauler::actualitzaTaulerEnChars()
 void Tauler::inicialitza(const string& nomFitxer)//mod
 {
 	//
-	getNPartida();
+	//getNPartida();
 	//
 	
 
@@ -750,28 +751,19 @@ bool Tauler::bufar(const Posicio& posicioOrigen, Moviment& movimentFet)
 
 }
 
-void Tauler::getNPartida() {
-	string nomFitxer = "gestio_historials.txt";
-	ifstream fitxer;
-	fitxer.open(nomFitxer);
-	fitxer >> m_nPartida;//nPartida esta dins de tauler
-	fitxer.close();
 
-	ofstream fitxer2;
-	fitxer2.open(nomFitxer);
-	fitxer2 << (m_nPartida + 1);
+void Tauler::inicialitzaGuardarMoviments() {
+	ofstream fitxer;
+	
+	fitxer.open(m_fitxerMoviments);
+	fitxer << "";
 	fitxer.close();
-
-	
-	m_nomFitxerPartida = "./data/Games/historial_moviments" + std::to_string(m_nPartida) + ".txt";
-	
 }
 
-
-void Tauler::guardarMoviment(Moviment movimentFet,const string nomFitxer) {
+void Tauler::guardarMoviment(Moviment movimentFet) {
 
 	ofstream fitxer;
-	fitxer.open(nomFitxer, ofstream::app);
+	fitxer.open(m_fitxerMoviments, ofstream::app);
 	
 	fitxer << movimentFet.getPosicioPos(0).toString() << " " << movimentFet.getPosicioPos(movimentFet.getNPosicions() - 1).toString()<<endl; //Posicio origen i posicio desti
 	
@@ -811,7 +803,7 @@ bool Tauler::mouFitxa(const Posicio& origen, const Posicio& desti) //os importan
 		{
 			if (!m_modeReplay)
 			{
-				guardarMoviment(movimentFet, m_nomFitxerPartida); // Esta a resources
+				guardarMoviment(movimentFet); // Esta a resources
 			}
 			if (m_tauler[desti.getFila()][desti.getColumna()] == nullptr)
 			{

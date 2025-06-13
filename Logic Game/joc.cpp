@@ -38,12 +38,13 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 					m_pantalla = PANTALLA_JOC;
 
 					m_tauler.setModeReplay(false);
+					m_tauler.inicialitzaGuardarMoviments();
 				}
 				else if (mousePosX > 300 && mousePosX < 450 && mousePosY > 375 && mousePosY < 430)
 				{
 					m_pantalla = PANTALLA_REPLAY;
 
-					m_tauler.inicialitzaPartidaReplay("historial_moviments165.txt");
+					m_tauler.inicialitzaPartidaReplay();
 					m_tauler.setModeReplay(true);
 				}
 				break;

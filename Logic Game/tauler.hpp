@@ -82,7 +82,6 @@ public:
 	bool getTornBlanques() const { return m_tornBlanques; }
 	bool getTornFrameAnteriorBlanques() const { return m_tornFrameAnteriorBlanques; }
 	Fitxa*** getPtrTauler() const { return m_tauler; }
-	void getNPartida();
 
 	//setters
 	void setModeReplay(bool modeReplay) { m_modeReplay = modeReplay; }
@@ -94,11 +93,14 @@ public:
 	
 
 	void llegeixTauler(const string& nomFitxer, char tauler[N_FILES][N_COLUMNES]) const;
-
+	
 	void replayEndavant();
 	void replayCapEnrere();
-	void inicialitzaPartidaReplay(const string nomFitxer);
-	void guardarMoviment(Moviment movimentFet, const string nomFitxer);
+	void inicialitzaPartidaReplay();
+	void guardarMoviment(Moviment movimentFet);
+	void inicialitzaGuardarMoviments();
+
+	
 	
 private:
 
@@ -124,4 +126,5 @@ private:
 	int m_contadorMovimentsReplay;
 	Moviment movimentFet;//El moviment que ha fet en la iteracio actual del joc
 
+	string m_fitxerMoviments = "./data/Games/moviments.txt";
 };
