@@ -157,7 +157,6 @@ bool Joc::actualitza(int mousePosX, int mousePosY, bool mouseStatus)
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, posTextX + 430, posTextY - 20, 1.5, "<= =>");
 
 		//Para ver las coordenadas del raton y saber donde poner las imagenes
-		text = "Coordenada X: " + to_string(mousePosX) + "\nCoordenada Y: " + to_string(mousePosY);
 		GraphicManager::getInstance()->drawFont(FONT_WHITE_30, 100, 100, 0.8, text);
 		break;
 
